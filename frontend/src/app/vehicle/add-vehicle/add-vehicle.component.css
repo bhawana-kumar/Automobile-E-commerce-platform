@@ -1,0 +1,268 @@
+
+ body {
+    background-color: black; /* Light gray background color */
+}
+
+form {
+    width: 50%;
+    margin: auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    border-color: #66afe9;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+   margin-right: 25px;
+    border-radius: 5px; 
+   cursor: pointer;
+    /* justify-content: center;
+    justify-items: center;
+    text-align: center; */ 
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color:  brown;
+  }
+  
+  #color{
+    border-radius: 10px;
+  }
+  .img {
+    display: block;
+    margin-top: 10px;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .condition-options {
+    display: flex;
+    align-items: center;
+  }
+  
+  .condition-options input[type="radio"] {
+    margin-right: 5px;
+  }
+
+
+  .fuel_type {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .fuel_type div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .fuel_type div input[type="radio"] {
+    margin-right: 5px;
+  }
+
+  .fuel_type div label{
+    color:brown;
+  }
+
+  /* Style for the div containing label and input */
+div.passenger {
+  margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+/* Style for the label */
+div.passenger label {
+  display: block; /* Ensure label takes full width */
+  font-weight: bold; /* Make label text bold */
+  margin-bottom: 5px; /* Add space below label */
+}
+
+/* Style for the input */
+div.passenger input[type="number"] {
+  width: 100%; /* Make input full width */
+  padding: 8px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Add border for input */
+  border-radius: 20px; /* Add border radius for input */
+  box-sizing: border-box;
+  margin-left: 15px;
+   /* Ensure padding and border are included in width */
+}
+
+/* Style for the div containing condition radio buttons and labels */
+div.condition {
+  margin-bottom: 10px;
+  display: flex; /* Adjust margin as needed */
+}
+
+/* Style for the labels */
+div.condition label {
+  display: inline; /* Ensure labels take full width */
+  margin-bottom: 5px; /* Add space below labels */
+  font-weight: bold; /* Make labels bold */
+}
+
+/* Style for the radio buttons */
+div.condition input[type="radio"] {
+  margin-right: 5px; /* Add space between radio buttons and labels */
+}
+
+div.price {
+  margin-bottom: 5px;
+margin-left: 30px; /* Adjust margin as needed */
+}
+
+/* Style for the label */
+div.price label {
+  display: block; /* Ensure label takes full width */
+  font-weight: bold; /* Make label text bold */
+  margin-bottom: 5px; /* Add space below label */
+}
+
+/* Style for the input */
+div.price input[type="number"] {
+  width: 100%; /* Make input full width */
+  padding: 8px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Add border for input */
+  border-radius: 4px; /* Add border radius for input */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+/* Style for the label */
+label.image {
+  display: block; /* Ensure label takes full width */
+  font-weight: bold; /* Make label text bold */
+  margin-bottom: 10px; /* Add space below label */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: green; /* Text color */
+  text-align:center;
+}
+
+/* Style for the file input */
+input[type="file"] {
+  display: none; /* Hide the default file input */
+}
+
+/* Hover effect for label */
+label.image:hover {
+  text-decoration: underline; /* Underline text on hover */
+  color:blueviolet;
+}
+
+/* Style for the select element */
+#cars {
+  padding: 4px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 2px; /* Add border radius */
+  font-size: 15px; /* Set font size */
+  width: 100%;
+}
+
+
+/* Style for the options */
+#cars option {
+  font-size: 16px; /* Set font size */
+  background-color: lightgreen; /* Set background color */
+  color: black; /* Set text color */
+}
+.brand{
+  display:inline;
+}
+
+
+.line{
+  display: flex;
+  width: 100%;
+}
+
+  
+div.contact {
+  margin-bottom: 5px;
+  margin-left: 15px; /* Adjust margin as needed */
+}
+
+/* Style for the label */
+div.contact label {
+  display: block; /* Ensure label takes full width */
+  font-weight: bold; /* Make label text bold */
+ /* Add space below label */
+}
+
+/* Style for the input */
+div.contact input[type="number"] {
+  width: 100%; /* Make input full width */
+  padding: 4px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Add border for input */
+  border-radius: 4px; /* Add border radius for input */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+.submit{
+  padding-top: 15px;
+}
+
+.new{
+  color:darkcyan
+}
+.used{
+color: darkred
+}
+
+
+/* Style for the label */
+div.contact label {
+  display: block; /* Ensure label takes full width */
+  font-weight: bold; /* Make label text bold */
+  margin-bottom: 5px; /* Add space below label */
+}
+
+/* Style for the input */
+div.contact.input[type="number"] {
+  width: 100%; /* Make input full width */
+  padding: 8px; /* Add padding for better appearance */
+  border: 1px solid #ccc; /* Add border for input */
+  border-radius: 4px; /* Add border radius for input */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+/* Style for the label */

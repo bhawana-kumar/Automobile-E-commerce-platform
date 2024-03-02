@@ -11,7 +11,7 @@ import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { SearchComponent } from './home/search/search.component';
 import { CardsComponent } from './home/cards/cards.component';
-import { HttpClientModule } from '@angular/common/http';
+import { CarfilterComponent } from './carfilter/carfilter.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     SearchComponent,
     CardsComponent,
+    CarfilterComponent,
   ],
   imports: [
     BrowserModule,

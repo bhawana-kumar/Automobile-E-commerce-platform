@@ -1,36 +1,46 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { VehicleModule } from './vehicle/vehicle.module';
-import { VehicleRoutingModule } from './vehicle/vehicle-routing.module';
-import { HeaderComponent } from './home/header/header.component';
-import { FooterComponent } from './home/footer/footer.component';
-import { SearchComponent } from './home/search/search.component';
-import { CardsComponent } from './home/cards/cards.component';
-import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
+import { ViewProfileComponent } from './profile/view-profile/view-profile.component';
+import { ShortlistedVehiclesComponent } from './profile/shortlisted-vehicles/shortlisted-vehicles.component';
+import { ProfileSettingsComponent } from './profile/profile-settings/profile-settings.component';
+import { YourOrderHistoryComponent } from './profile/your-order-history/your-order-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    SearchComponent,
-    CardsComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardModeratorComponent,
+    BoardUserComponent,
+    ViewProfileComponent,
+    ShortlistedVehiclesComponent,
+    ProfileSettingsComponent,
+    YourOrderHistoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    VehicleRoutingModule,
-    VehicleModule
+    FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

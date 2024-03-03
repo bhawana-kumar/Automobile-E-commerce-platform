@@ -1,0 +1,149 @@
+/* Resetting default margins and paddings */
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  /* Resetting default margins and paddings */
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.difftabs {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff; /* Background color */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  padding: 20px; /* Add padding */
+}
+
+.difftabs ul {
+  list-style: none; /* Remove default list styles */
+}
+
+.difftabs li {
+  margin-bottom: 10px; /* Add spacing between items */
+}
+
+.difftabs a {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Text color */
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+.difftabs a:hover {
+  background-color: #f8f8f8; /* Hover background color */
+}
+
+.difftabs i {
+  margin-right: 10px; /* Add spacing between icon and text */
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .difftabs {
+      flex-direction: row; /* Stack items horizontally on smaller screens */
+  }
+
+  .difftabs li {
+      margin-right: 10px; /* Add spacing between items */
+      margin-bottom: 0; /* Remove bottom margin */
+  }
+}
+  
+  body {
+    color: #333; /* Dark text color */
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f1f2f7;
+    font-size: 14px;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .SideComponent {
+    margin-left: 30px; /* Adjusted margin */
+    margin-top: 30px;
+    flex: 1; /* Take remaining space */
+  }
+  
+  .maincontainer {
+    background-color: #eaeaea; /* Light background color */
+    padding: 20px;
+  }
+  
+  .profile-nav .user-heading {
+    background: #888785;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .profile-nav .user-heading a img {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    border: 10px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
+  }
+  
+  .profile-nav .user-heading h1 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 5px;
+  }
+  
+  .profile-nav .user-heading p {
+    font-size: 12px;
+  }
+  
+  .profile-nav ul {
+    margin-top: 1px;
+  }
+  
+  .profile-nav ul > li {
+    border-bottom: 1px solid #ebeae6;
+    line-height: 30px;
+  }
+  
+  .profile-nav ul > li > a {
+    border-left: 5px solid transparent;
+    color: #89817f;
+  }
+  
+  .profile-nav ul > li > a:hover, 
+  .profile-nav ul > li > a:focus,
+  .profile-nav ul li.active a {
+    background: #f8f7f5;
+    border-left: 5px solid #d40f3a;
+    color: #89817f;
+  }
+  
+  .profile-nav ul > li:last-child > a:last-child {
+    border-radius: 0 0 4px 4px;
+  }
+  
+  .profile-nav ul > li > a > i {
+    font-size: 16px;
+    padding-right: 10px;
+    color: #bcb3aa;
+  }
+  
+  /* Media Query for smaller screens */
+  @media only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Stack elements vertically on smaller screens */
+    }
+  
+    .SideComponent {
+      margin-left: 0; /* Remove left margin on smaller screens */
+      margin-top: 20px;
+      width: 100%; /* Take full width */
+    }
+  }
+  
+  

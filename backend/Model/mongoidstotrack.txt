@@ -1,0 +1,42 @@
+
+ seller id - 65e01fd8681a1fd21cf80ba6 username - Aditya
+seller id -
+65e00e40681a1fd21cf80b8a
+65e00e40681a1fd21cf80b8b
+
+
+seller id - 65e01fd8681a1fd21cf80ba5
+username - Pratiksha
+products id -
+65e00e40681a1fd21cf80b8c
+65e00e40681a1fd21cf80b8d
+
+
+seller id - 65e01fd8681a1fd21cf80ba3
+username - arun
+products id - 
+65e00e40681a1fd21cf80b8e
+65e00e40681a1fd21cf80b8f
+
+seller id - 65e01fd8681a1fd21cf80ba2
+username - smriti
+products id -
+65e0040681a1fd21cf80b90
+65e00e40681a1fd21cf80b91
+
+seller id - 65e01fd8681a1fd21cf80ba1
+username - Arjun
+products id - 
+65e00e40681a1fd21cf80b92
+65e00e40681a1fd21cf80b93
+
+seller id - 65e01fd8681a1fd21cf80ba0
+username - parth
+products id -
+65e00e40681a1fd21cf80b94
+65e417f974036db3bdb9db74
+
+
+
+
+

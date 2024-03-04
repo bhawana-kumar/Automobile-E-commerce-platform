@@ -1,3 +1,6 @@
+import { model, Schema, Types} from 'mongoose';
+
+
 //Model to be added
 const mongoose = require('mongoose')
 const { number } = require('yargs')
@@ -17,14 +20,14 @@ const productSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    
+
     ownership: {
         type: String,
-        enum: ['First', 'Second','Third'], // Ensures only 'these' values are allowed
+        enum: ['First', 'Second', 'Third'], // Ensures only 'these' values are allowed
         required: true
     },
 
-    
+
     image: {
         data: Buffer, // Binary data of the image
         contentType: String // Mime type of the image
@@ -36,7 +39,7 @@ const productSchema = mongoose.Schema({
     },
 
     seats: {
-        type : Number,
+        type: Number,
         required: true
     },
 
@@ -49,13 +52,13 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-  
+
     mileage: {
         type: String,
         required: false
     },
-    
-    description : {
+
+    description: {
         type: String,
         required: false
     },
@@ -63,7 +66,11 @@ const productSchema = mongoose.Schema({
     body_type: {
         type: String,
         required: true
-    }
+    },
+
+    sellerId: { 
+        type: Types.ObjectId, ref: 'users', default: null , required: false} // Reference to the User model for seller's ID
+
 });
 
 module.exports = mongoose.model("product", productSchema);

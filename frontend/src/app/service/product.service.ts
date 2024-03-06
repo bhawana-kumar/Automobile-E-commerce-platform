@@ -8,7 +8,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any> {
-    const url = 'http://localhost:4000'; // Replace with your actual endpoint
-    return this.http.get(url+"/getProduct");
+    const url = 'http://localhost:4000/vehicle'; 
+    return this.http.get(url+"/getAllVehicleData");
   }
 }

@@ -1,0 +1,41 @@
+<div class="OrderContainer">
+    <mat-card class="orderCard" *ngFor="let receipt of receiptsData">
+        <div class="orderheader">
+            <mat-card-header>
+                <mat-card-subtitle>Date: {{ receipt.dateTime | date}}</mat-card-subtitle>
+                <mat-card-title>order: {{ receipt._id }}</mat-card-title>
+            </mat-card-header>
+            <div class="info">
+                <div (click)="UserDetails(receipt.buyerId)">
+                    <p>BUYER</p>
+                    <p>{{ receipt.buyer.name }}</p>
+                    <p>{{ receipt.buyer.contactNumber }}</p>
+                    <p>{{ receipt.buyer.address }}</p>
+                </div>
+                <div (click)="UserDetails(receipt.sellerId)">
+                    <p>SELLER</p>
+                    <p>{{ receipt.seller.name }}</p>
+                    <p>{{ receipt.seller.contactNumber }}</p>
+                    <p>{{ receipt.seller.address }}</p>
+                </div>
+            </div>
+        </div>
+
+        <mat-card-content (click)="vehicleDetails(receipt.vehicleId)" >
+            <p>registrationNumber: {{receipt.vehicle.registrationNumber}}</p>
+            <div class="vehicalInfo">
+                <p>VIN: {{ receipt.vehicle.VIN }}</p>
+                <p>Brand: {{ receipt.vehicle.brand }}</p>
+                <p>Model: {{ receipt.vehicle.model }}</p>
+                <p>Year: {{ receipt.vehicle.year }}</p>
+                <p>Mileage: {{ receipt.vehicle.mileage }}</p>
+                <p>Color: {{ receipt.vehicle.color }}</p>
+            </div>
+            <div>
+                <p>Price: {{ receipt.price }}</p>
+                <p>Payment Method: {{ receipt.paymentMethod }}</p>
+                <p>Order Status: {{ receipt.orderStatus }}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

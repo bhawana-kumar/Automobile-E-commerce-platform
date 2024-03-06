@@ -1,0 +1,180 @@
+<div class="mainContainer ">
+    <h1 class="headerCM">User Details</h1>
+    <div class="mainContent">
+
+        <div class="tabbable">
+            <!-- navigation -->
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item" (click)="showProfile()">
+                    <a class="nav-link" [class.active]="activeTab === 'profile'"><mat-icon>person</mat-icon>Profile</a>
+                </li>
+
+                <li class="nav-item" (click)="showOrders()" *ngIf="userRole === 'buyer'">
+                    <a class="nav-link" [class.active]="activeTab === 'orders'"><mat-icon>receipt</mat-icon>Orders</a>
+                </li>
+                <li class="nav-item" (click)="showOrders()" *ngIf="userRole === 'seller'">
+                    <a class="nav-link" [class.active]="activeTab === 'orders'"><mat-icon>receipt</mat-icon>Sells</a>
+                </li>
+                <li class="nav-item" (click)="showVehicles()" *ngIf="userRole === 'seller'">
+                    <a class="nav-link" [class.active]="activeTab === 'vehicles'"><mat-icon> directions_car</mat-icon>
+                        Vehicles</a>
+                </li>
+                <li class="nav-item" (click)="showReports()">
+                    <a class="nav-link"
+                        [class.active]="activeTab === 'feedback'"><mat-icon>feedback</mat-icon>Reports</a>
+                </li>
+
+            </ul>
+
+            <div class="tab-content ">
+                <div id="profile" class="tab-pane in active" *ngIf="activeTab === 'profile'">
+                    <div class="row">
+                        <!-- profile left side -->
+                        <div class="col-xs-12 col-sm-3 center">
+                            <span class="profile-picture">
+                                <img alt=" Avatar" id="avatar2" src="https://i.pravatar.cc/300">
+                            </span>
+
+                            <button class="btn btn-sm btn-block btnUserB" *ngIf="accountStatus === 'active'"
+                                (click)="blockUserById()">
+                                Block User
+                            </button>
+                            <button class="btn btn-sm btn-block btnUserB" *ngIf="accountStatus === 'block'"
+                                (click)="unBlockUserById()">
+                                Unblock User
+                            </button>
+                            <!-- <button  class="btn btn-sm btn-block btnUserB" (click)="deleteUserById()">
+
+                                Delete Account
+                            </button> -->
+                            <button  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
+                                Delete Account
+                            </button>
+            
+                        </div><!-- /.col -->
+                        <!-- profile right side -->
+                        <div class="col-xs-12 col-sm-9">
+                            <h4 class="blue">
+                                <span class="middle">{{userdata.username | uppercase}}</span>
+
+                                <span class="profile-info-role">
+                                    {{userdata.role | uppercase}}
+                                </span>
+                            </h4>
+
+                            <div class="profile-user-info">
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Username </div>
+
+                                    <div class="profile-info-value">
+                                        <span>{{userdata.username}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Status </div>
+
+                                    <div class="profile-info-value"
+                                        [ngStyle]="{ 'color': accountStatus=='active' ? 'green' : 'red' }">
+                                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                        <span>{{userdata.status | uppercase}}</span>
+
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Email </div>
+
+                                    <div class="profile-info-value">
+                                        <span>{{userdata.email}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Joined </div>
+
+                                    <div class="profile-info-value">
+                                        <span>{{userdata.joining_date | date}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Phone No </div>
+
+                                    <div class="profile-info-value">
+                                        <span>{{userdata.phone}}</span>
+                                    </div>
+                                </div>
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Address </div>
+
+                                    <div class="profile-info-value">
+                                        <span>{{userdata.address}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+
+
+                    <!-- <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="widget-box transparent">
+                                    <div class="widget-header widget-header-small">
+                                        <h4 class="widget-title smaller">
+                                            <i class="ace-icon fa fa-check-square-o bigger-110"></i>
+                                            Little About Me
+                                        </h4>
+                                    </div>
+    
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <p>
+                                                My job is mostly lorem ipsuming and dolor sit ameting as long as consectetur adipiscing elit.
+                                            </p>
+                                            <p>
+                                                Sometimes quisque commodo massa gets in the way and sed ipsum porttitor facilisis.
+                                            </p>
+                                            <p>
+                                                The best thing about my job is that vestibulum id ligula porta felis euismod and nullam quis risus eget urna mollis ornare.
+                                            </p>
+                                            <p>
+                                                Thanks for visiting my profile.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                </div><!-- /#home -->
+
+                <div *ngIf="activeTab === 'activity'">
+                    <h2>activity</h2>
+                </div>
+
+                <div *ngIf="activeTab === 'orders'">
+                    <h2>{{userOrders.length}} - Orders </h2>
+                    <div *ngIf="userOrders.length == 0" class="noDataFound">
+                        No Orders Yet
+                    </div>
+                    <orderReceipt-component [receiptsData]="userOrders" *ngIf="userOrdersLoaded && userOrders.length"></orderReceipt-component>
+                </div>
+
+                <div *ngIf="activeTab === 'vehicles'">
+                    <h2>Sellers Vehicles Listed</h2>
+                </div>
+
+                <div *ngIf="activeTab === 'reports'">
+                    <h2>Reports</h2>
+                </div>
+            
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,123 @@
+/*slidebar*/
+
+.slidebar {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	float: left;
+	border-right: 1px solid rgb(0, 0, 0);
+	background-color: rgb(247, 247, 247);
+	overflow-y: auto;
+	scrollbar-width: none;  /* Firefox */
+	-ms-overflow-style: none;  /* IE and Edge */
+}
+
+
+/* Hiding scrollbar for Chrome, Safari and Opera */
+.slidebar::-webkit-scrollbar {
+    display: none;
+}
+
+
+.NameHeader {
+	text-align: center;
+	color: black;
+	line-height: 0.2cm;
+}
+
+.slidebar .profileContainer {
+	height: 155px;
+}
+
+.profileContainer a {
+	width: 88px;
+	height: 88px;
+	display: inline-block;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	margin: -45px 0 0 -45px;
+	border: 1px solid rgb(200, 200, 200);
+	border-radius: 50%;
+	background-color: rgb(214, 214, 214);
+}
+
+#avatar2 {
+	width: 100%;
+	border-radius: 50%;
+}
+
+.slidebar ul {
+	padding: 0;
+	margin: 0;
+}
+
+.slidebar li {
+	list-style-type: none;
+	margin: 0;
+	position: relative;
+}
+
+.slidebar ul {
+	padding-left: 15px;
+}
+
+.slidebar ul a {
+	color: black;
+	text-decoration: none;
+	font: 16px/40px helvetica, verdana, sans-serif;
+	display: block;
+	font-weight: 200;
+	padding: 10px 0px;
+}
+
+.slidebar ul a mat-icon {
+	padding: 0px 10px 0px 5px;
+	position: relative;
+	top: 4px;
+}
+
+
+.slidebar li:hover a {
+	background-color: rgb(255, 255, 255);
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 5px 0 0 -1px rgb(234, 83, 63);
+}
+
+.active {
+	background-color: #6C7AE0;
+	font-weight: bold;
+}
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+	.slidebar .profileContainer {
+		height: 135px;
+	}
+
+	.profileContainer a {
+		width: 68px;
+		height: 68px;
+		margin: -25px 0 0 -35px;
+	}
+
+	.slidebar ul {
+		padding-left: 10px;
+	}
+
+	.slidebar ul a {
+		font-size: 14px;
+		padding: 8px 0px;
+	}
+
+	.slidebar ul a mat-icon {
+		padding: 0px 7px 0px 5px;
+		position: relative;
+		top: 7px;
+	}
+
+
+}
+
+@media only screen and (max-width: 480px) {
+
+}

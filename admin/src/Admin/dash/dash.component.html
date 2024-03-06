@@ -1,0 +1,97 @@
+
+<div class="grid-container">
+  <!-- <h1 class="mat-h1">Dashboard</h1> -->
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="200px">
+    <!--Mini Cards-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols"
+      [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="Total Users = {{TotalNoOfUsers}}">
+        <div class="mini-card-container">
+          <tr>
+            <td>
+              Count of buyers:
+            </td>
+            <td class="attributeValue">
+              {{TotalNoOfBuyers}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Count of sellers:
+            </td>
+            <td class="attributeValue">
+              {{TotalNoOfSellers}}
+            </td>
+          </tr>
+        </div>
+       
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
+      [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="No of Orders">
+        <!-- <div class="mini-card-container">
+        <p> Completed: {{noOfOrdersCompleted}} </p>
+        <p> Pending: {{noOfOrdersPending}} </p>
+        <p> Others: {{noOfOrdersOther}}</p>
+      </div> -->
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
+      [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="Total Count of Vehicles listed">
+        <div class="mini-card-container">
+          <tr>
+            <td>
+              Count of buyers:
+            </td>
+            <td >
+              {{TotalNoOfBuyers}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Count of sellers:
+            </td>
+            <td>
+              {{TotalNoOfSellers}}
+            </td>
+          </tr>
+        </div>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
+      [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="Top Seller"></app-card>
+    </mat-grid-tile>
+    <!--Charts-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="No Of Users By Month">
+        <line-chart *ngIf="linedataLoaded" [linedata]="usersData"></line-chart>
+      </app-card>
+   </mat-grid-tile>
+
+   <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Orders By Status">
+        <pie-chart-demo *ngIf="piedataLoaded" [piedata]="pieDataArray"></pie-chart-demo>
+      </app-card>
+   </mat-grid-tile>
+   <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Sales by Traffic Source">
+        <pie-chart-demo></pie-chart-demo>
+      </app-card>
+   </mat-grid-tile>
+   <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+      <app-card title="Online Store Sessions by Traffic Source">
+        <bar-char-demo></bar-char-demo>
+      </app-card>
+   </mat-grid-tile>
+    
+    
+    
+    <!--Table-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
+      <app-card title="Card 9"><bar-char-demo></bar-char-demo></app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+ </div>

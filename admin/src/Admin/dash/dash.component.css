@@ -1,0 +1,49 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+.mini-card-container{
+  width: 100%;
+  height: 100%;
+  padding:5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-start;
+  font-size: 18px;
+}
+.mini-card-container> tr{
+  /* background-color: red; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap:5px;
+ 
+}
+
+.attributeValue {
+  background-color: rgb(221, 164, 164);
+  width:10%;
+  padding: 10px;
+  border-radius: 5px;
+}

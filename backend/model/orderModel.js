@@ -3,22 +3,25 @@ const Schema= mongoose.Schema;
 
 
 const OrderSchema= new Schema({
-    user_id:{
-        type: Number
+    dateTime:{
+        type: Date
     },
-    seller_id:{
-        type: Number
+    buyerId:{
+        type:String
     },
-    vehicalDetails:{
-        type: Array,
-    },
-    orderDate:{
+    sellerId:{
         type: String
     },
-    totalPrice:{
-        type: String,
+    buyer:{
+        type: Object,
     },
-    billingAddress: {
+    seller:{
+        type: Object
+    },
+    vehicle:{
+        type: Object,
+    },
+    price: {
         type : String,
     },
     paymentMethod: {

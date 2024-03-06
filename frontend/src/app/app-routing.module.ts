@@ -10,6 +10,7 @@ import { orderManagementComponent } from '../Admin/ordersManagement/ordersManage
 import { orderDetailsComponent } from '../Admin/orderDetails/orderDetails.component';
 import { DashComponent } from '../Admin/dash/dash.component';
 import { vehicleManagementComponent } from '../Admin/vehicleManagement/vehicleManagement.component';
+import { vehicleDetailsComponent } from '../Admin/vehicleDetails/vehicleDetails.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'orderManagement/:id', component: orderDetailsComponent },
       { path: 'contentManagement', component: contentMangementComponent },
       { path: 'reports', component:reportsComponent },
-      { path: 'productManagement', component: vehicleManagementComponent }
+      { path: 'vehicleManagement', component: vehicleManagementComponent },
+      {path: 'vehicleManagement/:id', component: vehicleDetailsComponent}
     ]
   },
   { path: 'admin/login', component: adminLoginComponent },

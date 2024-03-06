@@ -10,23 +10,22 @@ const reportModel = require('../model/reportModel');
 
 const app = express();
 app.use(cors());
+
 // Get all Users
 const getAllUserData = async (req, res) => {
     try {
         // Use your userModel to find users
         const result = await userModel.find();
-        if(!result){
-            return res.status(404).json({message:"Users not found"})
+        if (!result) {
+            return res.status(404).json({ message: "Users not found" })
         }
-        
+
         res.send(result);
     } catch (error) {
         console.error('Error fetching users:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
-
 // GET user by ID
 const getUserById = async (req, res) => {
     try {
@@ -37,14 +36,12 @@ const getUserById = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        res.json( user );
+        res.json(user);
     } catch (error) {
         console.error('Error fetching user:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
-
 // PATCH request to update an existing user
 const updateUserById = async (req, res) => {
     try {
@@ -77,10 +74,6 @@ const updateUserById = async (req, res) => {
 //         res.status(500).json({ message: 'Internal Server Error' });
 //     }
 // });
-
-
-
-
 //delete user data
 const deleteUserById = async (req, res) => {
     try {
@@ -96,14 +89,15 @@ const deleteUserById = async (req, res) => {
     }
 };
 
+
 // Orders
 // get all orders data
 const getAllOrdersData = async (req, res) => {
     try {
         // Use your userModel to find users
         const result = await orderModel.find();
-        if(!result){
-            return res.status(404).json({message:"Users not found"})
+        if (!result) {
+            return res.status(404).json({ message: "Users not found" })
         }
         res.send(result);
     } catch (error) {
@@ -111,7 +105,6 @@ const getAllOrdersData = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
 // GET order by ID 
 const getOrderById = async (req, res) => {
     try {
@@ -122,55 +115,54 @@ const getOrderById = async (req, res) => {
             return res.status(404).json({ message: 'Order not found' });
         }
 
-        res.json( order );
+        res.json(order);
     } catch (error) {
         console.error('Error fetching user:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
 // Get order by buyerid
 const getOrderByBuyerId = async (req, res) => {
     try {
         const userId = req.params.userId;
-        const orders = await orderModel.find({buyerId:userId});
+        const orders = await orderModel.find({ buyerId: userId });
 
         if (!orders) {
             return res.status(404).json({ message: 'Order not found' });
         }
 
-        res.json( orders );
+        res.json(orders);
     } catch (error) {
         console.error('Error fetching user:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
 const getOrderBySellerId = async (req, res) => {
     try {
         const userId = req.params.userId;
-        const orders = await orderModel.find({sellerId:userId});
+        const orders = await orderModel.find({ sellerId: userId });
 
         if (!orders) {
             return res.status(404).json({ message: 'Order not found' });
         }
 
-        res.json( orders );
+        res.json(orders);
     } catch (error) {
         console.error('Error fetching user:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
 
+// Vehicles
 // Get Product all Data 
 const getAllVehicleData = async (req, res) => {
     try {
         // Use your userModel to find users
         const result = await vehicleModel.find();
-        if(!result){
-            return res.status(404).json({message:"Products not found"})
+        if (!result) {
+            return res.status(404).json({ message: "Products not found" })
         }
-        
+
         res.send(result);
     } catch (error) {
         console.error('Error fetching Products:', error);
@@ -181,26 +173,43 @@ const getAllVehicleData = async (req, res) => {
 const getVehicleDataBySellerId = async (req, res) => {
     try {
         const userId = req.params.userId;
-        const products = await vehicleModel.find({sellerId:userId});
+        const products = await vehicleModel.find({ sellerId: userId });
 
         if (!products) {
-            console.log("yes");
-            return res.status(404).json({message: 'product not found' });
+
+            return res.status(404).json({ message: 'product not found' });
         }
-        res.json( products );
+        res.json(products);
     } catch (error) {
-        console.log("no");
+
         console.error('Error fetching user:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+const getVehicleDataById = async (req, res) => {
+    try {
+        const vehicleId = req.params.vehicleId;
+        const result = await vehicleModel.findById(vehicleId);
+        if (!result) {
+
+            return res.status(404).json({ message: 'product not found' });
+        }
+        res.json(result);
+    } catch (error) {
+       
+        console.error('Error fetching user:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 //reports
 const getAllReportsData = async (req, res) => {
     try {
-        // Use your userModel to find users
+        
         const result = await reportModel.find();
-        if(!result){
-            return res.status(404).json({message:"reports not found"})
+        if (!result) {
+            return res.status(404).json({ message: "reports not found" })
         }
         res.send(result);
     } catch (error) {
@@ -209,8 +218,25 @@ const getAllReportsData = async (req, res) => {
     }
 };
 
+const getReportsDataByVehicleId = async(req,res) => {
+    try {
+        const vehicleId = req.params.vehicleId;
+        const result = await reportModel.find({vehicleId: vehicleId});
+        if (!result) {
+            return res.status(404).json({ message: 'No reports' });
+        }
+        res.json(result);
+    } catch (error) {
+       
+        console.error('Error fetching user:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
 
-module.exports={getAllUserData,
-    getUserById,updateUserById,deleteUserById,getAllOrdersData,
-    getOrderById,getOrderByBuyerId,getOrderBySellerId,getAllReportsData,
-    getVehicleDataBySellerId,getAllVehicleData}
+
+module.exports = {
+    getAllUserData,
+    getUserById, updateUserById, deleteUserById, getAllOrdersData,
+    getOrderById, getOrderByBuyerId, getOrderBySellerId, getAllReportsData,
+    getVehicleDataBySellerId, getAllVehicleData,getVehicleDataById,getReportsDataByVehicleId
+}

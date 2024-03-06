@@ -35,7 +35,7 @@
                     <th>Price</th>
                 </tr>
 
-                <tr class="userRows" *ngFor="let product of filtredData" (click)="productDetails(product._id)">
+                <tr class="userRows" *ngFor="let product of filtredData" (click)="vehicleDetails(product._id)">
                     <td>{{product.registration_number}}</td>
                     <td>
                         {{product.brand | uppercase}}

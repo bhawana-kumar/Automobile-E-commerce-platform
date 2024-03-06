@@ -18,4 +18,8 @@ export class productManagementService {
     return this.http.get<any[]>(this.APIURL+"admin/getProductsBySellerId/"+sellerId);
   }
 
+  getVehicleDataById(vehicleId:string): Observable<any[]> {
+    return this.http.get<any[]>(this.APIURL+"admin/getVehicleDataById/"+vehicleId);
+  }
+
 }

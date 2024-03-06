@@ -28,10 +28,11 @@ import { pieChartComponent } from "./charts/pie-chart/pie-chart.component";
 import { barChartComponent } from "./charts/bar-chart/bar-chart.component";
 import { reportsComponent } from "./reports/reports.component";
 import { orderReceiptComponent } from "./orderReceipt/orderReceipt.component";
-import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
+import {MatTooltip} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserModule } from "@angular/platform-browser";
 import { AlertModalComponent } from "./alertModal/alertModal.component";
+import { vehicleDetailsComponent } from "./vehicleDetails/vehicleDetails.component";
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -46,6 +47,7 @@ import { AlertModalComponent } from "./alertModal/alertModal.component";
     CardComponent,
 orderManagementComponent,
 orderDetailsComponent,
+vehicleDetailsComponent,
 salesChartComponent,
 pieChartComponent,
 barChartComponent,
@@ -82,6 +84,7 @@ AlertModalComponent
         CardComponent,
         orderManagementComponent,
         orderDetailsComponent,
+        vehicleDetailsComponent,
         salesChartComponent,
         pieChartComponent,
         barChartComponent,

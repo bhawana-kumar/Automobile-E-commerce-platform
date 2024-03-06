@@ -44,11 +44,6 @@ import { productManagementService } from "../adminServices/productMangement.serv
       this.getproductsData();
     }
 
-    productDetails(id:string){
-      const url = `/admin/productManagement/${id}`;
-      this.router.navigateByUrl(url);
-    }
-
     searchFilter_all_table(){
       if (this.searchKeyword.trim() === '') {
         this.filtredData = this.productsData;
@@ -89,5 +84,10 @@ import { productManagementService } from "../adminServices/productMangement.serv
       this.pagesRow = parseInt(this.maxRowsDropdown?.nativeElement.value, 10);
       this.pages = Math.ceil(this.totalRows / this.pagesRow);
       this.onPageChange(this.currentPage); //sending to change rows
+    }
+
+    vehicleDetails(id:string){
+      const url = `/admin/vehicleManagement/${id}`;
+      this.router.navigateByUrl(url);
     }
 }

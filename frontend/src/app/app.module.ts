@@ -28,7 +28,7 @@ import { CarfilterComponent } from './carfilter/carfilter.component';
     ReactiveFormsModule,
     HttpClientModule,
     VehicleRoutingModule,
-    VehicleModule
+    VehicleModule,
     HttpClientModule
   ],
   providers: [],

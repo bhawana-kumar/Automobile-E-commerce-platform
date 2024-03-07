@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { reportManagementService } from "../adminServices/reportManagement.service";
 
 @Component({
@@ -19,6 +19,7 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
     pagesRow:number = 10;
     currentPage:number = 1;
     pages:number = 0;
+  
    
 
     constructor(private http:HttpClient,private router:Router, private reportManagementService:reportManagementService){

@@ -6,6 +6,7 @@ import { orderManagementService } from "../adminServices/orderManagement.service
 import { productManagementService } from "../adminServices/productMangement.service";
 import { MatDialog } from "@angular/material/dialog";
 import { AlertModalComponent } from "../alertModal/alertModal.component";
+import { reportManagementService } from "../adminServices/reportManagement.service";
 
 @Component({
   selector: 'userDetails-component',
@@ -19,13 +20,15 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
   userId: string = ''
   userdata: any = [];
   userOrders: any = [];
+  userReports: any = [];
   userVehicles: any = [];
   activeTab: string = 'profile';
   userRole: string = 'buyer';
   accountStatus: string = 'active';
   userOrdersLoaded: boolean = false;
   constructor(private snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router, private customerManService: customerManagementService
-    ,private orderManagementService: orderManagementService,private productManagementService:productManagementService, public dialog:MatDialog) {
+    ,private orderManagementService: orderManagementService,private productManagementService:productManagementService,
+     private reportManagementService:reportManagementService,public dialog:MatDialog) {
 
   }
  
@@ -87,6 +90,30 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
   }
   showReports() {
     this.activeTab = 'reports';
+    if(this.userRole == 'buyer'){
+      this.reportManagementService.getReportsDataByBuyerId(this.userId).subscribe((data) => {
+        this.userReports = data;
+        console.log(data);
+        if (!data) {
+          return
+        }
+      },
+        (error) => {
+          console.error('Error occurred:', error);
+        });
+    }else{
+      this.reportManagementService.getReportsDataBySellerId(this.userId).subscribe((data) => {
+        this.userReports = data;
+        console.log(data);
+        if (!data) {
+          return
+        }
+      },
+        (error) => {
+          console.error('Error occurred:', error);
+        });
+    }
+  
     
   }
   showOrders() {

@@ -8,12 +8,14 @@
     </div>
     <div *ngIf="reportsDataLength != 0">
         Reports
-        {{reportsData | json}}
+        <report-card [reportsData]="reportsData"></report-card>
+        
     </div>
     <div *ngIf="reportsDataLength == 0">
         No Reports Found
     </div>
-    <button *ngIf="reportsDataLength != 0"  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
+    <button mat-raised-button color="warn" *ngIf="reportsDataLength != 0"  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
         Delete vehicle
     </button>
+    
 </div>

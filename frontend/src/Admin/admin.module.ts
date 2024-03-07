@@ -33,6 +33,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserModule } from "@angular/platform-browser";
 import { AlertModalComponent } from "./alertModal/alertModal.component";
 import { vehicleDetailsComponent } from "./vehicleDetails/vehicleDetails.component";
+import { reportCardComponent } from "./reportCard/reportCard.component";
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -45,6 +46,7 @@ import { vehicleDetailsComponent } from "./vehicleDetails/vehicleDetails.compone
         adminLoginComponent,
         DashComponent,
     CardComponent,
+    reportCardComponent,
 orderManagementComponent,
 orderDetailsComponent,
 vehicleDetailsComponent,
@@ -82,6 +84,7 @@ AlertModalComponent
         adminLoginComponent,
         DashComponent,
         CardComponent,
+        reportCardComponent,
         orderManagementComponent,
         orderDetailsComponent,
         vehicleDetailsComponent,

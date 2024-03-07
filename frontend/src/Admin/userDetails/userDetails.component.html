@@ -44,10 +44,6 @@
                                 (click)="unBlockUserById()">
                                 Unblock User
                             </button>
-                            <!-- <button  class="btn btn-sm btn-block btnUserB" (click)="deleteUserById()">
-
-                                Delete Account
-                            </button> -->
                             <button  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
                                 Delete Account
                             </button>
@@ -169,6 +165,7 @@
 
                 <div *ngIf="activeTab === 'reports'">
                     <h2>Reports</h2>
+                    <report-card [reportsData]="userReports"></report-card>
                 </div>
             
             </div>

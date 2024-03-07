@@ -24,7 +24,7 @@ import { Router } from "@angular/router";
       }
   
     vehicleDetails(id:string){
-        const  url= `/admin/productManagement/${id}`;
+        const  url= `/admin/vehicleManagement/${id}`;
         this.router.navigateByUrl(url);
       }
     

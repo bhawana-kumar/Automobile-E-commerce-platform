@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { StorageService } from '../_services/storage.service';
+import { AuthService } from '../service/auth.service';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -28,15 +28,23 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.form;
-
+  
     this.authService.login(username, password).subscribe({
       next: data => {
-        this.storageService.saveUser(data);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
+        console.log(data);
+        
+        if (data && data.status === "Active") {
+          this.storageService.saveUser(data);
+  
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.roles = this.storageService.getUser().roles;
+          this.reloadPage();
+        } else {
+          this.errorMessage = 'User is not active.';
+          this.isLoginFailed = true;
+          this.isLoggedIn = false;
+        }
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -44,6 +52,7 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+  
 
   reloadPage(): void {
     window.location.reload();

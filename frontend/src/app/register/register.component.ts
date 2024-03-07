@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import { AuthService } from '../service/auth.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -12,7 +12,8 @@ export class RegisterComponent {
     username: null,
     email: null,
     password: null,
-    phone: null
+    phone: null,
+    role: null
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -21,9 +22,9 @@ export class RegisterComponent {
   constructor(private authService: AuthService) { }
 
   onSubmit(): void {
-    const { username, email, password ,phone} = this.form;
+    const { username, email, password ,phone, role} = this.form;
 
-    this.authService.register(username, email, password, phone).subscribe({
+    this.authService.register(username, email, password, phone, role).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;

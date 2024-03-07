@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 
-const dbConfig = require("./app/ConnectionConfig/db.config");
+const dbConfig = require("./ConnectionConfig/db.config");
 
 const app = express();
 const corsOptions = {
@@ -27,7 +27,7 @@ app.use(
   })
 );
 
-const db = require("./app/models");
+const db = require("./model");
 const Role = db.role;
 
 db.mongoose
@@ -50,8 +50,8 @@ app.get("/", (req, res) => {
 });
 
 // routes
-require("./app/routes/auth.routes")(app);
-require("./app/routes/user.routes")(app);
+require("./Routes/auth.routes")(app);
+require("./Routes/user.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -72,15 +72,7 @@ function initial() {
         console.log("added 'user' to roles collection");
       });
 
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
+      
 
       new Role({
         name: "admin"

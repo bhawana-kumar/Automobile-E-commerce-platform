@@ -1,1 +1,26 @@
-<p>your-order-history works!</p>
+<div class="your-order-history">
+    <h2>Your Order History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date & Time</th>
+          <th>Order ID</th>
+          <th>Buyer</th>
+          <th>Seller</th>
+          <th>Vehicle</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.dateTime }}</td>
+          <td>{{ order.orderId }}</td>
+          <td>{{ order.buyer }}</td>
+          <td>{{ order.seller }}</td>
+          <td>{{ order.vehicle }}</td>
+          <td>{{ order.price }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

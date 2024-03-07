@@ -101,7 +101,7 @@ const getAllOrdersData = async (req, res) => {
         }
         res.send(result);
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching orders:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
@@ -117,7 +117,7 @@ const getOrderById = async (req, res) => {
 
         res.json(order);
     } catch (error) {
-        console.error('Error fetching user:', error);
+        console.error('Error fetching order:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
@@ -133,7 +133,7 @@ const getOrderByBuyerId = async (req, res) => {
 
         res.json(orders);
     } catch (error) {
-        console.error('Error fetching user:', error);
+        console.error('Error fetching order:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
@@ -148,24 +148,24 @@ const getOrderBySellerId = async (req, res) => {
 
         res.json(orders);
     } catch (error) {
-        console.error('Error fetching user:', error);
+        console.error('Error fetching order:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
 
 // Vehicles
-// Get Product all Data 
+// Get vehicles all Data 
 const getAllVehicleData = async (req, res) => {
     try {
         // Use your userModel to find users
         const result = await vehicleModel.find();
         if (!result) {
-            return res.status(404).json({ message: "Products not found" })
+            return res.status(404).json({ message: "vehicles not found" })
         }
 
         res.send(result);
     } catch (error) {
-        console.error('Error fetching Products:', error);
+        console.error('Error fetching vehicles:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
@@ -173,16 +173,16 @@ const getAllVehicleData = async (req, res) => {
 const getVehicleDataBySellerId = async (req, res) => {
     try {
         const userId = req.params.userId;
-        const products = await vehicleModel.find({ sellerId: userId });
+        const vehicles = await vehicleModel.find({ sellerId: userId });
 
-        if (!products) {
+        if (!vehicles) {
 
-            return res.status(404).json({ message: 'product not found' });
+            return res.status(404).json({ message: 'vehicle not found' });
         }
-        res.json(products);
+        res.json(vehicles);
     } catch (error) {
 
-        console.error('Error fetching user:', error);
+        console.error('Error fetching vehicle:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
@@ -193,15 +193,31 @@ const getVehicleDataById = async (req, res) => {
         const result = await vehicleModel.findById(vehicleId);
         if (!result) {
 
-            return res.status(404).json({ message: 'product not found' });
+            return res.status(404).json({ message: 'vehicle not found' });
         }
         res.json(result);
     } catch (error) {
        
-        console.error('Error fetching user:', error);
+        console.error('Error fetching vehicle:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+const deleteVehicleById = async(req,res) => {
+    try{
+        const vehicleId = req.params.vehicleId;
+        const result = await vehicleModel.deleteOne({_id: vehicleId});
+        if (!result) {
+            return res.status(404).json({message:'delete unsuccefully'});
+        }
+        res.json(result);
+
+    }catch (error) {
+       
+        console.error('Error deleting vehicle:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
 
 //reports
 const getAllReportsData = async (req, res) => {
@@ -228,7 +244,52 @@ const getReportsDataByVehicleId = async(req,res) => {
         res.json(result);
     } catch (error) {
        
-        console.error('Error fetching user:', error);
+        console.error('Error fetching Reports:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
+const getReportsDataByBuyerId = async(req,res) => {
+    try {
+        const buyerId = req.params.buyerId;
+        const result = await reportModel.find({buyerId: buyerId});
+        if (!result) {
+            return res.status(404).json({ message: 'No reports' });
+        }
+        res.json(result);
+    } catch (error) {
+       
+        console.error('Error fetching Reports:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+const getReportsDataBySellerId = async(req,res) => {
+    try {
+        const sellerId = req.params.sellerId;
+        const result = await reportModel.find({sellerId: sellerId});
+        if (!result) {
+            return res.status(404).json({ message: 'No reports' });
+        }
+        res.json(result);
+    } catch (error) {
+       
+        console.error('Error fetching Reports:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
+const updateReportsDataByVehicleId = async(req,res) => {
+    try {
+        const vehicleId = req.params.vehicleId;
+        const updates = req.body;
+
+        const result = await reportModel.updateMany({vehicleId: vehicleId}, updates, {new:true});
+        if (!result) {
+            return res.status(404).json({ message: 'No reports found for this Vehicle' });
+        }
+        res.json({ message: 'Reports updated successfully', result });
+    } catch (error) {
+        console.error('Error Updating Reports:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
@@ -238,5 +299,6 @@ module.exports = {
     getAllUserData,
     getUserById, updateUserById, deleteUserById, getAllOrdersData,
     getOrderById, getOrderByBuyerId, getOrderBySellerId, getAllReportsData,
-    getVehicleDataBySellerId, getAllVehicleData,getVehicleDataById,getReportsDataByVehicleId
+    getVehicleDataBySellerId, getAllVehicleData,getVehicleDataById,getReportsDataByVehicleId,
+    deleteVehicleById,updateReportsDataByVehicleId,getReportsDataByBuyerId,getReportsDataBySellerId
 }

@@ -48,7 +48,8 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
     }
 
     vehicleDetails(id:string){
-      const  url= `/admin/productManagement/${id}`;
+      console.log("hii")
+      const  url= `/admin/vehicleManagement/${id}`;
       this.router.navigateByUrl(url);
     }
 

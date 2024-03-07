@@ -4,7 +4,16 @@
         Vehicles
         {{vehicleData | json}}
         <br>
+      
+    </div>
+    <div *ngIf="reportsDataLength != 0">
         Reports
         {{reportsData | json}}
     </div>
+    <div *ngIf="reportsDataLength == 0">
+        No Reports Found
+    </div>
+    <button *ngIf="reportsDataLength != 0"  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
+        Delete vehicle
+    </button>
 </div>

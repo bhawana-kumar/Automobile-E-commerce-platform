@@ -1,14 +1,13 @@
 const mongoose=require('mongoose')
-const reportSchema=mongoose.Schema(
-    {
-        "buyerId":String,
-        "buyerName":String,
-        "sellerId":String,
-        "sellerName":String,
-        "vehicleId":String,
-        "vehicleRegistrationNumber":String,
-        "comment":String,
-        "resolved":Boolean
-    }
-)
+const reportSchema = new mongoose.Schema({
+    buyerId: { type: String, required: true },
+    buyerName: { type: String, required: true },
+    sellerId: { type: String, required: true },
+    sellerName: { type: String, required: true },
+    vehicleId: { type: String, required: true },
+    vehicleRegistrationNumber: { type: String, required: true },
+    comment: { type: String },
+    resolved: { type: Boolean, default: false }
+  });
+
 module.exports=mongoose.model("report",reportSchema)

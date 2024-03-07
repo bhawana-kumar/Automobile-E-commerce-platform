@@ -1,6 +1,6 @@
 const express = require("express");
 const vehicleRoute = express.Router();
-const { getAllVehicleData, getVehicleById,postVehicle ,updateVehicle} = require("../controller/vehicleController");
+const { getAllVehicleData, getVehicleById,postVehicle ,updateVehicle} = require("../Controller/vehicleController");
 
 vehicleRoute.get("/getAllVehicleData", getAllVehicleData);
 vehicleRoute.get("/getVehicle/:vehicleId", getVehicleById);

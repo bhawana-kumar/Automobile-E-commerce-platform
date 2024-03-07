@@ -22,4 +22,8 @@ export class productManagementService {
     return this.http.get<any[]>(this.APIURL+"admin/getVehicleDataById/"+vehicleId);
   }
 
+  deleteVehicleById(vehicleId:string): Observable<any[]> {
+    return this.http.delete<any[]>(this.APIURL+"admin/deleteVehicleById/"+vehicleId);
+  }
+
 }

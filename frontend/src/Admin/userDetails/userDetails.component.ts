@@ -64,10 +64,6 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
   }
 
   openDialog(){
-    // const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
-    
-
     const dialogRef = this.dialog.open(AlertModalComponent,{
       data:{
         message: '<!DOCTYPE html><html><body><h1>Delete</h1><p>Do You Want to Delete this Account?</p></body></html>',
@@ -119,7 +115,6 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
       console.log(this.userVehicles);
     })
     // admin/getProductsBySellerId/
-
     
   }
 
@@ -128,6 +123,10 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
   blockUserById() {
     this.customerManService.updateUserDetailsById(this.userId, { "status": "block" }).subscribe(
       result => {
+        if(!result){
+          
+          return
+        }
         console.log('User details updated successfully:', result);
         this.openSnackBar("User Blocked Successfully","close");
         // location.reload();
@@ -143,6 +142,9 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
   unBlockUserById() {
     this.customerManService.updateUserDetailsById(this.userId, { "status": "active" }).subscribe(
       result => {
+        if(!result){
+          return
+        }
         console.log('User details updated successfully:', result);
         this.openSnackBar("User Status Updated to Active Successfully","close");
         // location.reload();
@@ -159,6 +161,9 @@ import { AlertModalComponent } from "../alertModal/alertModal.component";
     console.log("delete")
     this.customerManService.deleteUserById(this.userId).subscribe(
       result => {
+        if(!result){
+          return
+        }
         console.log("User Details Deleted Successfully", result);
         this.openSnackBar("User Deleted Successfully","close");
         const url = `/admin/customerManagement`;

@@ -16,12 +16,14 @@ export class reportManagementService {
     getReportsDataByVehicleId(vehicleId: string): Observable<any[]> {
         return this.http.get<any[]>(this.APIURL + "admin/getReportsByVehicleId/" + vehicleId);
     }
-    // getReportsDataByBuyerId(sellerId: string): Observable<any[]> {
-    //     return this.http.get<any[]>(this.APIURL + "admin/getProductsBySellerId/" + sellerId);
-    // }
-    // //get reports data by sellerId
-    // getReportsDataBySellerId(sellerId: string): Observable<any[]> {
-    //     return this.http.get<any[]>(this.APIURL + "admin/getProductsBySellerId/" + sellerId);
-    // }
+    getReportsDataByBuyerId(buyerId: string): Observable<any[]> {
+        return this.http.get<any[]>(this.APIURL + "admin/getReportsByBuyerId/" + buyerId);
+    }
+    getReportsDataBySellerId(sellerId: string): Observable<any[]> {
+        return this.http.get<any[]>(this.APIURL + "admin/getReportsBySellerId/" + sellerId);
+    }
+    updateReportsDataByVehicleId(vehicleId: string,report:any): Observable<any[]>{
+        return this.http.patch<any[]>(this.APIURL + "admin/updateReportsByVehicleId/" + vehicleId,report);
+    }
 
 }

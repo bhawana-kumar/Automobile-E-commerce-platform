@@ -23,7 +23,7 @@ import { Router } from "@angular/router";
   pages: number = 0;
 
   //search
-  attributeToSearch: string = 'phone';
+  attributeToSearch: string = '';
 
   //filter
   buyerChecked: boolean = false;
@@ -88,7 +88,9 @@ import { Router } from "@angular/router";
       this.filtredData = this.filtredData
     }
     
-    this.searchFilter();
+    if(this.searchKeyword !== ''){
+      this.searchFilter();
+    }
     this.displayDataCalculation()
 
   }
@@ -112,7 +114,7 @@ import { Router } from "@angular/router";
     const startIndex: number = (this.currentPage - 1) * this.pagesRow;
     const endIndex: number = startIndex + this.pagesRow;
     this.displayData = this.filtredData.slice(startIndex, endIndex)
-
+  
   }
 
   onPageChange(pageNo: number) {

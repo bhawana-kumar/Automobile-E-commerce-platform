@@ -161,6 +161,7 @@
 
                 <div *ngIf="activeTab === 'vehicles'">
                     <h2>Sellers Vehicles Listed</h2>
+                    <vehicle-card [vehicleData]="userVehicles"></vehicle-card>
                 </div>
 
                 <div *ngIf="activeTab === 'reports'">

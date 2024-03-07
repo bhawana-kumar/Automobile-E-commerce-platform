@@ -152,6 +152,22 @@ const getOrderBySellerId = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+const getOrderDataByVehicleId = async (req, res) => {
+    try {
+        const vehicleId = req.params.vehicleId;
+        const order = await orderModel.findOne({ vehicleId: vehicleId });
+
+        if (!order) {
+            return res.status(404).json({ message: 'order not found' });
+        }
+        res.json(order);
+    } catch (error) {
+
+        console.error('Error fetching order:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 
 // Vehicles
 // Get vehicles all Data 
@@ -172,8 +188,8 @@ const getAllVehicleData = async (req, res) => {
 
 const getVehicleDataBySellerId = async (req, res) => {
     try {
-        const userId = req.params.userId;
-        const vehicles = await vehicleModel.find({ sellerId: userId });
+        const sellerId = req.params.userId;
+        const vehicles = await vehicleModel.find({ sellerId: sellerId });
 
         if (!vehicles) {
 
@@ -300,5 +316,6 @@ module.exports = {
     getUserById, updateUserById, deleteUserById, getAllOrdersData,
     getOrderById, getOrderByBuyerId, getOrderBySellerId, getAllReportsData,
     getVehicleDataBySellerId, getAllVehicleData,getVehicleDataById,getReportsDataByVehicleId,
-    deleteVehicleById,updateReportsDataByVehicleId,getReportsDataByBuyerId,getReportsDataBySellerId
+    deleteVehicleById,updateReportsDataByVehicleId,getReportsDataByBuyerId,getReportsDataBySellerId,
+    getOrderDataByVehicleId
 }

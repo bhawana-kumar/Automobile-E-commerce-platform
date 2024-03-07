@@ -26,13 +26,9 @@ export class orderManagementService {
   getOrderDataBySellerId(userId: string): Observable<any[]> {
     return this.http.get<any[]>(this.APIURL+"admin/getOrdersbySellerId/"+userId);
   }
+  getOrderDataByVehicleId(vehicleId: string):Observable<any[]>{
+    return this.http.get<any[]>(this.APIURL+"admin/getOrdersbyVehicleId/"+vehicleId);
+  }
 
-//   updateOrderDetailsById(orderId: string,order:any): Observable<any[]> {
-//     return this.http.patch<any[]>(this.APIURL+"admin/updateOrder/"+orderId,order);
-//   }
-
-//   deleteOrderById(userId:string): Observable<any[]>{
-//     return this.http.delete<any[]>(this.APIURL+"admin/deleteOrder/"+userId)
-//   }
 
 }

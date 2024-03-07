@@ -22,3 +22,8 @@
     background-color: white;
 
 }
+
+#deleteBtn{
+    position: absolute;
+    right:45px;
+}

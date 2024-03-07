@@ -5,6 +5,7 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AlertModalComponent } from "../alertModal/alertModal.component";
+import { orderManagementService } from "../adminServices/orderManagement.service";
 
 @Component({
   selector: 'vehicle-details',
@@ -16,19 +17,29 @@ export class vehicleDetailsComponent {
   vehicleData: any = [];
   reportsData: any = [];
   reportsDataLength: number = 0;
+  orderData:any = [];
+  orderDataLoaded:boolean = false;
+
   constructor(private route: ActivatedRoute, private productManagementService: productManagementService, private router: Router,
-    private reportManagementService: reportManagementService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+    private reportManagementService: reportManagementService, private orderManagementService:orderManagementService,
+    public dialog: MatDialog, private snackBar: MatSnackBar) {
 
   }
 
   getVehicleDetails() {
     this.productManagementService.getVehicleDataById(this.vehicleId).subscribe((data) => {
-      this.vehicleData = data;
+      this.vehicleData[0] = data;
       console.log(data);
       if (!data) {
         const url = `/admin/vehicleManagement`;
         this.router.navigateByUrl(url);
+        return
       }
+     
+      if(this.vehicleData[0].status == 'sold'){
+        this.getOrderDetails();
+      }
+      
     })
   }
   getReportsDetails() {
@@ -38,12 +49,24 @@ export class vehicleDetailsComponent {
       console.log(data);
     })
   }
+  getOrderDetails(){
+    this.orderManagementService.getOrderDataByVehicleId(this.vehicleId).subscribe((data) => {
+      if(!data){
+        return
+      }
+      this.orderData[0] = data;
+      this.orderDataLoaded = true;
+    })
+  }
+  
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.vehicleId = params['id'];
       this.getVehicleDetails();
       this.getReportsDetails();
+       //temp
+       this.getOrderDetails();
     });
   }
   

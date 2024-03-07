@@ -34,6 +34,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AlertModalComponent } from "./alertModal/alertModal.component";
 import { vehicleDetailsComponent } from "./vehicleDetails/vehicleDetails.component";
 import { reportCardComponent } from "./reportCard/reportCard.component";
+import { vehicleCardComponent } from "./vehicleCard/vehicleCard.component";
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -54,7 +55,8 @@ salesChartComponent,
 pieChartComponent,
 barChartComponent,
 orderReceiptComponent,
-AlertModalComponent
+AlertModalComponent,
+vehicleCardComponent
 ],
     imports: [RouterLink,
         CommonModule,
@@ -91,7 +93,7 @@ AlertModalComponent
         salesChartComponent,
         pieChartComponent,
         barChartComponent,
-        orderReceiptComponent,AlertModalComponent
+        orderReceiptComponent,AlertModalComponent,vehicleCardComponent
     ]
 
 }) export class adminModule {

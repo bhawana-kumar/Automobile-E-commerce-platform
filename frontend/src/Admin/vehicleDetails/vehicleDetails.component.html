@@ -1,21 +1,35 @@
 <div class="mainContainer ">
     <h1 class="headerCM">Vehicle Details</h1>
     <div class="mainContent">
-        Vehicles
-        {{vehicleData | json}}
-        <br>
-      
-    </div>
-    <div *ngIf="reportsDataLength != 0">
-        Reports
-        <report-card [reportsData]="reportsData"></report-card>
+       
+        <vehicle-card [vehicleData]="vehicleData"></vehicle-card>
+        <button mat-raised-button id="deleteBtn" color="warn" *ngIf="reportsDataLength != 0"  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
+            Delete vehicle
+        </button>
+
+        <div class="reports">
+            
+            <div *ngIf="reportsDataLength != 0">
+                <h2>Reports</h2>
+                <report-card [reportsData]="reportsData"></report-card>
+            </div>
+            <div *ngIf="reportsDataLength == 0">
+                No Reports Found
+            </div>
+        </div>
+
+        <div class="orders">
+            <div *ngIf="orderDataLoaded">
+                <h2>Orders</h2>
+                <orderReceipt-component [receiptsData]="orderData"></orderReceipt-component>
+            </div>
+            <div *ngIf="!orderData">
+                No Reports Found
+            </div>
+        </div>
         
+
     </div>
-    <div *ngIf="reportsDataLength == 0">
-        No Reports Found
-    </div>
-    <button mat-raised-button color="warn" *ngIf="reportsDataLength != 0"  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
-        Delete vehicle
-    </button>
+
     
 </div>

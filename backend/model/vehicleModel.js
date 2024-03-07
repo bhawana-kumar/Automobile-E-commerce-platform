@@ -3,7 +3,7 @@ require('../ConnectionConfig/connect');
 
 
 // Define the product schema
-const productSchema = new mongoose.Schema({
+const vehicleSchema = new mongoose.Schema({
     brand: { type: String },
     model: { type: String },
     year: { type: String },
@@ -19,8 +19,9 @@ const productSchema = new mongoose.Schema({
     sellerId: { type: String },
     identification_number: { type: String },
     location: { type: String },
-    registration_number: { type: String }
+    registration_number: { type: String },
+    status:{type: String}
 });
 
 
-module.exports = mongoose.model("products", productSchema)
+module.exports = mongoose.model("vehicle", vehicleSchema)

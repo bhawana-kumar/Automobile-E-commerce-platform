@@ -35,6 +35,8 @@ import { AlertModalComponent } from "./alertModal/alertModal.component";
 import { vehicleDetailsComponent } from "./vehicleDetails/vehicleDetails.component";
 import { reportCardComponent } from "./reportCard/reportCard.component";
 import { vehicleCardComponent } from "./vehicleCard/vehicleCard.component";
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -74,7 +76,9 @@ vehicleCardComponent
         MatCardModule,
         MatMenuModule,
         MatTooltip,
-        MatDialogModule
+        MatDialogModule,
+        MatRadioModule,
+        MatCheckboxModule
     ],
     exports: [dashboardComponent,
         sidebarComponent,

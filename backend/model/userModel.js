@@ -11,30 +11,28 @@ const UserSchema= new Schema({
         required: true,
         unique: true
     },
+    phone: {
+        type: Number
+    },  
+    role: {
+        type: String,
+        required:true
+    },
     password: {
         type : String,
         required: true,
     },
-    role: {
-        type: String
-    },
-    phone: {
-        type: Number
-    },
     address: {
         type: String
     },
-    joinedDate: {
-        type: String
-    },
-    myOrders: {
-        type: Array
-    },
-    shortlisted: {
-        type: Array
-    },
     status: {
         type: String
+    },
+    createdAt:{
+        type: Date
+    },
+    updatedAt:{
+        type:Date
     }
 })
 

@@ -15,11 +15,28 @@
                     </select>
                 </div>
             </div>
-
-            <div class="tb_search">
-                <input type="text" id="search_input_all" (keyup)="searchFilter_all_table()" [(ngModel)]="searchKeyword"
-                    placeholder="Search.." class="form-control">
+            <div class="searchCon">
+                <div class="form-group"> 
+                    <select class="form-control" name="state" #attributeDropdown (change)="onFilterAttributeChange()">
+                        <option value="phone" selected>Phone Number</option>
+                        <option value="email">Email Id</option>
+                    </select>
+                </div>
+                <div class="tb_search">
+                    <input type="text" id="search_input_all" (keyup)="applyFilter_all_table()" [(ngModel)]="searchKeyword"
+                        placeholder="Search.." class="form-control">
+                </div>
             </div>
+        </div>
+
+        <div class="filterContainer">
+            <span>Role: </span>
+            <mat-checkbox [(ngModel)]="buyerChecked" (change)="applyFilter_all_table()">Buyer</mat-checkbox>
+            <mat-checkbox [(ngModel)]="sellerChecked" (change)="applyFilter_all_table()">Seller</mat-checkbox>
+            <span>Status:</span>
+            <mat-checkbox [(ngModel)]="activeChecked" (change)="applyFilter_all_table()">Active</mat-checkbox>
+            <mat-checkbox [(ngModel)]="blockChecked" (change)="applyFilter_all_table()">Blocked</mat-checkbox>
+            
         </div>
         
         <div class="userInfoContainer">
@@ -34,7 +51,7 @@
                     <th>Role</th>
                 </tr>
 
-                <tr class="userRows" *ngFor="let user of filtredData" (click)="UserDetails(user._id)">
+                <tr class="userRows" *ngFor="let user of displayData" (click)="UserDetails(user._id)">
                     <td>
                         {{user.username | uppercase}}
                     </td>

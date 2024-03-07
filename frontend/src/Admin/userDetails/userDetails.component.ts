@@ -163,10 +163,16 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
         console.error('Error updating user details:', error);
       }
     );
+    if(this.userRole == 'seller'){
+      //block his vehicles
+    }
 
   }
 
   unBlockUserById() {
+    if(this.userRole == 'seller'){
+      //unblock his vehicles
+    }
     this.customerManService.updateUserDetailsById(this.userId, { "status": "active" }).subscribe(
       result => {
         if(!result){
@@ -185,7 +191,9 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
   }
 
   deleteUserById() {
-    console.log("delete")
+    if(this.userRole == 'seller'){
+      //delete his vehicles
+    }
     this.customerManService.deleteUserById(this.userId).subscribe(
       result => {
         if(!result){

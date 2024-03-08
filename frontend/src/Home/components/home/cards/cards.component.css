@@ -126,3 +126,14 @@ figure.effect-ming:hover img { opacity: 0.4; }
         border-left: none;
     }
 }
+
+
+.main-div{
+    background-color:rgba(246, 220, 220, 0.672);
+    padding-top: 50px; 
+    margin-bottom: 50px;
+}
+
+#abc1{
+    margin-top: -90px;
+}

@@ -7,12 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class SearchService {
   private baseUrl = 'http://localhost:4000';
-
   constructor(private http: HttpClient) { }
 
   searchProducts(query: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/searchProducts?q=${encodeURIComponent(query)}`);
+  
+    return this.http.get<any[]>(`${this.baseUrl}/search/searchProducts?q=${encodeURIComponent(query)}`);
   }
+
+  
 
 }
 

@@ -12,6 +12,7 @@ export class CardsComponent implements OnInit {
   data=[]; 
   topCars=[];
   topSearch=[];
+  topLux=[];
   constructor(private dataService: ProductService) { }
 
   ngOnInit(): void {
@@ -19,8 +20,9 @@ export class CardsComponent implements OnInit {
       (response) => {
         console.log("response"+response)
         this.data = response;       
-        this.topCars=response.slice(0, 4);
+        this.topCars=response.slice(6, 10);
         this.topSearch=response.slice(5, 9);
+        this.topLux=response.slice(8, 10);
         console.log(this.data)
       },
       (error) => {

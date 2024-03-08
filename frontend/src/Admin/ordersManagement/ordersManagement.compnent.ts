@@ -84,7 +84,6 @@ otherChecked:boolean = false;
 
   searchFilter(){
     this.filtredData = this.filtredData.filter((order: any) => {
-      console.log("hii");
     const value = order[this.attributeToSearch];
     if (typeof value === 'string') {
       return value.toLowerCase().includes(this.searchKeyword.toLowerCase());
@@ -124,7 +123,9 @@ otherChecked:boolean = false;
 
   onFilterAttributeChange() {
     this.attributeToSearch = this.attributeDropdown?.nativeElement.value;
-   console.log(this.attributeToSearch)
+    this.searchKeyword = "";
+    this.applyFilter_all_table();
+    console.log(this.attributeToSearch)
   }
 
   

@@ -12,9 +12,12 @@ import { productManagementService } from "../adminServices/productMangement.serv
 }) export class vehicleManagementComponent {
 
     searchKeyword:String = '';
-    productsData:any= []; //data to be stored 
+    vehiclesData:any= []; //data to be stored 
     filtredData:any = []; 
+    displayData:any = [];
+    filterdDataLength:number = 0;
     @ViewChild('maxRowsDropdown') maxRowsDropdown?: ElementRef;
+    @ViewChild('attributeDropdown') attributeDropdown?: ElementRef;
 
     //pagination
     totalRows:number = 0;
@@ -22,6 +25,12 @@ import { productManagementService } from "../adminServices/productMangement.serv
     currentPage:number = 1;
     pages:number = 0;
    
+    //search
+attributeToSearch: string = '';
+
+//filter
+availableChecked:boolean = false;
+soldChecked:boolean = false;
 
     constructor(private http:HttpClient,private router:Router, private productManagementService:productManagementService){
   
@@ -31,11 +40,12 @@ import { productManagementService } from "../adminServices/productMangement.serv
       //get all data from api
       this.productManagementService.getProductsData().subscribe((res:any)=>{
         console.log(res);
-        this.productsData = res;
-        this.totalRows = this.productsData.length;
-        this.filtredData = this.productsData;
-        console.log(this.totalRows);
+        this.vehiclesData = res;
+        this.totalRows = this.vehiclesData.length;
+        this.filtredData = this.vehiclesData;
+        this.filterdDataLength = this.filtredData.length
         this.onDropdownChange();
+        this.onFilterAttributeChange();
         this.onPageChange(this.currentPage) //sending to change rows
       })
     }
@@ -44,37 +54,52 @@ import { productManagementService } from "../adminServices/productMangement.serv
       this.getproductsData();
     }
 
-    searchFilter_all_table(){
-      if (this.searchKeyword.trim() === '') {
-        this.filtredData = this.productsData;
-        this.onPageChange(this.currentPage);
-      } else {
-        this.filtredData = this.productsData.filter((user:any) => {
-          return Object.values(user).some(value => {
-            if (typeof value === 'string') {
-              return value.toLowerCase().includes(this.searchKeyword.toLowerCase());
-            }
-            else if( typeof value === 'number'){
-              return value.toString().includes(this.searchKeyword.toString())
-            }
-            return false;
-          });
+    applyFilter_all_table(){
+      if (this.availableChecked || this.soldChecked ) {
+        this.filtredData = this.vehiclesData.filter((vehicle: any) => {
+          if ((this.availableChecked && vehicle.status === 'available') || (this.soldChecked && vehicle.status === 'sold')) {
+            return true;
+          }
+          return false;
+      
         });
-
+      } else {
+        this.filtredData = this.vehiclesData;
+      }
+      if(this.searchKeyword !== ''){
+        this.searchFilter();
       }
      
+      this.displayDataCalculation();  
+      this.filterdDataLength = this.filtredData.length
+     
     }
+    searchFilter(){
+      this.filtredData = this.filtredData.filter((vehicle: any) => {
+      const value = vehicle[this.attributeToSearch];
+      if (this.attributeToSearch === 'brand') {
+        console.log(value)
+        return value.toLowerCase().startsWith(this.searchKeyword.toLowerCase());
+      }
+      else if (typeof value === 'string') {
+        return value.toLowerCase().includes(this.searchKeyword.toLowerCase());
+      }
+    
+      return false;
+  
+    });
+  }
 
     //pagination
+    displayDataCalculation() {
+      const startIndex: number = (this.currentPage - 1) * this.pagesRow;
+      const endIndex: number = startIndex + this.pagesRow;
+      this.displayData = this.filtredData.slice(startIndex, endIndex)
+  
+    }
     onPageChange(pageNo:number){
       this.currentPage = pageNo;
-      const startIndex:number = (this.currentPage - 1) * this.pagesRow;
-      // let endIndex = Math.min(startIndex + this.pagesRow, this.totalRows);
-      
-      const endIndex:number = startIndex + this.pagesRow;
-      console.log(endIndex);
-      this.filtredData = this.productsData.slice(startIndex,endIndex)
-      
+      this.displayDataCalculation()
     }
 
     getRange(): number[] {
@@ -89,5 +114,12 @@ import { productManagementService } from "../adminServices/productMangement.serv
     vehicleDetails(id:string){
       const url = `/admin/vehicleManagement/${id}`;
       this.router.navigateByUrl(url);
+    }
+
+    onFilterAttributeChange() {
+      this.attributeToSearch = this.attributeDropdown?.nativeElement.value;
+      this.searchKeyword = "";
+      this.applyFilter_all_table();
+      console.log(this.attributeToSearch)
     }
 }

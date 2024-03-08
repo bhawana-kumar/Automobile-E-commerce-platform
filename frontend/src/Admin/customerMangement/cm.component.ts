@@ -133,9 +133,9 @@ import { Router } from "@angular/router";
 
   onFilterAttributeChange() {
     this.attributeToSearch = this.attributeDropdown?.nativeElement.value;
-   
+    this.searchKeyword = "";
+    this.applyFilter_all_table();
+    console.log(this.attributeToSearch)
   }
-
-
 
 }

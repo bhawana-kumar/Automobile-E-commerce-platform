@@ -31,9 +31,9 @@
         </div>
         <div class="filterContainer">
             <span>Status: </span>
-            <mat-checkbox [(ngModel)]="deliveredChecked" (change)="applyFilter_all_table()">Delivered</mat-checkbox>
-            <mat-checkbox [(ngModel)]="pendingChecked" (change)="applyFilter_all_table()">Pending</mat-checkbox>
-            <mat-checkbox [(ngModel)]="otherChecked" (change)="applyFilter_all_table()">Other</mat-checkbox>
+            <mat-checkbox [(ngModel)]="deliveredChecked" labelPosition="before" (change)="applyFilter_all_table()">Delivered</mat-checkbox>
+            <mat-checkbox [(ngModel)]="pendingChecked" labelPosition="before" (change)="applyFilter_all_table()">Pending</mat-checkbox>
+            <mat-checkbox [(ngModel)]="otherChecked" labelPosition="before" (change)="applyFilter_all_table()">Other</mat-checkbox>
             
         </div>
 
@@ -41,10 +41,10 @@
             <table matSort (matSortChange)="sortData($event)" class="userInfoTable" id="table-id">
 
                 <tr class="stickyHeader">
-                    <th>vehicle Reg. No</th>
-                    <th>seller</th>
-                    <th mat-sort-header="date">date</th>
-                    <th mat-sort-header="price">price</th>
+                    <th>Vehicle Reg No</th>
+                    <th>Seller</th>
+                    <th id="mat-sort-header" mat-sort-header="date">Date</th>
+                    <th mat-sort-header="price">Price</th>
                     <th>Status</th>
                     
                 </tr>

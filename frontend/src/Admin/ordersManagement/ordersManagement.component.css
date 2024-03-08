@@ -93,7 +93,7 @@
 
 .filterContainer span{
   color:#6C7AE0;
-  margin-left: 10px;
+  margin-right: 10px;
   font-weight: bold;
 }
 
@@ -110,31 +110,6 @@
   border-radius: 10px;
 }
 
-
-/* .mat-sort-header-stem {
-  height: 3px !important;
-  width: 10px !important;
-  transform: rotate(180deg) !important;
-}
-.mat-sort-header-pointer-left, .mat-sort-header-pointer-right {
-  width: 7px !important;
-  height: 3px !important;
-  /* color: red; */
-/* } */
-/* .mat-sort-header-pointer-middle{
-  width: 0px !important;
-  height: 0px !important;
-} */ 
-/* .mat-sort-header-container .mat-sort-header-arrow {
-  border: 2px solid red;
-  height: 12px;
-  width: 20px;
-  min-width: 12px;
-  position: relative;
-  display: flex;
-  color: #ff0000 !important;
-  opacity: 0;
-} */
 
 table td,
 table th {

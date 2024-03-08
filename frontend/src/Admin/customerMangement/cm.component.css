@@ -94,10 +94,13 @@
 
 .filterContainer span{
   color:#6C7AE0;
-  margin-left: 10px;
+  margin-right: 10px;
   font-weight: bold;
 }
 
+.filterContainer span:nth-last-of-type(1){
+  margin-left: 40px;
+}
 
 
 

@@ -16,50 +16,64 @@
                 </div>
             </div>
 
-            <div class="tb_search">
-                <input type="text" id="search_input_all" (keyup)="searchFilter_all_table()" [(ngModel)]="searchKeyword"
-                    placeholder="Search.." class="form-control">
+            <div class="searchCon">
+                <div class="form-group"> 
+                    <select class="form-control" name="state" #attributeDropdown (change)="onFilterAttributeChange()">
+                        <option value="registration_number" selected>VRN</option>
+                        <option value="brand">Brand</option>
+                    </select>
+                </div>
+                <div class="tb_search">
+                    <input type="text" id="search_input_all" (keyup)="applyFilter_all_table()" [(ngModel)]="searchKeyword"
+                        placeholder="Search.." class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="filterContainer">
+            <div>
+                <span>Status: </span>
+                <mat-checkbox [(ngModel)]="availableChecked" labelPosition="before" (change)="applyFilter_all_table()">Available</mat-checkbox>
+                <mat-checkbox [(ngModel)]="soldChecked" labelPosition="before" (change)="applyFilter_all_table()">Sold</mat-checkbox>     
+            </div>
+            
+            <div class="rows_count">
+                <div>Total Vehicles: {{filterdDataLength}} </div>
             </div>
         </div>
         
         <div class="userInfoContainer">
-
-
             <table class="userInfoTable">
 
                 <tr class="stickyHeader">
-                    <th>Vehicle Registration Number</th>
+                    <th>Vehicle Reg No</th>
                     <th>Brand</th>
                     <th>Model</th>
-                    <th>Seller ID</th>
+                    <th>Status</th>
                     <th>Price</th>
                 </tr>
 
-                <tr class="userRows" *ngFor="let product of filtredData" (click)="vehicleDetails(product._id)">
+                <tr class="userRows" *ngFor="let product of displayData" (click)="vehicleDetails(product._id)">
                     <td>{{product.registration_number}}</td>
                     <td>
                         {{product.brand | uppercase}}
                     </td>
                     <td>{{product.model}}</td>
-                    <td>{{product.sellerId}}</td>
+                    <td>{{product.status}}</td>
                     <td>{{product.price }}</td>
                 </tr>
-
-
             </table>
         </div>
     
         <div class='pagination-container'>
-          
+            
                 <ul class="pagination">
                     <span *ngFor="let i of getRange()"> 
                         <button  mat-raised-button class="pagination-btn" (click)="onPageChange(i+1)" [class.activeBtn]="currentPage === i+1">{{i + 1}}</button>
                     </span>                    
-                    
                 </ul>
-           
+               
         </div>
-        <!-- <div class="rows_count">Showing 11 to 20 of 91 entries</div> -->
+        
     </div>
 
 </div>

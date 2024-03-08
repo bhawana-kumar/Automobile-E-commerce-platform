@@ -38,6 +38,7 @@ import { vehicleCardComponent } from "./vehicleCard/vehicleCard.component";
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -80,7 +81,8 @@ vehicleCardComponent
         MatDialogModule,
         MatRadioModule,
         MatCheckboxModule,
-        MatSortModule
+        MatSortModule,
+        MatSelectModule
     ],
     exports: [dashboardComponent,
         sidebarComponent,

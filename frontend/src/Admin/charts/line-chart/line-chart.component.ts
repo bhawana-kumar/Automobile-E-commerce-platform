@@ -21,6 +21,7 @@ export class salesChartComponent {
     this.buyerCounts = [];
     this.sellerCounts = [];
   }
+
   ngOnInit(): void {
     this.filterChartData();
     this.updateChart();
@@ -30,6 +31,7 @@ export class salesChartComponent {
   ngOnChanges(): void {
     this.updateChart();
   }
+  
   updateChart(): void {
     if (this.sortedMonths && this.sortedMonths.length != 0) {
       this.lineChartData.labels = this.sortedMonths;

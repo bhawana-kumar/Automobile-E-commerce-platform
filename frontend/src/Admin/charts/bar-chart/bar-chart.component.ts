@@ -1,30 +1,77 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 
 @Component({
-  selector: 'bar-char-demo',
+  selector: 'bar-chart',
   templateUrl: './bar-chart.component.html',
-  styleUrls: [ './bar-chart.component.css' ]
+  styleUrls: ['./bar-chart.component.css']
 })
 export class barChartComponent {
-  title = 'ng2-charts-demo';
+  @Input() bardata: any = []
+  locationLabels: string[] = [];
+  CountsbyLocation: number[] = [];
+  fueltypeLabels: string[] = [];
+
+  choosedFilter: string = 'bodyType';
+  filters = [
+    {value: 'location', viewValue: 'Location'},
+    {value: 'fuelType', viewValue: 'Fuel'},
+    {value: 'bodyType', viewValue: 'Bodytype'}
+  ];
+
+  constructor(private cdr: ChangeDetectorRef) {
+
+  }
+
+  ngOnInit() {
+    this.filterChartbyDropdown(this.choosedFilter);
+    console.log(this.choosedFilter);
+  }
+  onFilterChange(){
+    console.log(this.choosedFilter);
+    this.filterChartbyDropdown(this.choosedFilter);
+  }
+
+
+  updateChart(labels: any, values: any): void {
+    if (labels && labels.length != 0) {
+      console.log(labels)
+      console.log(values)
+      this.barChartData.labels = labels;
+      this.barChartData.datasets[0].data = values;
+      this.cdr.detectChanges();
+    }
+   
+  }
+
+  filterChartbyDropdown(att:string) {
+    const vehicleAtt: string[] = this.bardata.map((vehicle: any) => {
+      return vehicle[att]
+    })
+    const vehicleCounts: {[key:string]:number} = {}
+    vehicleAtt.forEach((value)=>{
+      vehicleCounts[value] = (vehicleCounts[value] || 0) + 1;
+    });
+   
+    this.updateChart(Object.keys(vehicleCounts), vehicleCounts);
+    
+  }
 
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: [ '2006', '2007', '2008', '2009', '2010', '2011', '2012' ],
+    labels: ['', '', ''],
     datasets: [
-      { data: [ 65, 59, 80, 81, 56, 55, 40 ], label: 'Series A' },
-      { data: [ 28, 48, 40, 19, 86, 27, 90 ], label: 'Series B' }
+      { data: [0, 0, 0], label: this.choosedFilter.toUpperCase() }
+     
     ]
   };
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    responsive: false,
+    responsive: true,
   };
 
-  constructor() {
-  }
+
 
 }

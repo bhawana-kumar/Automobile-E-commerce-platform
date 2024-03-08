@@ -56,7 +56,7 @@ export class DashComponent implements OnInit {
   
 //vehicles
 vehiclesData:any = []
-
+vehicledataLoaded: boolean = false;
 
 //reports
 reportsData:any = [];
@@ -77,7 +77,11 @@ getReportsCarddata(){
   getVehicleCarddata(){
     this.productManagementService.getProductsData().subscribe((data) => {
       this.vehiclesData = data;
-
+      
+      if(data){
+        this.vehicledataLoaded = true;
+      }
+      
     })
   }
 
@@ -131,6 +135,7 @@ getReportsCarddata(){
     this.getUsersCarddata();
     this.getOrdersCarddata();
     this.getReportsCarddata();
+    this.getVehicleCarddata();
   }
 
 }

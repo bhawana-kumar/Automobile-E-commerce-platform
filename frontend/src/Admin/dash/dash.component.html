@@ -24,45 +24,36 @@
             </td>
           </tr>
         </div>
-       
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
       [rowspan]="( cardLayout | async )?.miniCard?.rows">
-      <app-card title="No of Orders">
-        <!-- <div class="mini-card-container">
-        <p> Completed: {{noOfOrdersCompleted}} </p>
-        <p> Pending: {{noOfOrdersPending}} </p>
-        <p> Others: {{noOfOrdersOther}}</p>
-      </div> -->
-      </app-card>
-    </mat-grid-tile>
-    <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
-      [rowspan]="( cardLayout | async )?.miniCard?.rows">
-      <app-card title="Total Count of Vehicles listed">
+      <app-card title="Total Sales Value">
         <div class="mini-card-container">
-          <tr>
-            <td>
-              Count of buyers:
-            </td>
-            <td >
-              {{TotalNoOfBuyers}}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Count of sellers:
-            </td>
-            <td>
-              {{TotalNoOfSellers}}
-            </td>
-          </tr>
+          <p>
+            {{totalRevenue | currency: 'INR' }}
+          </p>
+        </div>
+        
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
+      [rowspan]="( cardLayout | async )?.miniCard?.rows">
+      <app-card title="Count Of Sold Vehicles">
+        <div class="mini-card-container">
+          <p>
+            {{ordersData.length}}
+          </p>
         </div>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile  [colspan]="( cardLayout | async )?.miniCard?.cols"
       [rowspan]="( cardLayout | async )?.miniCard?.rows">
-      <app-card title="Top Seller"></app-card>
+      <app-card title="Unresolved Reports">
+        <div class="mini-card-container">
+          {{unResolvedReports}}
+        </div>
+      </app-card>
     </mat-grid-tile>
     <!--Charts-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
@@ -73,7 +64,7 @@
 
    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
       <app-card title="Orders By Status">
-        <pie-chart-demo *ngIf="piedataLoaded" [piedata]="pieDataArray"></pie-chart-demo>
+        <pie-chart-demo *ngIf="orderdataLoaded" [piedata]="pieDataArray"></pie-chart-demo>
       </app-card>
    </mat-grid-tile>
    <mat-grid-tile [colspan]="( cardLayout | async )?.chart?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">

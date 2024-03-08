@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { customerManagementService } from '../adminServices/customerManagement.service';
 import { orderManagementService } from '../adminServices/orderManagement.service';
 import { keyframes } from '@angular/animations';
+import { productManagementService } from '../adminServices/productMangement.service';
+import { reportManagementService } from '../adminServices/reportManagement.service';
 
 @Component({
   selector: 'app-dash',
@@ -42,31 +44,63 @@ export class DashComponent implements OnInit {
   TotalNoOfSellers: number = 0;
   linedataLoaded: boolean = false;
 
-
   ordersData: any = [];
   noOfOrdersCompleted: number = 0;
   noOfOrdersPending: number = 0;
   noOfOrdersOther: number = 0;
+  totalRevenue:number = 0;
   //demo
-  piedataLoaded: boolean = false;
+  orderdataLoaded: boolean = false;
   pieDataArray: any = [];
   // orderStatus
+  
+//vehicles
+vehiclesData:any = []
+
+
+//reports
+reportsData:any = [];
+unResolvedReports: number = 0;
+
+
+getReportsCarddata(){
+  this.reportManagementService.getReportsData().subscribe((data)=>{
+    this.reportsData = data;
+    this.reportsData.filter((report: any) => {
+      if (!report.resolved) {
+        this.unResolvedReports++;
+      } 
+    });
+  })
+}
+
+  getVehicleCarddata(){
+    this.productManagementService.getProductsData().subscribe((data) => {
+      this.vehiclesData = data;
+
+    })
+  }
+
+
   getOrdersCarddata() {
     this.orderManagementService.getOrdersData().subscribe((res) => {
       this.ordersData = res;
       this.ordersData.filter((order: any) => {
         if (order.orderStatus.toLowerCase() === "delivered") {
           this.noOfOrdersCompleted++;
+          this.totalRevenue += order.price;
         } else if (order.orderStatus.toLowerCase() === 'pending') {
           this.noOfOrdersPending++;
+          this.totalRevenue += order.price;
         } else {
           this.noOfOrdersOther++;
+          this.totalRevenue += order.price;
         }
-      })
+      });
       this.pieDataArray[0] = this.noOfOrdersCompleted;
       this.pieDataArray[1] = this.noOfOrdersPending;
       this.pieDataArray[2] = this.noOfOrdersOther;
-      this.piedataLoaded = true;
+      this.orderdataLoaded = true;
 
     });
   }
@@ -86,13 +120,17 @@ export class DashComponent implements OnInit {
     })
   }
 
-  constructor(private customerManagementService: customerManagementService, private orderManagementService: orderManagementService) {
+  constructor(private customerManagementService: customerManagementService, 
+    private orderManagementService: orderManagementService,
+    private productManagementService: productManagementService,
+    private reportManagementService: reportManagementService) {
 
   }
 
   ngOnInit() {
     this.getUsersCarddata();
     this.getOrdersCarddata();
+    this.getReportsCarddata();
   }
 
 }

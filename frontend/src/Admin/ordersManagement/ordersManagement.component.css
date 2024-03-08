@@ -85,7 +85,7 @@
 .filterContainer{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding:5px 0px 10px 0px;
 

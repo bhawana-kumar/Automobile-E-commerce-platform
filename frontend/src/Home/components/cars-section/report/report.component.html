@@ -1,0 +1,36 @@
+<div class="report-img">
+<form class="report-form" (ngSubmit)="submitForm()" #reportForm="ngForm">
+    
+    <div class="form-group">
+      <label for="buyerId">Buyer ID:</label>
+      <input type="text" id="buyerId" name="buyerId" class="form-control" [(ngModel)]="report.buyerId" required>
+    </div>
+    <div class="form-group">
+      <label for="buyerId">Buyer Name:</label>
+      <input type="text" id="buyerName" name="buyerName" class="form-control" [(ngModel)]="report.buyerName" required>
+    </div>
+    <div class="form-group">
+      <label for="buyerId">Seller ID:</label>
+      <input type="text" id="sellerId" name="sellerId" class="form-control" [(ngModel)]="report.sellerId" required>
+    </div>
+    <div class="form-group">
+      <label for="buyerId">Seller Name:</label>
+      <input type="text" id="sellerName" name="sellerName" class="form-control" [(ngModel)]="report.sellerName" required>
+    </div>
+    <div class="form-group">
+        <label for="vehicleId">Vehicle ID:</label>
+        <input type="text" id="vehicleId" name="vehicleId" class="form-control" [(ngModel)]="report.vehicleId" required>
+      </div>
+    <div class="form-group">
+        <label for="vehicleId">Vehicle Reg. No.:</label>
+        <input type="text" id="vehicleRegistrationNumber" name="vehicleRegistrationNumber" class="form-control" [(ngModel)]="report.vehicleRegistrationNumber" required>
+      </div>
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <input type="text" id="comment" name="comment" class="form-control" [(ngModel)]="report.comment" required>
+      </div>
+      
+    <!-- Add other form fields here -->
+    <button type="submit" class="btn btn-primary" [disabled]="reportForm.invalid">Submit</button>
+  </form>
+  </div>

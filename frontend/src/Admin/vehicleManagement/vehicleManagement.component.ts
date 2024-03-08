@@ -77,7 +77,7 @@ soldChecked:boolean = false;
     searchFilter(){
       this.filtredData = this.filtredData.filter((vehicle: any) => {
       const value = vehicle[this.attributeToSearch];
-      if (this.attributeToSearch === 'brand') {
+      if (this.attributeToSearch === 'brandName') {
         console.log(value)
         return value.toLowerCase().startsWith(this.searchKeyword.toLowerCase());
       }

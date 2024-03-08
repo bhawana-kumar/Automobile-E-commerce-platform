@@ -15,12 +15,16 @@ const vehicleRoute = require('../Routes/vehiclesRoutes');
 const orderRoute=require("../Routes/orderRoutes")
 const reportRoute=require("../Routes/reportRoutes")
 
+const searchRoutes = require("../Routes/searchRoutes");
+
+
 ex.use("/user", userRoute);
 ex.use("/buyer", buyerRoute);
 ex.use("/vehicleseller", sellerRoute);
 ex.use("/admin", adminRoute);
 ex.use("/vehicle", vehicleRoute);
-ex.use("/order",orderRoute),
-ex.use("/report",reportRoute),
+ex.use("/order",orderRoute);
+ex.use("/report",reportRoute);
+ex.use("/search",searchRoutes);
 
 ex.listen(4000,  ()=>console.log("listening on port 4000"));

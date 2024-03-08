@@ -11,13 +11,24 @@ import { orderDetailsComponent } from '../Admin/orderDetails/orderDetails.compon
 import { DashComponent } from '../Admin/dash/dash.component';
 import { vehicleManagementComponent } from '../Admin/vehicleManagement/vehicleManagement.component';
 import { vehicleDetailsComponent } from '../Admin/vehicleDetails/vehicleDetails.component';
+import { HomeComponent } from '../Home/components/home/home.component';
+import { CarsSectionComponent } from '../Home/components/cars-section/cars-section.component';
+import { CarfilterComponent } from '../Home/components/cars-section/carfilter/carfilter.component';
+import { CarDescComponent } from '../Home/components/cars-section/car-desc/car-desc.component';
+import { ReportComponent } from '../Home/components/cars-section/report/report.component';
 
 
 const routes: Routes = [
-  {
-    path: 'admin', component: dashboardComponent, children: [
+  {path:'', component:HomeComponent, pathMatch:"full"},
+  {path:'cars', component:CarsSectionComponent},
+  { path: 'carfilter', component: CarfilterComponent },
+  { path: 'car-desc/:id', component: CarDescComponent },
+  { path: 'report/:id', component: ReportComponent },
+    // Admin Routes
+    {path: 'admin', component: dashboardComponent, children: [
       // { path: 'dashboard',redirectTo: '/admin', pathMatch: 'full' },
-      { path: 'dashboard', component: DashComponent },
+      { path: '', component: DashComponent},
+      { path: 'dashboard', component: DashComponent},
       { path: 'customerManagement', component: customerMangementComponent },
       { path: 'customerManagement/:id', component: userDetailsComponent },
       { path: 'orderManagement', component: orderManagementComponent },
@@ -26,10 +37,10 @@ const routes: Routes = [
       { path: 'reports', component:reportsComponent },
       { path: 'vehicleManagement', component: vehicleManagementComponent },
       {path: 'vehicleManagement/:id', component: vehicleDetailsComponent}
-    ]
-  },
+    ]}
+  ,
   { path: 'admin/login', component: adminLoginComponent },
-  { path: '', redirectTo: '/admin', pathMatch: 'full' }
+
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

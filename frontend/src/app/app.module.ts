@@ -13,17 +13,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { CarDescComponent } from '../Home/components/cars-section/car-desc/car-desc.component';
+import { HomeModule } from '../Home/home.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CarDescComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
     AppRoutingModule,
     RouterLink,
     adminModule,
+    HomeModule,
     HttpClientModule,
     MatGridListModule,
     MatCardModule,

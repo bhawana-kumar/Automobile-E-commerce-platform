@@ -1,0 +1,48 @@
+.popular-brands {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .brand img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Keeps the aspect ratio */
+  }
+  
+  .brand p {
+    margin-top: 10px;
+  }
+  .brand {
+    transition: all 0.3s ease-in-out;
+    padding: 10px; 
+    border-radius: 5px;
+    
+  }
+  
+  .brand:hover {
+
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    transform: translateY(-5px); 
+  }
+  .brand {
+    transition: all 0.3s ease-in-out; 
+    padding: 10px; 
+    border-radius: 5px; 
+    border: 2px solid #cccccc; 
+    }
+  
+  .brand:hover {
+    background-color: #f0f0f0; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    transform: translateY(-5px); 
+    border-color: #007bff; 
+  }
+  

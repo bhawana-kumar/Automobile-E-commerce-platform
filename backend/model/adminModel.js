@@ -9,11 +9,8 @@ const adminSchema = mongoose.Schema(
       email: { type: String, required: true ,  unique: true},
       password: { type: String, required: true }, 
       isAdmin:{type:Boolean,default:false},
-      roles: { type:[Schema.Types.ObjectId],required:true,ref:"Role" },
-  },
-  {
-    timestamps: true
-}
+      roles: { type:String}
+  }
 )
 
 module.exports = mongoose.model("Admin", adminSchema)

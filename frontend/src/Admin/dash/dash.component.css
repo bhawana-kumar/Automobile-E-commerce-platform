@@ -47,3 +47,51 @@
   padding: 10px 20px;
   border-radius: 5px;
 }
+
+
+/* table */
+
+
+.userInfoContainer {
+  height: 100%;
+  padding: 20px 5px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.userInfoTable {
+  margin: auto;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+
+
+table td,
+table th {
+  padding: 10px;
+  /* border:1px solid black; */
+
+}
+
+table tr:nth-child(odd) {
+  background-color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #F8F6FF
+}
+
+
+th {
+  background: #6C7AE0;
+  color: white;
+
+}
+
+table .userRows:hover {
+  background-color: #c2caff;
+  color: rgb(248, 248, 248);
+  cursor: pointer;
+}

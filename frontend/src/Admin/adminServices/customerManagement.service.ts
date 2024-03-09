@@ -29,4 +29,9 @@ export class customerManagementService {
     return this.http.delete<any[]>(this.APIURL+"admin/deleteUser/"+userId)
   }
 
+  getTopSellersData(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIURL+"admin/getTopSellersData");
+
+  }
+
 }

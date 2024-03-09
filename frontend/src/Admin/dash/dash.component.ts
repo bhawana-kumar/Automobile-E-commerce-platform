@@ -6,6 +6,7 @@ import { orderManagementService } from '../adminServices/orderManagement.service
 import { keyframes } from '@angular/animations';
 import { productManagementService } from '../adminServices/productMangement.service';
 import { reportManagementService } from '../adminServices/reportManagement.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dash',
@@ -24,7 +25,7 @@ export class DashComponent implements OnInit {
           columns: 1,
           miniCard: { cols: 1, rows: 1 },
           chart: { cols: 1, rows: 2 },
-          table: { cols: 1, rows: 4 },
+          table: { cols: 1, rows: 3 },
         };
       }
 
@@ -32,7 +33,7 @@ export class DashComponent implements OnInit {
         columns: 4,
         miniCard: { cols: 1, rows: 1 },
         chart: { cols: 2, rows: 2 },
-        table: { cols: 4, rows: 4 },
+        table: { cols: 4, rows: 3 },
       };
     })
   );
@@ -61,6 +62,20 @@ vehicledataLoaded: boolean = false;
 //reports
 reportsData:any = [];
 unResolvedReports: number = 0;
+
+//sellers
+sellersData:any = [];
+
+
+getSellersCarddata(){
+  //get top 5 sellers Id from here
+  this.customerManagementService.getTopSellersData().subscribe((data)=>{
+    
+    if(data){
+      this.sellersData = data;
+    }
+  })
+}
 
 
 getReportsCarddata(){
@@ -124,7 +139,7 @@ getReportsCarddata(){
     })
   }
 
-  constructor(private customerManagementService: customerManagementService, 
+  constructor(private router:Router,private customerManagementService: customerManagementService, 
     private orderManagementService: orderManagementService,
     private productManagementService: productManagementService,
     private reportManagementService: reportManagementService) {
@@ -136,6 +151,13 @@ getReportsCarddata(){
     this.getOrdersCarddata();
     this.getReportsCarddata();
     this.getVehicleCarddata();
+    this.getSellersCarddata();
+  }
+
+
+  UserDetails(id: string) {
+    const url = `/admin/customerManagement/${id}`;
+    this.router.navigateByUrl(url);
   }
 
 }

@@ -22,7 +22,7 @@ const OrderSchema= new Schema({
         type: Object,
     },
     price: {
-        type : String,
+        type : Number,
     },
     paymentMethod: {
         type: String

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('../ConnectionConfig/connect');
 
 
 // Define the product schema
@@ -26,6 +25,8 @@ require('../ConnectionConfig/connect');
 
 
 // module.exports = mongoose.model("vehicle", vehicleSchema)
+
+
 const vehicleSchema = new mongoose.Schema({
     carName: { type: String, required: true },
     brandName: { type: String, required: true },
@@ -51,4 +52,4 @@ const vehicleSchema = new mongoose.Schema({
     registration_number: { type: String, required: true }
 });
 
-module.exports = mongoose.model("vehicle", vehicleSchema);
+module.exports = mongoose.model("vehicles", vehicleSchema);

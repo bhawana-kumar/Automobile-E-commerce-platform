@@ -82,7 +82,27 @@
     
     <!--Table-->
     <mat-grid-tile [colspan]="( cardLayout | async )?.table?.cols" [rowspan]="( cardLayout | async )?.table?.rows">
-      <app-card title="Card 9"><bar-chart></bar-chart></app-card>
+      <app-card title="Top Sellers">
+        <div class="userInfoContainer">
+          <table class="userInfoTable">
+              <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Sales</th>
+              </tr>
+
+              <tr class="userRows" *ngFor="let user of sellersData" (click)="UserDetails(user.sellerId)">
+                  <td>
+                      {{user.username | uppercase}}
+                  </td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>{{user.totalSells}}</td>
+              </tr>
+          </table>
+      </div>
+      </app-card>
     </mat-grid-tile>
   </mat-grid-list>
  </div>

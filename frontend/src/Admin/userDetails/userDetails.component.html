@@ -152,7 +152,7 @@
                 </div>
 
                 <div *ngIf="activeTab === 'orders'">
-                    <h2>{{userOrders.length}} - Orders </h2>
+                    <h2 *ngIf="userOrders.length">{{userOrders.length}} - Orders </h2>
                     <div *ngIf="userOrders.length == 0" class="noDataFound">
                         No Orders Yet
                     </div>

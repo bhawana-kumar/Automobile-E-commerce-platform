@@ -39,6 +39,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -82,7 +83,9 @@ vehicleCardComponent
         MatRadioModule,
         MatCheckboxModule,
         MatSortModule,
-        MatSelectModule
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatSlideToggle
     ],
     exports: [dashboardComponent,
         sidebarComponent,

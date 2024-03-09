@@ -1,11 +1,11 @@
-const Product = require("../model/searchModel");
+const Vehicle = require("../model/vehicleModel")
 
 const searchProducts = async (req, resp) => {
     try {
         const searchQuery = req.query.q;
         
         const regex = new RegExp(searchQuery, 'i');
-        const result = await Product.find({
+        const result = await Vehicle.find({
             $or: [
                 { brandName: regex },
                 { carName: regex },

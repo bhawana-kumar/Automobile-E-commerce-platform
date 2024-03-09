@@ -1,5 +1,7 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import {  Component, Input, ViewChild } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
+
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'bar-chart',
@@ -7,19 +9,19 @@ import { ChartConfiguration } from 'chart.js';
   styleUrls: ['./bar-chart.component.css']
 })
 export class barChartComponent {
-  @Input() bardata: any = []
-  locationLabels: string[] = [];
-  CountsbyLocation: number[] = [];
-  fueltypeLabels: string[] = [];
+  @Input() bardata: any = [];
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
 
-  choosedFilter: string = 'bodyType';
+
+  choosedFilter: string = 'location';
   filters = [
     {value: 'location', viewValue: 'Location'},
     {value: 'fuelType', viewValue: 'Fuel'},
-    {value: 'bodyType', viewValue: 'Bodytype'}
+    {value: 'bodyType', viewValue: 'Bodytype'},
+    {value: 'status', viewValue: 'Status'}
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor() {
 
   }
 
@@ -39,7 +41,7 @@ export class barChartComponent {
       console.log(values)
       this.barChartData.labels = labels;
       this.barChartData.datasets[0].data = values;
-      this.cdr.detectChanges();
+      this.barChartData.datasets[0].label = this.choosedFilter.toUpperCase()
     }
    
   }
@@ -55,6 +57,7 @@ export class barChartComponent {
    
     this.updateChart(Object.keys(vehicleCounts), vehicleCounts);
     
+    this.chart?.update();
   }
 
   public barChartLegend = true;
@@ -69,9 +72,17 @@ export class barChartComponent {
   };
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    responsive: true,
+    scales: {
+      x: {},
+      y: {},
+    },
+    plugins: {
+      legend: {
+        display: true,
+      }
+    },
+    responsive: true
   };
-
 
 
 }

@@ -30,6 +30,12 @@ export class pieChartComponent implements OnInit, OnChanges {
   // Pie
   public pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'left',
+      }
+    }
   };
   public pieChartLabels = [['Completed','Orders'], [ 'Pending', 'Orders'], ['Others']];
   public pieChartDatasets = [{

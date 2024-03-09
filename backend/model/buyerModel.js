@@ -1,19 +1,34 @@
-
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const buyerSchema = mongoose.Schema(
-  {
-    
-      name: { type: String, required: true },
-      email: { type: String, required: true ,  unique: true},
-      password: { type: String, required: true }, 
-      
+const BuyerSchema = new mongoose.Schema({
+  buyerId: {
+    type: String,
+    required: true
   },
-  {
-    timestamps: true
-}
-)
+  myOrders: {
+    type: Array,
+    default: []
+  },
+  shortlisted: {
+    type: Array,
+    default: []
+  },
+  status: {
+    type: String,
+    default: "active"
+  },
+  paymentInfo: {
+    type: Schema.Types.Mixed,
+    default: {
+      cardHolderName: {type:String},
+      cardNumber: {type:Number},
+      billingAddress: {type:String}
+    }
+  }
+});
 
-module.exports = mongoose.model("Buyer", buyerSchema)
 
+const Buyer = mongoose.model("Buyer", BuyerSchema);
+
+module.exports = Buyer;

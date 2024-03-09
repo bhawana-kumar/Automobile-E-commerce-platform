@@ -11,6 +11,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
+      
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link nav-link-1" routerLink="/" routerLinkActive="active" aria-current="page"
@@ -19,18 +20,30 @@
         <li class="nav-item">
           <a class="nav-link nav-link-2" routerLink="/cars" routerLinkActive="active">Cars</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-3" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-4" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link nav-link-5" href="login.html">
-            <i class="fas fa-user mr-2"></i>Login
-          </a>
-        </li>
+        @if (!isLoggedIn){
+          <li class="nav-item">
+            <a class="nav-link nav-link-3"  routerLink="register">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-4"  routerLink="login">Login</a>
+          </li>
+        }@else{
+          <li class="nav-item">
+            <a href="/profile" class="nav-link nav-link-4" class="nav-link" routerLink="profile" routerLinkActive="active">Hii {{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link nav-link-5" (click)="logout()">LogOut</a>
+          </li>
+
+        }
+
+
       </ul>
+      
+       
+      
+    
+     
     </div>
   </div>
 </nav>

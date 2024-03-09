@@ -26,15 +26,19 @@ const UserSchema= new Schema({
         type: String
     },
     status: {
-        type: String
-    },
-    createdAt:{
-        type: Date
-    },
-    updatedAt:{
-        type:Date
-    }
-})
+        type: String,
+        default: "active"
+      }
+    // createdAt:{
+    //     type: Date
+    // },
+    // updatedAt:{
+    //     type:Date
+    // }
+},{
+    timestamps: true
+  }
+)
 
 module.exports = mongoose.model('users', UserSchema)
 

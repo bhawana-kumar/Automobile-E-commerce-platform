@@ -17,6 +17,7 @@ import { CarDescComponent } from '../Home/components/cars-section/car-desc/car-d
 import { HomeModule } from '../Home/home.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { signupModule } from '../Signup/signup.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     RouterLink,
     adminModule,
     HomeModule,
+    signupModule,
     HttpClientModule,
     MatGridListModule,
     MatCardModule,

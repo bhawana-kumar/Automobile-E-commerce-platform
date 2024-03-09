@@ -2,29 +2,36 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose;
 
-const sellerSchema = new mongoose.Schema({
+const sellerSchema = new Schema({
   sellerId: {
     // type: mongoose.Schema.Types.ObjectId,
     type:String,
     required: true
   },
   myVehicles: {
-   type:Array
+   type:Array,
+   default: []
   },
-  orderHistory: {
-    type:Array
-  },
-  paymentInfo: {
-   type:JSON
+  sellsHistory: {
+    type:Array,
+    default: []
   },
   status: {
     type: String,
-    enum: ['active', 'inactive'] 
+    default: 'active'
+  },
+  paymentInfo: {
+    type: Schema.Types.Mixed,
+    default: {
+      cardHolderName: {type:String},
+      cardNumber: {type:Number},
+      billingAddress: {type:String}
+    }
   }
 }
 )
 
 
 
-module.exports = mongoose.model("Seller", sellerSchema)
+module.exports = mongoose.model("seller", sellerSchema)
 

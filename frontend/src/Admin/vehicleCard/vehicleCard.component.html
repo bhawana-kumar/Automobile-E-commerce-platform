@@ -3,26 +3,26 @@
     
         <div class="container">
             <div class="image-container">
-                <img src="https://stimg.cardekho.com/images/carexteriorimages/630x420/Hyundai/Creta/8667/1705465218824/front-left-side-47.jpg?tr=w-664"
-                    alt="Avatar" class="image" style="width:100%">
+                <img [src]="vehicle.carImg"
+                    alt="vehicleImage" class="image" style="width:100%">
                 <div class="middle">
                     <div class="text">
-                       description 
+                       {{vehicle.description}} 
                     </div>
                 </div>
             </div>
             
         </div>
         <div class="details">
-            <h2>{{vehicle.brand }}<span>model</span> </h2> 
-            <p>year</p>
-            <p>location</p>
-            <p>11 - 20.15 Lakh</p>
-            <p>owenrship</p>
-            <p> 
-                Registration Number
+            <h2>{{vehicle.brandName }}<span>{{vehicle.carName}}</span> </h2> 
+            <p> Manufactured: {{vehicle.manufYear}}</p>
+            <p>Location: {{vehicle.location}}</p>
+            <p>Price: {{vehicle.price}}</p>
+            <p>Ownership: {{vehicle.ownerShip}}</p>
+            <p> Registration No:
+                {{vehicle.registration_number}}
             </p>
-            <p>Status</p>
+            <p>{{vehicle.status}}</p>
 
         </div>
 

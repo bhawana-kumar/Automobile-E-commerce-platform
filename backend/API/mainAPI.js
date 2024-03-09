@@ -1,18 +1,33 @@
 const mongoose=require('mongoose')
 const express=require('express')
 const cors=require('cors')
+const cookieSession = require("cookie-session");
 
 
-const authenticateToken = require('../middleware/authMiddleware');
 const dotenv = require ("dotenv");
 dotenv.config();
 connectDb = require('../ConnectionConfig/connect')
 connectDb(); 
 const ex=express();
 ex.use(express.json())
-ex.use(cors())
 
-const authRoutes = require('../Routes/authRoutes');
+
+const corsOptions = {
+    origin: "http://localhost:4200",
+    credentials: true
+  };
+
+  ex.use(cors(corsOptions));
+  ex.use(express.urlencoded({ extended: true }));
+  ex.use(
+    cookieSession({
+      name: "login-session",
+      keys: ["COOKIE_SECRET"], // should use as secret environment variable
+      httpOnly: true
+    })
+  );
+
+
 const userRoute=require("../Routes/usersRoutes")
 const buyerRoute=require("../Routes/buyerRoutes")
 const sellerRoute=require("../Routes/sellerRoutes")
@@ -23,7 +38,10 @@ const reportRoute=require("../Routes/reportRoutes")
 
 const searchRoutes = require("../Routes/searchRoutes");
 
-ex.use('/auth',authRoutes);
+require("../Routes/auth.routes")(ex);
+require("../Routes/user.routes")(ex);
+
+
 ex.use("/user", userRoute);
 ex.use("/buyer", buyerRoute);
 ex.use("/vehicleseller", sellerRoute);

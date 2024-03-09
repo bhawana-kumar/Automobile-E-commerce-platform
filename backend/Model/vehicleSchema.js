@@ -1,76 +1,96 @@
-import { model, Schema, Types} from 'mongoose';
-
-
-//Model to be added
-const mongoose = require('mongoose')
-const { number } = require('yargs')
-require('../ConnectionConfig/connection')
-
+const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
-    brand: {
-        type: String,
-        required: true
-    },
-    model: {
-        type: String,
-        required: true
-    },
-    year: {
-        type: Number,
-        required: true
-    },
-
-    ownership: {
-        type: String,
-        enum: ['First', 'Second', 'Third'], // Ensures only 'these' values are allowed
-        required: true
-    },
-
-
-    image: {
-        data: Buffer, // Binary data of the image
-        contentType: String // Mime type of the image
-    },
-
-    color: {
-        type: String,
-        required: false
-    },
-
-    seats: {
-        type: Number,
-        required: true
-    },
-
-    price: {
-        type: Number,
-        required: true
-    },
-
-    fuel_type: {
-        type: String,
-        required: true
-    },
-
-    mileage: {
-        type: String,
-        required: false
-    },
-
-    description: {
-        type: String,
-        required: false
-    },
-
-    body_type: {
-        type: String,
-        required: true
-    },
-
-    sellerId: { 
-        type: Types.ObjectId, ref: 'users', default: null , required: false} // Reference to the User model for seller's ID
-
+  identification_number: {
+    type: String,
+    required: true
+  },
+  registration_number: {
+    type: String,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  brandName: {
+    type: String,
+    required: true
+  },
+  carName: {
+    type: String,
+    required: true
+  },
+  manufYear: {
+    type: Number,
+    required: true
+  },
+  ownerShip: {
+    type: String,
+    enum: ['First', 'Second', 'Third'],
+    required: true
+  },
+  driveType: {
+    type: String,
+    enum: ['FWD', 'RWD', 'AWD', '4WD'],
+    required: true
+  },
+  carImg: {
+    type: [String],
+    required: false
+  },
+  color: {
+    type: String,
+    required: false
+  },
+  seats: {
+    type: Number,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  engine: {
+    type: String,
+    required: false
+  },
+  power: {
+    type: String,
+    required: false
+  },
+  torque: {
+    type: String,
+    required: false
+  },
+  fuelType: {
+    type: String,
+    required: true
+  },
+  mileage: {
+    type: String,
+    required: false
+  },
+  description: {
+    type: String,
+    required: false
+  },
+  bodyType: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ['available', 'unavailable'],
+    required: false,
+    default: 'unavailable'
+  },
+  sellerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'vehicles',
+    default: null,
+    required: false
+  }
 });
 
-module.exports = mongoose.model("product", productSchema);
+module.exports = mongoose.model("vehicles", productSchema);

@@ -1,0 +1,33 @@
+
+
+<p >Hello</p>
+<mat-card *ngIf="vehicles.length > 0; else noVehicles" class="vehicle-card">
+  <mat-card-content>
+    <div *ngFor="let vehicle of vehicles" class="card">
+      <div class="card-header">
+        <div class="vehicle-image">
+          <img mat-card-image [src]="vehicle.image" alt="Image">
+        </div>
+        <div class="card-space"></div>
+        <div class="card-content">
+          <div><b>Brand: </b><b>{{ vehicle.brand }} </b><p><b>Model: </b><b> {{ vehicle.model }}</b></p></div>
+          <div class="card-subtitle"><b>Manufacturing Year: </b><b>{{ vehicle.year }}</b></div>  
+          <p><strong>Ownership: </strong> <b>{{ vehicle.ownership }}</b></p>
+          <p><strong>Color: </strong><b>{{ vehicle.color }}</b></p>
+          <p><strong>Price: </strong> <b>{{ vehicle.price }}</b></p>
+          <p><strong>Fuel Type: </strong> <b>{{ vehicle.fuel_type }}</b></p>
+          <p *ngIf="vehicle.mileage"><strong>Mileage: </strong><b>{{ vehicle.mileage }}</b></p>
+          <p><strong>Body Type: </strong><b> {{ vehicle.body_type }}</b></p>
+        </div>
+        <div class="card-actions">
+          <button mat-button color="primary" class="Edit" (click)="editVehicle(vehicle)">Edit</button> &nbsp;&nbsp;
+          <button mat-button color="warn" class="Delete" (click)="deleteVehicle(vehicle)">Delete</button>
+        </div>
+      </div>
+    </div> 
+  </mat-card-content>
+</mat-card>
+
+<ng-template #noVehicles>
+  <p>No vehicles found.</p>
+</ng-template>

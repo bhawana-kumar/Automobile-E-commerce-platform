@@ -41,13 +41,13 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.logout().subscribe({
-      next: res => {
+      next: (res: any) => {
         console.log(res);
         this.storageService.clean();
 
         window.location.reload();
       },
-      error: err => {
+      error: (err: any) => {
         console.log(err);
       }
     });

@@ -1,0 +1,24 @@
+Sellerschema.js
+sellermodel.ts
+vehiclemodel.ts 
+vehicleSchema.js
+
+connection.js
+
+ProductApi.js
+
+editpage
+fetch
+seller-page
+
+vehicle module
+
+auth.service
+seller.service
+vehicle.service
+product.service
+
+
+app.module.ts
+
+

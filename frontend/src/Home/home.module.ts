@@ -21,7 +21,6 @@ import {ReportComponent} from './components/cars-section/report/report.component
     declarations: [
     HomeComponent,
       HeaderComponent,
-      FooterComponent,
       SearchComponent,
       CardsComponent,
       CarouselComponent,
@@ -49,7 +48,8 @@ import {ReportComponent} from './components/cars-section/report/report.component
       CarListComponent,
       RecommendedComponent,
       FooterComponent,
-      ReportComponent
+      ReportComponent ,
+      CarDescModule, 
       ]
     })
     export class HomeModule { }

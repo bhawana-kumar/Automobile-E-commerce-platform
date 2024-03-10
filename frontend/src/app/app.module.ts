@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterLink } from '@angular/router';
@@ -16,14 +15,29 @@ import { MatButtonModule } from '@angular/material/button';
 import { CarDescComponent } from '../Home/components/cars-section/car-desc/car-desc.component';
 import { HomeModule } from '../Home/home.module';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { signupModule } from '../Signup/signup.module';
+
+
+//Modules imported later
+import { ReactiveFormsModule } from '@angular/forms';
+import { VehicleModule } from '../vehicle/vehicle.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule, MatNavList } from '@angular/material/list';
+import { FetchComponent } from '../fetch/fetch.component';
+import { SellerPageComponent } from '../seller-page/seller-page.component';
+import { EditpageComponent } from '../editpage/editpage.component'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarDescComponent
+    CarDescComponent,
+    FetchComponent,
+    SellerPageComponent,
+    EditpageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,11 +53,17 @@ import { signupModule } from '../Signup/signup.module';
     MatCardModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
-  
+    MatButtonModule,
+    ReactiveFormsModule, VehicleModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    FormsModule,
+    MatSidenavModule ,
+    MatNavList,
+    BrowserAnimationsModule
   ],
   providers: [
-    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

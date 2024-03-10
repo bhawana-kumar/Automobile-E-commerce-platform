@@ -19,7 +19,7 @@ import { ReportComponent } from '../Home/components/cars-section/report/report.c
 import { LoginComponent } from '../Signup/login/login.component';
 import { RegisterComponent } from '../Signup/register/register.component';
 import { ProfileComponent } from '../Signup/profile/profile.component';
-
+import { SellerPageComponent } from '../seller-page/seller-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: "full" },
@@ -48,9 +48,14 @@ const routes: Routes = [
   ,
   { path: 'admin/login', component: adminLoginComponent },
 
+  //Seller Routes
+
+  {path:'' , component: SellerPageComponent}
+
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

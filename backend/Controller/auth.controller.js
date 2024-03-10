@@ -85,6 +85,7 @@ exports.signin = (req, res) => {
               token: token,
               status: user.status
             });
+            console.log(id);
           })
           .catch(err => {
             return res.status(500).send({ message: err.message || "Internal server error." });

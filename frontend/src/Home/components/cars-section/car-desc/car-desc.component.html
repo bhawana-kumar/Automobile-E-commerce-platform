@@ -1,12 +1,12 @@
 <div>
   <app-header></app-header>
-</div>
+</div> 
 
 <div *ngIf="car" class="img-info-container">
   <div class="car-img">
     <img [src]="car.carImg" class="car-image">
   </div>
-
+ 
   <div class="car-details-main">
     <div class="car-details" >
      
@@ -23,7 +23,9 @@
     <h2>&#8377;      {{car.price }}</h2>
   
       <div>
-      <app-payment></app-payment>
+        <button (click)="createOrder(car._id)" class="payment-container">Instant Acquire</button>
+
+      <!-- <app-payment [inputData]="car._id"></app-payment> -->
     </div>
   </div>
 </div>

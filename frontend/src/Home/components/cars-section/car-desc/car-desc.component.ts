@@ -21,14 +21,17 @@ export class CarDescComponent implements OnInit {
     console.log('Car ID:', carId);
     this.carfilter.getCarById(carId).subscribe((data) => {
       this.car = data; 
-    });
-  }
-  buynowbtn(price:number){
-    this.router.navigate(['/payment',price]);
+    }); 
+  // }
+  // buynowbtn(price:number){
+  //   this.router.navigate(['/payment',price]);
 }
 
 toggleReportButton(id: number) {
   this.router.navigate(['/report',id]);
+}
+createOrder(id: number) {
+  this.router.navigate(['/payment',id]);
 }
 
 }

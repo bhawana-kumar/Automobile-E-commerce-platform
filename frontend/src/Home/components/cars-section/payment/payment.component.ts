@@ -1,6 +1,8 @@
 
-import { Component } from '@angular/core';
-import { PaymentService } from '../../../service/payment.service';
+import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Params } from '@angular/router';
+import { CarfilterService } from '../../../service/carfilter.service';
 
 declare var Razorpay: any;
 
@@ -10,19 +12,25 @@ declare var Razorpay: any;
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent {
+
+  payment: any= {
+    vehicleId:'',
+    buyerName: '',
+    registration_number:'',
+    seller_id:'',
+    carName:'',
+    brandName:'',
+    price:'',
+    manufYear:'',
+    color:'',
+  };
+
+
   razorpayOptions = {
     key: 'rzp_test_yQ29A3fUd7HhCV',
-    amount: '100', 
-    currency: 'INR',
     name: 'AutoTrade Hub',
     description: 'Make Payment',
     image: '../assets/images/logo.png', 
-    order_id: '', 
-    customerName:'',
-    handler: (response: any) => {
-      // Handle the response from Razorpay
-    },
-     
     notes: {
       address: 'Thank you'
     },
@@ -33,21 +41,36 @@ export class PaymentComponent {
 
   rzp: any;
 
-  constructor(private paymentService: PaymentService) {
+  constructor( private http:HttpClient, private carfilter:CarfilterService,private route:ActivatedRoute) {
     this.rzp = new Razorpay(this.razorpayOptions);
   }
-
-  createOrder() {
-    this.paymentService.createOrder().subscribe(
-      (orderData) => {
-        this.razorpayOptions.order_id = orderData.orderId;
-        this.razorpayOptions.customerName = orderData.customerName;
-        this.razorpayOptions.amount = orderData.amount;
-        this.rzp.open();
-      },
-      (error) => {
-        console.error('Error creating order:', error);
-      }
-    );
+  ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.payment.vehicleId = params['id'];
+      
+    
+    const carId = this.route.snapshot.params['id'];
+    this.carfilter.getCarById(carId).subscribe((data: any) => {
+      this.payment.seller_id = data.seller_id;
+     this.payment.registration_number = data.registration_number;
+     this.payment.carName = data.carName;
+     this.payment.price = data.price;
+     this.payment.manufYear = data.manufYear;
+     this.payment.brandName = data.brandName;
+     this.payment.color = data.color;
+    });
+  });
   }
+  submitForm() {
+    this.http.post<any>('http://localhost:4000/payment/createPayment', this.payment)
+      .subscribe(response => {
+        console.log('Payment submitted successfully:', response);
+        
+      }, error => {
+        console.error('Error submitting report:', error);
+      });
+      this.rzp.open()
+  }
+
 }

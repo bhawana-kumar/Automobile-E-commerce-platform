@@ -40,6 +40,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { minicardComponent } from "./miniCard/minicard.component";
 
 @NgModule({
     declarations: [dashboardComponent,
@@ -61,7 +62,8 @@ pieChartComponent,
 barChartComponent,
 orderReceiptComponent,
 AlertModalComponent,
-vehicleCardComponent
+vehicleCardComponent,
+minicardComponent
 ],
     imports: [RouterLink,
         CommonModule,
@@ -104,7 +106,7 @@ vehicleCardComponent
         salesChartComponent,
         pieChartComponent,
         barChartComponent,
-        orderReceiptComponent,AlertModalComponent,vehicleCardComponent
+        orderReceiptComponent,AlertModalComponent,vehicleCardComponent,minicardComponent
     ]
 
 }) export class adminModule {

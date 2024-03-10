@@ -30,13 +30,17 @@
         </div>
 
         <div class="filterContainer">
+            <div>
             <span>Role: </span>
             <mat-checkbox [(ngModel)]="buyerChecked" labelPosition="before" (change)="applyFilter_all_table()">Buyer</mat-checkbox>
             <mat-checkbox [(ngModel)]="sellerChecked" labelPosition="before" (change)="applyFilter_all_table()">Seller</mat-checkbox>
             <span>Status:</span>
             <mat-checkbox [(ngModel)]="activeChecked"labelPosition="before" (change)="applyFilter_all_table()">Active</mat-checkbox>
             <mat-checkbox [(ngModel)]="blockChecked" labelPosition="before" (change)="applyFilter_all_table()">Blocked</mat-checkbox>
-            
+            </div>
+            <div class="rows_count">
+                <div>Total Users: {{filtredData.length}} </div>
+            </div>
         </div>
         
         <div class="userInfoContainer">

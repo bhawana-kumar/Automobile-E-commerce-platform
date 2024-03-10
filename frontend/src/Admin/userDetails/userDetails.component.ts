@@ -165,6 +165,17 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
     );
     if(this.userRole == 'seller'){
       //block his vehicles
+      this.productManagementService.updateVehicleBySellerId(this.userId, {"status": "block"}).subscribe(
+        result => {
+          if(!result){
+            return
+          }
+          console.log("vehicle details updated successfully",result);
+        },
+        error => {
+          console.error('Error updating vehicle details:', error);
+        }
+      )
     }
 
   }
@@ -172,7 +183,19 @@ import { reportManagementService } from "../adminServices/reportManagement.servi
   unBlockUserById() {
     if(this.userRole == 'seller'){
       //unblock his vehicles
+      this.productManagementService.updateVehicleBySellerId(this.userId, {"status": "available"}).subscribe(
+        result => {
+          if(!result){
+            return
+          }
+          console.log("vehicle details updated successfully",result);
+        },
+        error => {
+          console.error('Error updating vehicle details:', error);
+        }
+      )
     }
+
     this.customerManService.updateUserDetailsById(this.userId, { "status": "active" }).subscribe(
       result => {
         if(!result){

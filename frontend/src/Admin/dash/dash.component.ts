@@ -25,6 +25,7 @@ export class DashComponent implements OnInit {
           columns: 1,
           miniCard: { cols: 1, rows: 1 },
           chart: { cols: 1, rows: 2 },
+          bigchart: {cols:1,rows:2},
           table: { cols: 1, rows: 3 },
         };
       }
@@ -33,6 +34,7 @@ export class DashComponent implements OnInit {
         columns: 4,
         miniCard: { cols: 1, rows: 1 },
         chart: { cols: 2, rows: 2 },
+        bigchart: {cols:3,rows:2},
         table: { cols: 4, rows: 3 },
       };
     })
@@ -40,8 +42,8 @@ export class DashComponent implements OnInit {
 
 
   usersData: any = [];
-  TotalNoOfUsers: number = 0;
-  TotalNoOfBuyers: number = 0;
+  // TotalNoOfUsers: number = 0;
+  // TotalNoOfBuyers: number = 0;
   TotalNoOfSellers: number = 0;
   linedataLoaded: boolean = false;
 
@@ -127,14 +129,6 @@ getReportsCarddata(){
   getUsersCarddata() {
     this.customerManagementService.getUserData().subscribe((res) => {
       this.usersData = res;
-      this.TotalNoOfUsers = this.usersData.length;
-      this.usersData.filter((user: any) => {
-        if (user.role === 'buyer') {
-          this.TotalNoOfBuyers++;
-        } else {
-          this.TotalNoOfSellers++;
-        }
-      });
       this.linedataLoaded = true;
     })
   }
@@ -159,5 +153,28 @@ getReportsCarddata(){
     const url = `/admin/customerManagement/${id}`;
     this.router.navigateByUrl(url);
   }
+  redirectTo(value:string){
+    let url = ''
+    switch(value){
+      case 'reports':
+        url = "/admin/reports"
+        break;
+      case 'vehicles':
+        url = "/admin/vehicleManagement"
+        break;
+      case 'users':
+        url = "/admin/customerManagement"
+        break;
+      case 'orders':
+        url = "/admin/orderManagement"
+        break;
+      default:
+        url = "/admin";
+    
+    }
 
+
+    
+    this.router.navigateByUrl(url);
+  }
 }

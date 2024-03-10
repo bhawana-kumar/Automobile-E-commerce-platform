@@ -27,6 +27,7 @@ const getAllUserData = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
 // GET user by ID
 const getUserById = async (req, res) => {
     try {
@@ -43,6 +44,7 @@ const getUserById = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
 // PATCH request to update an existing user
 const updateUserById = async (req, res) => {
     try {
@@ -203,6 +205,22 @@ const getVehicleDataBySellerId = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+const updateVehicleBySellerId = async (req, res) => {
+    try {
+        const sellerId = req.params.sellerId;
+        const updates = req.body;
+
+        const updatedVehicle = await vehicleModel.updateMany({sellerId:sellerId}, updates, { new: true });
+
+        if (!updatedVehicle) {
+            return res.status(404).json({ message: 'Vehicle not found' });
+        }
+        res.json({ message: 'Vehicle updated successfully', updatedVehicle });
+    } catch (error) {
+        console.error('Error updating Vehicle:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 
 const getVehicleDataById = async (req, res) => {
     try {
@@ -356,5 +374,5 @@ module.exports = {
     getOrderById, getOrderByBuyerId, getOrderBySellerId, getAllReportsData,
     getVehicleDataBySellerId, getAllVehicleData, getVehicleDataById, getReportsDataByVehicleId,
     deleteVehicleById, updateReportsDataByVehicleId, getReportsDataByBuyerId, getReportsDataBySellerId,
-    getOrderDataByVehicleId, getTopSellersData
+    getOrderDataByVehicleId, getTopSellersData, updateVehicleBySellerId
 }

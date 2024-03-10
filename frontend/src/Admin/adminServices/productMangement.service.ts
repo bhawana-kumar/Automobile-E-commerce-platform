@@ -26,4 +26,8 @@ export class productManagementService {
     return this.http.delete<any[]>(this.APIURL+"admin/deleteVehicleById/"+vehicleId);
   }
 
+  updateVehicleBySellerId(sellerId:string,vehicle:any):Observable<any[]> {
+    return this.http.patch<any[]>(this.APIURL+"admin/updateVehicleBySellerId/"+sellerId , vehicle);
+  }
+
 }

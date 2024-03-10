@@ -1,5 +1,5 @@
 const express = require("express");
-const {getAllUserData,getUserById, updateUserById, deleteUserById, getAllOrdersData, getOrderById, getOrderByBuyerId, getOrderBySellerId, getAllReportsData, getVehicleDataBySellerId, getAllVehicleData, getVehicleDataById, getReportsDataByVehicleId, deleteVehicleById, updateReportsDataByVehicleId, getReportsDataByBuyerId, getReportsDataBySellerId, getVehicleDataByVehicleId, getOrderDataByVehicleId, getTopSellersData}= require("../controller/adminController.js");
+const {getAllUserData,getUserById, updateUserById, deleteUserById, getAllOrdersData, getOrderById, getOrderByBuyerId, getOrderBySellerId, getAllReportsData, getVehicleDataBySellerId, getAllVehicleData, getVehicleDataById, getReportsDataByVehicleId, deleteVehicleById, updateReportsDataByVehicleId, getReportsDataByBuyerId, getReportsDataBySellerId, getOrderDataByVehicleId, getTopSellersData, updateVehicleBySellerId}= require("../Controller/AdminController");
 const adminRoute = express.Router();
 // const adminUtils = require('../utils/adminToken.js')
 
@@ -25,6 +25,7 @@ adminRoute.patch("/updateReportsByVehicleId/:vehicleId",updateReportsDataByVehic
 adminRoute.get("/getAllProductsData",getAllVehicleData);
 adminRoute.get("/getProductsBySellerId/:userId",getVehicleDataBySellerId);
 adminRoute.get("/getVehicleDataById/:vehicleId",getVehicleDataById);
+adminRoute.patch("/updateVehicleBySellerId/:sellerId",updateVehicleBySellerId)
 adminRoute.delete("/deleteVehicleById/:vehicleId",deleteVehicleById);
 
 module.exports = adminRoute;                               

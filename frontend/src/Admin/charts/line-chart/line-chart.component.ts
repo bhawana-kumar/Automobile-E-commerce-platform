@@ -1,20 +1,24 @@
-import { Component, Input, OnInit, input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, input } from '@angular/core';
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
-import { customerManagementService } from '../../adminServices/customerManagement.service';
-
+import { Colors } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import * as Utils from '../utils'
 @Component({
   selector: 'line-chart',
   templateUrl: './line-chart.component.html',
-  styleUrls: [ './line-chart.component.css' ]
+  styleUrls: ['./line-chart.component.css']
 })
 export class salesChartComponent {
-  @Input() linedata:any = [];
-  sortedMonths:string[];
-  userCounts:number[];
-  buyerCounts:number[];
-  sellerCounts:number[];
-  
-  
+  @Input() linedata: any = [];
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective<'line'> | undefined;
+
+  sortedMonths: string[];
+  userCounts: number[];
+  buyerCounts: number[];
+  sellerCounts: number[];
+
+
+
   constructor() {
     this.sortedMonths = []
     this.userCounts = [];
@@ -31,7 +35,7 @@ export class salesChartComponent {
   ngOnChanges(): void {
     this.updateChart();
   }
-  
+
   updateChart(): void {
     if (this.sortedMonths && this.sortedMonths.length != 0) {
       this.lineChartData.labels = this.sortedMonths;
@@ -43,38 +47,38 @@ export class salesChartComponent {
 
   filterChartData(): void {
 
-    const userJoinedMonths: string[] = this.linedata.map((user:any) => {
+    const userJoinedMonths: string[] = this.linedata.map((user: any) => {
       const joinedDate = new Date(user.createdAt);
       return `${joinedDate.getFullYear()}-${(joinedDate.getMonth() + 1).toString().padStart(2, '0')}-${user.role}`;
     });
-    
-    const userCountsByMonth: { [month: string]: number } = {};
-    const buyerCountsByMonth: {[month: string]: number } = {};
-    const sellerCountsByMonth: {[month: string]: number } = {};
 
-    userJoinedMonths.forEach((month:string) => {
+    const userCountsByMonth: { [month: string]: number } = {};
+    const buyerCountsByMonth: { [month: string]: number } = {};
+    const sellerCountsByMonth: { [month: string]: number } = {};
+
+    userJoinedMonths.forEach((month: string) => {
       let newmonth = month.substring(0, 7);
       userCountsByMonth[newmonth] = (userCountsByMonth[newmonth] || 0) + 1;
-      if(month.includes('buyer')){
-        buyerCountsByMonth[newmonth] = (buyerCountsByMonth[newmonth] || 0)+1;
-       
-      }else{
+      if (month.includes('buyer')) {
+        buyerCountsByMonth[newmonth] = (buyerCountsByMonth[newmonth] || 0) + 1;
+
+      } else {
         sellerCountsByMonth[newmonth] = (sellerCountsByMonth[newmonth] || 0) + 1;
       }
 
     });
     console.log(sellerCountsByMonth)
-    const months: string[] = Object.keys(userCountsByMonth); 
-    this.sortedMonths = months.sort(); 
-    this.userCounts = this.sortedMonths.map(month => userCountsByMonth[month]); 
-    this.buyerCounts = this.sortedMonths.map(month => buyerCountsByMonth[month]); 
-    this.sellerCounts = this.sortedMonths.map(month => sellerCountsByMonth[month]); 
-    
+    const months: string[] = Object.keys(userCountsByMonth);
+    this.sortedMonths = months.sort();
+    this.userCounts = this.sortedMonths.map(month => userCountsByMonth[month]);
+    this.buyerCounts = this.sortedMonths.map(month => buyerCountsByMonth[month]);
+    this.sellerCounts = this.sortedMonths.map(month => sellerCountsByMonth[month]);
+
   }
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [
-      
+
     ],
     datasets: [
       {
@@ -82,36 +86,49 @@ export class salesChartComponent {
         label: 'Count Of Users',
         fill: true,
         tension: 0.5,
-        borderColor: 'black',
-        backgroundColor: 'rgba(255, 0, 0, 0.3)',
-        borderWidth: 2
+        pointStyle: 'circle',
+        pointRadius: 10,
+        pointHoverRadius: 15,
+        borderColor: Utils.CHART_COLORS.red,
+        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.8),
+
       },
       {
         data: [0, 0, 0],
         label: 'Count of Buyers',
         fill: false,
         tension: 0.5,
-        borderColor: 'blue',
-        backgroundColor: 'rgba(0, 0, 255, 0.3)',
-        borderWidth: 2
+        pointStyle: 'circle',
+        pointRadius: 10,
+        pointHoverRadius: 15,
+        borderColor: Utils.CHART_COLORS.blue,
+
       },
       {
         data: [0, 0, 0],
         label: 'Count of Sellers',
         fill: false,
         tension: 0.5,
-        borderColor: 'red',
-        backgroundColor: 'rgba(255, 0, 0, 0.3)',
-        borderWidth: 2
+        pointStyle: 'circle',
+        pointRadius: 10,
+        pointHoverRadius: 15,
+        borderColor: Utils.CHART_COLORS.yellow,
+        
       }
     ]
-    
+
   };
   public lineChartOptions: ChartOptions<'line'> = {
     responsive: true,
-  
+    
+    plugins: {
+    
+    
+    }
   };
   public lineChartLegend = true;
 
- 
+  // chart.register(Colors);
+
+
 }

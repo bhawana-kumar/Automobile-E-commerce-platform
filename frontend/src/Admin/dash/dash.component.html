@@ -89,7 +89,7 @@
         <bar-chart *ngIf="vehicledataLoaded" [bardata]="vehiclesData"></bar-chart>
       </app-card>
     </mat-grid-tile>
-<mat-grid-tile [colspan]="( cardLayout | async )?.miniCard?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
+<mat-grid-tile class="imageContainer" [colspan]="( cardLayout | async )?.miniCard?.cols" [rowspan]="( cardLayout | async )?.chart?.rows">
   <div class="imageContainer">
     <img  src="../../assets/images/web-analysis.png" alt="analysis Image">
   </div>

@@ -22,7 +22,7 @@
                 </li>
                 <li class="nav-item" (click)="showReports()">
                     <a class="nav-link"
-                        [class.active]="activeTab === 'feedback'"><mat-icon>feedback</mat-icon>Reports</a>
+                        [class.active]="activeTab === 'reports'"><mat-icon>feedback</mat-icon>Reports</a>
                 </li>
 
             </ul>
@@ -45,13 +45,12 @@
                                 Unblock User
                             </button>
                             <button  class="btn btn-sm btn-block btnUserB"(click)="openDialog()" >
-                                Delete Account
+                                Delete Acc
                             </button>
             
-                        </div><!-- /.col -->
-                        <!-- profile right side -->
+                        </div>
                         <div class="col-xs-12 col-sm-9">
-                            <h4 class="blue">
+                            <h4 class="white">
                                 <span class="middle">{{userdata.username | uppercase}}</span>
 
                                 <span class="profile-info-role">

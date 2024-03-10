@@ -6,10 +6,11 @@
 	height: 100%;
 	float: left;
 	border-right: 1px solid rgb(0, 0, 0);
-	background-color: rgb(247, 247, 247);
+	background-color: #1B2431;
 	overflow-y: auto;
 	scrollbar-width: none;  /* Firefox */
 	-ms-overflow-style: none;  /* IE and Edge */
+	/* font-family:'Courier New', Courier, monospace; */
 }
 
 
@@ -21,7 +22,7 @@
 
 .NameHeader {
 	text-align: center;
-	color: black;
+	color: rgb(255, 255, 255);
 	line-height: 0.2cm;
 }
 
@@ -37,7 +38,7 @@
 	left: 50%;
 	top: 50%;
 	margin: -45px 0 0 -45px;
-	border: 1px solid rgb(200, 200, 200);
+	border: 1px solid rgb(0, 0, 0);
 	border-radius: 50%;
 	background-color: rgb(214, 214, 214);
 }
@@ -63,7 +64,7 @@
 }
 
 .slidebar ul a {
-	color: black;
+	color: rgb(93, 89, 89);
 	text-decoration: none;
 	font: 16px/40px helvetica, verdana, sans-serif;
 	display: block;
@@ -79,13 +80,20 @@
 
 
 .slidebar li:hover a {
-	background-color: rgb(255, 255, 255);
-	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 5px 0 0 -1px rgb(234, 83, 63);
+	color:white;
 }
 
 .active {
-	background-color: #6C7AE0;
 	font-weight: bold;
+	color:white !important;
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px rgb(234, 83, 63);
+}
+.active mat-icon{
+	color: #E53935;
+}
+
+.navContainer :last-child{
+	cursor: pointer;
 }
 
 /* Responsive */

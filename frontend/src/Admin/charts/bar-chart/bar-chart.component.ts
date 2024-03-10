@@ -2,7 +2,7 @@ import {  Component, Input, ViewChild } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 
 import { BaseChartDirective } from 'ng2-charts';
-
+import * as Utils from '../utils'
 @Component({
   selector: 'bar-chart',
   templateUrl: './bar-chart.component.html',
@@ -22,7 +22,12 @@ export class barChartComponent {
   ];
 
   constructor() {
-
+    // function handleHover(evt:any, item:any, legend:any) {
+    //   legend.chart.data.datasets[0].backgroundColor.forEach((color:any, index:any, colors:any) => {
+    //     colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
+    //   });
+    //   legend.chart.update();
+    // }
   }
 
   ngOnInit() {
@@ -66,7 +71,15 @@ export class barChartComponent {
   public barChartData: ChartConfiguration<'bar'>['data'] = {
     labels: ['', '', ''],
     datasets: [
-      { data: [0, 0, 0], label: this.choosedFilter.toUpperCase() }
+      { data: [0, 0, 0], 
+        label: this.choosedFilter.toUpperCase(),
+        borderColor: Utils.CHART_COLORS.yellow,
+        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.yellow, 0.5),
+        borderWidth: 2,
+        borderRadius: 5,
+        borderSkipped: false,
+        
+      }
      
     ]
   };
@@ -79,10 +92,32 @@ export class barChartComponent {
     plugins: {
       legend: {
         display: true,
+        position: 'bottom'
+        // onHover: handleHover,
+        // onLeave: handleLeave
       }
     },
     responsive: true
   };
+
+  
+  // public chartColors: Array<any> = [
+  //   { // first color
+  //     backgroundColor: 'white',
+  //     borderColor: 'rgba(225,10,24,0.2)',
+  //     pointBackgroundColor: 'rgba(225,10,24,0.2)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+  //   },
+  //   { // second color
+  //     backgroundColor: 'rgba(225,10,24,0.2)',
+  //     borderColor: 'rgba(225,10,24,0.2)',
+  //     pointBackgroundColor: 'rgba(225,10,24,0.2)',
+  //     pointBorderColor: '#fff',
+  //     pointHoverBackgroundColor: '#fff',
+  //     pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+  //   }];
 
 
 }

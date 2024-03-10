@@ -10,6 +10,7 @@
     align-items: center;
     height: 400px;
     padding:0px 30px;
+    background-color: #1B2431;
 }
 
 .container {
@@ -63,8 +64,6 @@
 }
 
 .details {
-    
-    background-color: blanchedalmond;
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
@@ -73,6 +72,7 @@
     font-size: 16px;
     width: 50%;
     height: auto;
+    color: whitesmoke;
 
 }
 .details > h2 >span {

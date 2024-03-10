@@ -1,6 +1,6 @@
-@import "https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/dashboard.scss";
+/* @import "https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/dashboard.scss"; */
 .grid-container {
-  margin: 20px;
+  padding: 10px;
 }
 
 .dashboard-card {
@@ -28,13 +28,6 @@
   align-items:flex-start;
 }
 
-
-.attributeValue {
-  background-color: rgb(221, 164, 164);
-
-  padding: 10px 20px;
-  border-radius: 5px;
-}
 
 
 /* table */
@@ -144,12 +137,26 @@ table .userRows:hover {
 }
 
 /* image */
-.imageContainer{
-  
-}
 
 .imageContainer > img {
  
   width: 100%;
   height: auto;
+}
+
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+	.imageContainer{
+    display: none;
+    border: 2px solid red;
+  }
+
+
+}
+
+@media only screen and (max-width: 480px) {
+  .imageContainer{
+    display: none;
+  }
 }

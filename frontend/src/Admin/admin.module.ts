@@ -5,7 +5,6 @@ import { CommonModule } from "@angular/common";
 import { sidebarComponent } from "./SideBar/sidebar.component";
 import { customerMangementComponent } from "./customerMangement/cm.component";
 import { vehicleManagementComponent } from "./vehicleManagement/vehicleManagement.component";
-import { contentMangementComponent } from "./contentManagement/contentMan.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,7 +13,6 @@ import { userDetailsComponent } from "./userDetails/userDetails.component";
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
-import { adminLoginComponent } from "./adminLogin/adminLogin.component";
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { DashComponent } from "./dash/dash.component";
@@ -47,10 +45,8 @@ import { minicardComponent } from "./miniCard/minicard.component";
         sidebarComponent,
         customerMangementComponent,
         vehicleManagementComponent,
-        contentMangementComponent,
         reportsComponent,
         userDetailsComponent,
-        adminLoginComponent,
         DashComponent,
     CardComponent,
     reportCardComponent,
@@ -93,10 +89,8 @@ minicardComponent
         sidebarComponent,
         customerMangementComponent,
         vehicleManagementComponent,
-        contentMangementComponent,
         reportsComponent,
         userDetailsComponent,
-        adminLoginComponent,
         DashComponent,
         CardComponent,
         reportCardComponent,
@@ -106,7 +100,10 @@ minicardComponent
         salesChartComponent,
         pieChartComponent,
         barChartComponent,
-        orderReceiptComponent,AlertModalComponent,vehicleCardComponent,minicardComponent
+        orderReceiptComponent,
+        AlertModalComponent,
+        vehicleCardComponent,
+        minicardComponent
     ]
 
 }) export class adminModule {

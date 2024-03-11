@@ -4,7 +4,8 @@ import { StorageService } from '../service/storage.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css',
+'../../assets/bootstrap.min.css']
 })
 export class ProfileComponent implements OnInit {
   currentUser: any;

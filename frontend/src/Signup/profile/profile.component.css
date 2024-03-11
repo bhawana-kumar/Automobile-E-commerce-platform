@@ -1,4 +1,4 @@
-.user-heading {
+  .user-heading {
   background-color: #3498db;
   color: #fff;
   text-align: center;
@@ -43,6 +43,14 @@
 
 .difftabs a:hover {
   color: #555;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav li:hover{
+  cursor: pointer;
 }
 
 .SideComponent {

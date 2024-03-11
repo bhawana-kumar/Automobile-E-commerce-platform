@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardUserComponent } from './board-user/board-user.component';
+
 
 
 import { ViewProfileComponent } from './profile/view-profile/view-profile.component';
@@ -19,10 +19,8 @@ import { YourOrderHistoryComponent } from './profile/your-order-history/your-ord
   declarations: [
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardUserComponent,
     ViewProfileComponent,
     ShortlistedVehiclesComponent,
     ProfileSettingsComponent,
@@ -36,10 +34,8 @@ import { YourOrderHistoryComponent } from './profile/your-order-history/your-ord
   exports: [
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardUserComponent,
     ViewProfileComponent,
     ShortlistedVehiclesComponent,
     ProfileSettingsComponent,

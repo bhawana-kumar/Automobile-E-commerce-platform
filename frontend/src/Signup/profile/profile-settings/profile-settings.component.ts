@@ -32,7 +32,7 @@ export class ProfileSettingsComponent {
 
   updatePassword(): void {
     // a PUT request to update the user's password
-    this.http.put('http://localhost:8080/api/auth/updatePassword', {
+    this.http.put('http://localhost:4000/api/auth/updatePassword', {
       currentPassword: this.currentPassword,
       newPassword: this.newPassword,
       confirmNewPassword: this.confirmNewPassword
@@ -52,7 +52,7 @@ export class ProfileSettingsComponent {
     // Check if the user has an existing address
     if (this.user1.address) {
         // User has an existing address, so update it
-        this.http.put('http://localhost:8080/api/auth/updateAddress', { address: this.newAddress })
+        this.http.put('http://localhost:4000/api/auth/updateAddress', { address: this.newAddress })
             .subscribe((response: any) => {
                 console.log(response);
                 this.user1.address = this.newAddress; // Update the address in the frontend model
@@ -65,7 +65,7 @@ export class ProfileSettingsComponent {
             });
     } else {
         // User doesn't have an existing address, so add a new one
-        this.http.put('http://localhost:8080/api/auth/addAddress', { address: this.newAddress })
+        this.http.put('http://localhost:4000/api/auth/addAddress', { address: this.newAddress })
             .subscribe((response: any) => {
                 console.log(response);
                 this.user1.address = this.newAddress; // Update the address in the frontend model

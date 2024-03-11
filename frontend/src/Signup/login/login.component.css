@@ -1,18 +1,23 @@
-/* Container */
-.container {
+
+*{
   box-sizing: border-box;
+}
+
+.container {
   width: 100%;
   height: 100%;
-  padding: 40px 0px;
-  background: radial-gradient(ellipse, rgb(109, 159, 190), transparent, rgb(220, 224, 231)) rgb(227, 227, 233);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse, rgb(176, 119, 175) , transparent, rgb(163, 173, 190) , rgb(63, 67, 119)) ;
 }
 
 /* Form container */
 .card-container {
   max-width: 400px;
-  margin: 0px auto 50px;
-  padding: 150px 30px; /* Added extra padding from the top */
-  background-color: #f9f9f9;
+  margin: 0px auto ; /* Changed margin-top to 100px and margin-bottom to 50px */
+  padding: 80px 50px; /* Added extra padding from the top */
+  background-color:  rgba(246, 220, 220, 0.672);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

@@ -1,29 +1,36 @@
-.Settings {
-  margin-top: 20px;
+.notification {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .success {
+    background-color: #28a745; /* Green */
+  }
+  
+  .error {
+    background-color: #dc3545; /* Red */
+  }
+  .settings {body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
 }
-
-.Settings label {
-  font-weight: bold;
+.container {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #b1aeae;
+    height: 465px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.Settings .form-group {
-  margin-bottom: 15px;
+h1 {
+    text-align: center;
 }
-
-.Settings .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
-}
-
-.Settings .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
-.Settings hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #ccc;
-}
+  }
+  

@@ -43,6 +43,6 @@ export class UserService {
   }
   
   getOrders(orderId: string) {
-    return this.http.get<any[]>(`http://localhost:8080/order/${orderId}`);
+    return this.http.get<any[]>(`http://localhost:4000/order/${orderId}`);
   }
 }

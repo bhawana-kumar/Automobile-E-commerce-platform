@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../Home/service/auth.service'; // Import your authentication service
 import { VehicleService } from '../../Home/service/vehicle.service';
-import { Vehicle } from '../../../../backend/Model/vehiclemodel';
-import { Router } from '@angular/router'; // Import Router service
+import { Vehicle } from '../../../../backend/model/vehiclemodelInt';
+import { ActivatedRoute, Route, Router } from '@angular/router'; // Import Router service
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { NavigationExtras } from '@angular/router';
+// import { Vehicle } from 'path/to/vehicle-model';
 
 
 @Component({
@@ -18,17 +20,23 @@ export class FetchVehicleComponent implements OnInit {
   constructor(
     private authService: AuthService, // Inject your authentication service
     private vehicleService: VehicleService ,
-    private router: Router // Inject Router service here
+    private router: Router,
+    private route: ActivatedRoute// Inject Router service here
   ) { }
 
   ngOnInit(): void {
     console.log("Print ");
-    
-    // Fetch vehicles for the current seller (based on user's session)
-       const sellerId = "65e01fd8681a1fd21cf80ba0";
-    //  const sellerId = this.authService.getCurrentUser(); // Assuming your authentication service has a method to get the current seller ID
-    this.vehicleService.getMyVehicles(sellerId).subscribe((data: Vehicle[]) => {
-      this.vehicles = data;
+
+    this.route.paramMap.subscribe(params => {
+      const sellerId = params.get('id');
+      console.log(sellerId)
+      if (sellerId) {
+        this.vehicleService.getMyVehicles(sellerId).subscribe((data: Vehicle[]) => {
+          this.vehicles = data;
+        });
+      } else {
+        console.error('Seller ID not found in route parameters');
+      }
     });
   }
 
@@ -37,6 +45,9 @@ export class FetchVehicleComponent implements OnInit {
     this.router.navigate(['/edit-product', vehicle._id]);
     console.log('Edit vehicle:', vehicle);
   }
+
+
+
 
 deleteVehicle(vehicle: Vehicle) {
   if (confirm('Are you sure you want to delete this vehicle?')) {

@@ -12,7 +12,7 @@ export class SellerService {
   constructor(private http : HttpClient) { }
   
   getSellerInformation(sellerId: string): Observable<any> {
-    return this.http.get(`http://localhost:4000/getSellers/${sellerId}`);
+    return this.http.get(`http://localhost:4000/vehicle/getSellers/${sellerId}`);
   }
 
 }

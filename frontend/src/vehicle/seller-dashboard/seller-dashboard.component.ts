@@ -1,9 +1,12 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SellerService } from '../../Home/service/seller.service';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Seller } from '../../../../backend/model/sellermodel';
+import { Seller } from '../../../../backend/model/sellerModel';
 import { AuthService } from '../../Home/service/auth.service'; 
+
+
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -12,29 +15,39 @@ import { AuthService } from '../../Home/service/auth.service';
 })
 export class SellerDashboardComponent implements OnInit {
   seller: Seller | undefined; // Define a variable of type Seller to hold seller data
-
+  sellerId:any = '';
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private sellerService: SellerService, private authService : AuthService
   ) { }
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-      //  const sellerId = params.get('id');
-      const sellerId ="65e01fd8681a1fd21cf80ba0"
-      //  const sellerId = this.authService.getCurrentUser();
-      if (sellerId) {
-        this.fetchSellerInformation(sellerId);
+      this.sellerId = params.get('id');
+     
+     
+      if (this.sellerId) {
+        this.fetchSellerInformation(this.sellerId);
       } else {
         console.error('Seller ID not found in route parameters');
       }
     });
   }
+  gotoAddVehicle(){
+    const url = `/add-vehicle/${this.sellerId}`;
+    this.router.navigateByUrl(url);
+    }
+
+    gotoFetchVehicle(){
+      const url = `/fetch-vehicle/${this.sellerId}`;
+      this.router.navigateByUrl(url)
+    }
   
-  fetchSellerInformation(sellerId: string) {
+    fetchSellerInformation(sellerId: string) {
     this.sellerService.getSellerInformation(sellerId).subscribe(
       (data: Seller) => { // Specify the type of data as Seller
         this.seller = data; // Assign received data to the seller variable

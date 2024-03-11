@@ -1,4 +1,4 @@
-const Vehicle = require("../model/vehicleModel")
+const Vehicle = require("../model/vehiclemodel")
 
 const searchProducts = async (req, resp) => {
     try {

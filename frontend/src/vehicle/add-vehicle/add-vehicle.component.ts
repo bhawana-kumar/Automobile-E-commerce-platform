@@ -1,30 +1,101 @@
-import { Component } from '@angular/core';
+// import { Component } from '@angular/core';
+// import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { VehicleService } from '../../Home/service/vehicle.service';
+
+// @Component({
+//   selector: 'app-add-vehicle',
+//   templateUrl: './add-vehicle.component.html',
+//   styleUrls: ['./add-vehicle.component.css'] // Change 'styleUrl' to 'styleUrls'
+// })
+// export class AddVehicleComponent {
+
+//   imageUrl: string = '';
+
+//   constructor(private service: VehicleService) {}
+
+//   vehicles = new FormGroup({
+//     "identification_number": new FormControl("", Validators.required),
+//     "registration_number": new FormControl("", Validators.required),
+//     "location": new FormControl("", Validators.required),
+//     "brandName": new FormControl("", Validators.required), // Change 'brandName' to match the Mongoose schema
+//     "carName": new FormControl("", Validators.required),
+//     "manufYear": new FormControl("", Validators.required),
+//     "ownerShip": new FormControl("", Validators.required), // Change 'ownerShip' to match the Mongoose schema
+//     "driveType": new FormControl("", Validators.required),
+//     "carImg": new FormControl("", Validators.required),
+//     "color": new FormControl("", Validators.required),
+//     "seatingCapacity": new FormControl("", Validators.required),
+//     "price": new FormControl("", Validators.required),
+//     "engine": new FormControl("", Validators.required),
+//     "power": new FormControl("", Validators.required),
+//     "torque": new FormControl("", Validators.required),
+//     "fuelType": new FormControl("", Validators.required),
+//     "mileage": new FormControl("", Validators.required),
+//     "description": new FormControl("", Validators.required),
+//     "bodyType": new FormControl("", Validators.required),
+//     // "sellerId": new FormControl("", Validators.required)
+//   });
+
+//   onImageSelected(event: any) {
+//     const file = event.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         this.imageUrl = reader.result?.toString() || '';
+//         this.vehicles.patchValue({
+//           carImg: this.imageUrl
+//         });
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   }
+
+//   addProductDetails() {
+//     console.log("Added", this.vehicles.value);
+//     this.service.saveProductDetails(this.vehicles.value).subscribe((response: any) => {
+//       console.log(response);
+//       window.alert('Form submitted successfully!');
+//       this.vehicles.reset();
+//     });
+//   }
+// }
+
+
+
+
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VehicleService } from '../../Home/service/vehicle.service';
+import { ActivatedRoute, Router } from '@angular/router'; // Import ActivatedRoute and Router
 
 @Component({
   selector: 'app-add-vehicle',
   templateUrl: './add-vehicle.component.html',
-  styleUrls: ['./add-vehicle.component.css'] // Change 'styleUrl' to 'styleUrls'
+  styleUrls: ['./add-vehicle.component.css']
 })
-export class AddVehicleComponent {
+export class AddVehicleComponent implements OnInit {
 
   imageUrl: string = '';
+  sellerId: string | undefined;
 
-  constructor(private service: VehicleService) {}
+  constructor(
+    private service: VehicleService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   vehicles = new FormGroup({
     "identification_number": new FormControl("", Validators.required),
     "registration_number": new FormControl("", Validators.required),
     "location": new FormControl("", Validators.required),
-    "brandName": new FormControl("", Validators.required), // Change 'brandName' to match the Mongoose schema
+    "brandName": new FormControl("", Validators.required),
     "carName": new FormControl("", Validators.required),
     "manufYear": new FormControl("", Validators.required),
-    "ownerShip": new FormControl("", Validators.required), // Change 'ownerShip' to match the Mongoose schema
+    "ownerShip": new FormControl("", Validators.required),
     "driveType": new FormControl("", Validators.required),
     "carImg": new FormControl("", Validators.required),
     "color": new FormControl("", Validators.required),
-    "seats": new FormControl("", Validators.required),
+    "seatingCapacity": new FormControl("", Validators.required),
     "price": new FormControl("", Validators.required),
     "engine": new FormControl("", Validators.required),
     "power": new FormControl("", Validators.required),
@@ -32,8 +103,19 @@ export class AddVehicleComponent {
     "fuelType": new FormControl("", Validators.required),
     "mileage": new FormControl("", Validators.required),
     "description": new FormControl("", Validators.required),
-    "bodyType": new FormControl("", Validators.required)
+    "bodyType": new FormControl("", Validators.required),
+    "sellerId": new FormControl("") // We include sellerId in the form control for internal processing
   });
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.sellerId = params.get('id') || ''; // Use empty string as default value
+      this.vehicles.patchValue({ sellerId: this.sellerId });
+      console.log(this.sellerId);
+      
+    });
+  }
+  
 
   onImageSelected(event: any) {
     const file = event.target.files[0];
@@ -55,6 +137,9 @@ export class AddVehicleComponent {
       console.log(response);
       window.alert('Form submitted successfully!');
       this.vehicles.reset();
+      // Optionally navigate to a different route after successful submission
+      this.router.navigate(['/some-other-route']);
     });
   }
 }
+

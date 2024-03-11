@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   role: string = '';
+  userId: string = '';
 
   constructor(private authService: AuthService, private storageService: StorageService,private router: Router) { }
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.role = this.storageService.getUser().role;
+      this.userId = this.storageService.getUser().id;
     }
   }
 
@@ -40,12 +42,14 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.role = this.storageService.getUser().role;
+          this.userId = this.storageService.getUser().id;
           console.log(this.role)
           if(this.role === 'buyer'){
             const  url= '';
             this.router.navigateByUrl(url);
           }else if(this.role === 'seller'){
-            const  url= '/seller';
+            console.log("hello");
+            const  url= `/getSellers/${this.userId}`;
             this.router.navigateByUrl(url);
           }else if(this.role === 'admin'){
             const  url=  '/admin';

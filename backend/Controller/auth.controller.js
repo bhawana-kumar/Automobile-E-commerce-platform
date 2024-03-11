@@ -3,7 +3,7 @@ const db = require("../model");
 const User = require("../model/userModel");
 const Buyer = require('../model/buyerModel')
 const Seller = require("../model/sellerModel");
-const Admin = require("../model/adminModel")
+const Admin = require("../model/AdminModel")
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -85,7 +85,7 @@ exports.signin = (req, res) => {
               token: token,
               status: user.status
             });
-            console.log(id);
+           
           })
           .catch(err => {
             return res.status(500).send({ message: err.message || "Internal server error." });

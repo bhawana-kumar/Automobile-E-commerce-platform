@@ -20,6 +20,9 @@ import { LoginComponent } from '../Signup/login/login.component';
 import { RegisterComponent } from '../Signup/register/register.component';
 import { ProfileComponent } from '../Signup/profile/profile.component';
 import { SellerPageComponent } from '../seller-page/seller-page.component';
+import { EditVehicleComponent } from '../vehicle/edit-vehicle/edit-vehicle.component';
+import { AddVehicleComponent } from '../vehicle/add-vehicle/add-vehicle.component';
+import { FetchComponent } from '../fetch/fetch.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: "full" },
@@ -49,8 +52,10 @@ const routes: Routes = [
   { path: 'admin/login', component: adminLoginComponent },
 
   //Seller Routes
-
-  {path:'' , component: SellerPageComponent}
+  { path:'edit-product/:id' , component:EditVehicleComponent},
+  { path: 'add-vehicle/:id', component: AddVehicleComponent},
+  { path: 'fetch-vehicle/:id', component: FetchComponent },
+  {path:'getSellers/:id', component: SellerPageComponent}
 
 ]
 @NgModule({

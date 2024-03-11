@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const express=require('express')
+const express = require('express')
 const cors=require('cors')
 const cookieSession = require("cookie-session");
 
@@ -13,7 +13,7 @@ ex.use(express.json())
 
 
 const corsOptions = {
-    origin: "http://localhost:4200",
+    origin: "*",
     credentials: true
   };
 
@@ -31,7 +31,7 @@ const corsOptions = {
 const userRoute=require("../Routes/usersRoutes")
 const buyerRoute=require("../Routes/buyerRoutes")
 const sellerRoute=require("../Routes/sellerRoutes")
-const adminRoute=require("../Routes/adminRoutes")
+// const adminRoute=require("../Routes/adminRoutes")
 const vehicleRoute = require('../Routes/vehiclesRoutes');
 const orderRoute=require("../Routes/orderRoutes")
 const reportRoute=require("../Routes/reportRoutes")
@@ -44,8 +44,8 @@ require("../Routes/user.routes")(ex);
 
 ex.use("/user", userRoute);
 ex.use("/buyer", buyerRoute);
-ex.use("/vehicleseller", sellerRoute);
-ex.use("/admin", adminRoute);
+// ex.use("/vehicleseller", sellerRoute);
+// ex.use("/admin", adminRoute);
 ex.use("/vehicle", vehicleRoute);
 ex.use("/order",orderRoute);
 ex.use("/report",reportRoute);

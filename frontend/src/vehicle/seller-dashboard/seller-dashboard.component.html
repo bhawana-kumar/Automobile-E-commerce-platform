@@ -1,31 +1,3 @@
-<!-- 
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="toggleSidenav()">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <span>&nbsp;&nbsp;AutoTradeHub</span>
-  
-
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/add-vehicle">Add Vehicle</button>
-    <button mat-menu-item routerLink="/fetch-vehicle">Fetch Vehicle</button>
-    
-  </mat-menu>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-</mat-toolbar>
-
-
-<div *ngIf="seller">
-  <h2>Welcome, {{ seller.username }}</h2>
-  <p>Phone Number: {{ seller.phone }}</p>
-</div>
-
-<router-outlet></router-outlet>
-
- -->
-
 
  <mat-toolbar color="primary">
   <!-- Replace the button content with the logo image -->
@@ -41,9 +13,9 @@
   
   <!-- Add a dropdown menu for options -->
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/add-vehicle">Add Vehicle</button>
-    <button mat-menu-item routerLink="/fetch-vehicle">Fetch Vehicle</button>
-    <button mat-menu-item routerLink="/update-profile">My Profile</button>
+    <button mat-menu-item (click)="gotoAddVehicle()">Add Vehicle</button>
+    <button mat-menu-item (click)="gotoFetchVehicle()">Fetch Vehicle</button>
+    <!-- <button mat-menu-item routerLink="/update-profile">My Profile</button> -->
   
     <!-- Add more menu items for other options -->
   </mat-menu>

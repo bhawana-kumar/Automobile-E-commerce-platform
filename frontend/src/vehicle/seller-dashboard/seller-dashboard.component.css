@@ -3,7 +3,6 @@
     padding: 0;
     background-color: darkcyan;
   }
-  
 
   .container {
     display: flex;
@@ -14,7 +13,6 @@
     color: black;
     box-sizing: unset;
   }
-
   
   .profile {
     display: flex;

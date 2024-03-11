@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const userModel = require('../model/userModel');
 const orderModel = require('../model/orderModel');
-const vehicleModel = require('../model/vehicleModel');
+const vehicleModel = require('../model/vehiclemodel');
 const reportModel = require('../model/reportModel');
 const sellerModel = require('../model/sellerModel');
 

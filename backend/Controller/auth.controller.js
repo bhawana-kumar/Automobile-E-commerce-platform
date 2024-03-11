@@ -118,20 +118,22 @@ exports.updateAddress = (req, res) => {
     return res.status(400).send({ message: "Address field is required." });
   }
 
-  // Update the user's address using the $push operator to append to the address array
-  User.findByIdAndUpdate(userId, { $push: { address: req.body.address } }, { new: true })
-    .then(user => {
+  // Update the user's address
+  User.findByIdAndUpdate(
+    userId,
+    { address: req.body.address }, // Set the address field directly
+    { new: true },
+    (err, user) => {
+      if (err) {
+        console.error("Error updating address:", err);
+        return res.status(500).send({ message: "Error updating address." });
+      }
       if (!user) {
         return res.status(404).send({ message: "User not found." });
       }
-      // Send success response with a message indicating that the address was added successfully
-      res.status(200).send({ message: "Address added successfully!", user: user });
-    })
-    .catch(err => {
-      // Handle errors that occur during the database operation
-      console.error("Error updating address:", err);
-      res.status(500).send({ message: "Error updating address." });
-    });
+      res.status(200).send({ message: "Address updated successfully!", user: user });
+    }
+  );
 };
 
 exports.updatePassword = (req, res) => {

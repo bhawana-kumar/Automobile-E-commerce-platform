@@ -2,3 +2,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+label.mdc-label {
+    color: white;
+}
+
+.mdc-checkbox__background {
+    /* background-color: white !important; */
+    border: 2px solid white !important;
+}

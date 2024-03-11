@@ -107,6 +107,7 @@ export class salesChartComponent {
       {
         data: [0, 0, 0],
         label: 'Count of Sellers',
+        
         fill: false,
         tension: 0.5,
         pointStyle: 'circle',
@@ -119,13 +120,32 @@ export class salesChartComponent {
 
   };
   public lineChartOptions: ChartOptions<'line'> = {
-    responsive: true,
-    
-    plugins: {
-    
-    
-    }
-  };
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white', // Set legend text color to white
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: {
+            color: 'rgba(255, 255, 255, 0.1)', // Set grid color to white with opacity
+          },
+          ticks: {
+            color: 'white', // Set x-axis ticks color to white
+          },
+        },
+        y: {
+          grid: {
+            color: 'rgba(255, 255, 255, 0.1)', // Set grid color to white with opacity
+          },
+          ticks: {
+            color: 'white', // Set y-axis ticks color to white
+          },
+        },
+      },
+    };
   public lineChartLegend = true;
 
   // chart.register(Colors);

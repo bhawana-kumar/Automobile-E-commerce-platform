@@ -41,8 +41,9 @@ import { Router } from "@angular/router";
     this.customerManService.getUserData().subscribe((res) => {
       console.log(res);
       this.usersData = res;
-      this.totalRows = this.usersData.length;
+      
       this.filtredData = this.usersData;
+      this.totalRows = this.filtredData.length;
       this.onDropdownChange();
       this.onFilterAttributeChange();
       this.onPageChange(this.currentPage) //sending to change rows
@@ -65,9 +66,6 @@ import { Router } from "@angular/router";
         if ((this.buyerChecked && user.role === 'buyer') || (this.sellerChecked && user.role === 'seller')) {
           return true;
         }
-
-        
-
         return false;
     
       });
@@ -123,12 +121,14 @@ import { Router } from "@angular/router";
   }
 
   getRange(): number[] {
-    return Array.from({ length: this.pages }, (_, index) => index);
+    return Array.from({ length: Math.ceil(this.filtredData.length/this.pagesRow) }, (_, index) => index);
   }
+
   onDropdownChange() {
     this.pagesRow = parseInt(this.maxRowsDropdown?.nativeElement.value, 10);
     this.pages = Math.ceil(this.totalRows / this.pagesRow);
     this.onPageChange(this.currentPage); //sending to change rows
+    
   }
 
   onFilterAttributeChange() {

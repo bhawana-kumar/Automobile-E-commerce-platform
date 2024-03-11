@@ -3,17 +3,17 @@
         <div class="orderheader">
             <mat-card-header>
                 <mat-card-subtitle>Date: {{ receipt.dateTime | date}}</mat-card-subtitle>
-                <mat-card-title>order: {{ receipt._id }}</mat-card-title>
+                <mat-card-title>order id: {{ receipt._id }}</mat-card-title>
             </mat-card-header>
             <div class="info pointer">
                 <div (click)="UserDetails(receipt.buyerId)">
-                    <p>BUYER</p>
+                    <p  matTooltip="Go To Buyer" matTooltipShowDelay="1000" class="title">BUYER</p>
                     <p>{{ receipt.buyer.name }}</p>
                     <p>{{ receipt.buyer.contactNumber }}</p>
                     <p>{{ receipt.buyer.address }}</p>
                 </div>
                 <div (click)="UserDetails(receipt.sellerId)">
-                    <p>SELLER</p>
+                    <p  matTooltip="Go To Seller" matTooltipShowDelay="1000" class="title">SELLER</p>
                     <p>{{ receipt.seller.name }}</p>
                     <p>{{ receipt.seller.contactNumber }}</p>
                     <p>{{ receipt.seller.address }}</p>
@@ -22,19 +22,21 @@
         </div>
 
         <mat-card-content>
-            <p (click)="vehicleDetails(receipt.vehicleId)" class="pointer">registrationNumber: {{receipt.vehicle.registrationNumber}}</p>
+            <p>
+                
+            <span  matTooltip="Go To Vehicle" matTooltipShowDelay="1000" (click)="vehicleDetails(receipt.vehicleId)" class="pointer title">registrationNumber: </span>{{receipt.vehicle.registrationNumber}}</p>
             <div class="vehicalInfo">
-                <p>VIN: {{ receipt.vehicle.VIN }}</p>
-                <p>Brand: {{ receipt.vehicle.brand }}</p>
-                <p>Model: {{ receipt.vehicle.model }}</p>
-                <p>Year: {{ receipt.vehicle.year }}</p>
-                <p>Mileage: {{ receipt.vehicle.mileage }}</p>
-                <p>Color: {{ receipt.vehicle.color }}</p>
+                <p><span class="title">VIN: </span>{{ receipt.vehicle.VIN }}</p>
+                <p><span class="title" class="title">Brand: </span>{{ receipt.vehicle.brand }}</p>
+                <p><span class="title" class="title">Model: </span>{{ receipt.vehicle.model }}</p>
+                <p><span class="title" class="title">Year: </span>{{ receipt.vehicle.year }}</p>
+                <p><span class="title" class="title">Mileage: </span>{{ receipt.vehicle.mileage }}</p>
+                <p ><span class="title"class="title">Color: </span>{{ receipt.vehicle.color }}</p>
             </div>
             <div>
-                <p>Price: {{ receipt.price }}</p>
-                <p>Payment Method: {{ receipt.paymentMethod }}</p>
-                <p>Order Status: {{ receipt.orderStatus }}</p>
+                <p><span class="title" class="title">Price:</span> {{ receipt.price }}</p>
+                <p><span class="title" class="title">Payment Method: </span>{{ receipt.paymentMethod }}</p>
+                <p><span class="title" class="title">Order Status:</span> {{ receipt.orderStatus }}</p>
             </div>
         </mat-card-content>
     </mat-card>

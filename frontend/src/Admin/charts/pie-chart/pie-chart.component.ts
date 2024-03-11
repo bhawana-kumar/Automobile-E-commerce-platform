@@ -34,6 +34,9 @@ export class pieChartComponent implements OnInit, OnChanges {
       legend: {
         display: true,
         position: 'left',
+        labels: {
+          color: 'white', // Set legend text color to white
+        },
       }
     }
   };

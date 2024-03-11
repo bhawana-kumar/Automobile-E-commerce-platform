@@ -85,39 +85,32 @@ export class barChartComponent {
   };
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    scales: {
-      x: {},
-      y: {},
-    },
     plugins: {
       legend: {
         display: true,
-        position: 'bottom'
-        // onHover: handleHover,
-        // onLeave: handleLeave
+        position: 'bottom',
+        labels: {
+          color: 'white',
+        },
       }
     },
-    responsive: true
+    responsive: true,
+    scales: {
+      x: {
+        ticks: {
+          color: 'white', // Change color for x-axis ticks
+        },
+      },
+      y: {
+        ticks: {
+          color: 'white', // Change color for y-axis ticks
+        },
+      },
+    },
+    
+
   };
 
-  
-  // public chartColors: Array<any> = [
-  //   { // first color
-  //     backgroundColor: 'white',
-  //     borderColor: 'rgba(225,10,24,0.2)',
-  //     pointBackgroundColor: 'rgba(225,10,24,0.2)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(225,10,24,0.2)'
-  //   },
-  //   { // second color
-  //     backgroundColor: 'rgba(225,10,24,0.2)',
-  //     borderColor: 'rgba(225,10,24,0.2)',
-  //     pointBackgroundColor: 'rgba(225,10,24,0.2)',
-  //     pointBorderColor: '#fff',
-  //     pointHoverBackgroundColor: '#fff',
-  //     pointHoverBorderColor: 'rgba(225,10,24,0.2)'
-  //   }];
 
 
 }

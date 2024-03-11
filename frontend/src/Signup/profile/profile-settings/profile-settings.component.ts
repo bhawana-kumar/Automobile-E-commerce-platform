@@ -21,9 +21,6 @@ export class ProfileSettingsComponent {
 
   constructor(private http: HttpClient) {}
 
-  toggleEditingUsername(): void {
-    this.editingUsername = !this.editingUsername;
-  }
 
   toggleAddingAddress(): void {
     this.addingAddress = !this.addingAddress;
@@ -51,17 +48,38 @@ export class ProfileSettingsComponent {
         this.showNotification('Invalid Input. Failed to update password. ', 'error');
       });
   }
-
   updateAddress(): void {
-    // Make a PUT request to update the user's address
-    this.http.put('/api/auth/updateAddress', { address: this.newAddress })
-      .subscribe((response: any) => {
-        console.log(response);
-        // You can add further logic here if needed
-      }, (error: any) => {
-        console.error(error);
-      });
+    // Check if the user has an existing address
+    if (this.user1.address) {
+        // User has an existing address, so update it
+        this.http.put('http://localhost:8080/api/auth/updateAddress', { address: this.newAddress })
+            .subscribe((response: any) => {
+                console.log(response);
+                this.user1.address = this.newAddress; // Update the address in the frontend model
+                this.newAddress = ''; // Reset the newAddress field
+                this.toggleAddingAddress(); // Hide the address form
+                this.showNotification('Address updated successfully!', 'success');
+            }, (error: any) => {
+                console.error(error);
+                this.showNotification('Failed to update address. Please try again.', 'error');
+            });
+    } else {
+        // User doesn't have an existing address, so add a new one
+        this.http.put('http://localhost:8080/api/auth/addAddress', { address: this.newAddress })
+            .subscribe((response: any) => {
+                console.log(response);
+                this.user1.address = this.newAddress; // Update the address in the frontend model
+                this.newAddress = ''; // Reset the newAddress field
+                this.toggleAddingAddress(); // Hide the address form
+                this.showNotification('Address added successfully!', 'success');
+            }, (error: any) => {
+                console.error(error);
+                this.showNotification('Failed to add address. Please try again.', 'error');
+            });
+    }
 }
+
+
 
   showNotification(message: string, type: 'success' | 'error'): void {
     const notificationDiv = this.notificationArea.nativeElement;

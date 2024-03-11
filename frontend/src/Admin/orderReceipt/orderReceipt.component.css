@@ -42,3 +42,7 @@ mat-card-header {
 .vehicalInfo > p {
     flex: 1 1 50%;
 }
+
+.title{
+    font-weight: bold;
+}

@@ -13,9 +13,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { CarDescModule } from './components/cars-section/car-desc/car-desc.module';
 import { RecommendedComponent } from './components/cars-section/recommended/recommended.component';
 import {ReportComponent} from './components/cars-section/report/report.component';
+import { PaymentComponent } from './components/cars-section/payment/payment.component';
+import { FilteredCarsComponent } from './components/home/filtered-cars/filtered-cars.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {ReportComponent} from './components/cars-section/report/report.component
       CarListComponent,
       RecommendedComponent,
       FooterComponent,
-     ReportComponent
+     ReportComponent,
+     PaymentComponent,FilteredCarsComponent
     ],
     imports: [
         CommonModule,
@@ -49,7 +51,8 @@ import {ReportComponent} from './components/cars-section/report/report.component
       CarListComponent,
       RecommendedComponent,
       FooterComponent,
-      ReportComponent
+      ReportComponent,PaymentComponent,
+      FilteredCarsComponent
       ]
     })
     export class HomeModule { }

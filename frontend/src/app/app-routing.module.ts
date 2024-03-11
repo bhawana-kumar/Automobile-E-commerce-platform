@@ -17,6 +17,7 @@ import { ReportComponent } from '../Home/components/cars-section/report/report.c
 import { LoginComponent } from '../Signup/login/login.component';
 import { RegisterComponent } from '../Signup/register/register.component';
 import { ProfileComponent } from '../Signup/profile/profile.component';
+import { FilteredCarsComponent } from '../Home/components/home/filtered-cars/filtered-cars.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,8 @@ const routes: Routes = [
   { path: 'carfilter', component: CarfilterComponent },
   { path: 'car-desc/:id', component: CarDescComponent },
   { path: 'report/:id', component: ReportComponent },
+  { path: 'filtered-cars/:brandName', component: FilteredCarsComponent },
+
   // Admin Routes
   { path: 'admin', component: dashboardComponent, children: [
       // { path: 'dashboard',redirectTo: '/admin', pathMatch: 'full' },

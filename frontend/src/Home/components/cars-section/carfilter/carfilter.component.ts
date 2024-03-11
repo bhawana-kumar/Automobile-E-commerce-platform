@@ -13,26 +13,36 @@ export class CarfilterComponent implements OnInit {
   cars: any[] = [];
   brandNames: string[] = [];
   bodyTypes: string[] = [];
+  locations: string[] = [];
+  colors: string[] = [];
   fuelTypes: string[] = [];
+  driveTypes: string[] = [];
   selectedbrandNames: string[] = [];
   selectedbodyTypes: string[] = [];
+  selectedlocations: string[] = [];
   selectedfuelTypes: string[] = [];
+  selecteddriveTypes: string[] = [];
+  selectedcolors: string[] = [];
   selectedPriceRanges: string[] = [];
   filterOpen: boolean = false;
   brandFilterOpen: boolean = false;
   fuelFilterOpen: boolean = false;
+ driveFilterOpen: boolean = false;
+  locationFilterOpen: boolean = false;
   priceFilterOpen: boolean = false;
-  pageSize: number = 8; 
+  pageSize: number = 9; 
   currentPage: number = 1; 
   paginatedCars: any[];
 
   constructor(private router: Router,
     private carService: CarfilterService, private carSelectionService: CarSelectionService) {
       this.paginatedCars = []; 
+      this.fetchCarsAndFilter();
 }
 
   ngOnInit() {
     this.fetchCarDetails();
+    this.fetchCarsAndFilter();
   }
 
   selectCar(carId: number) {
@@ -46,7 +56,10 @@ export class CarfilterComponent implements OnInit {
         this.cars = data;
         this.extractbrandNames();
         this.extractbodyTypes();
+        this.extractlocations();
+        this.extractcolors();
         this.extractfuelTypes();
+        this.extractdriveTypes();
         this.updatePagination();
       },
       (error) => {
@@ -62,9 +75,18 @@ export class CarfilterComponent implements OnInit {
   extractbodyTypes() {
     this.bodyTypes = Array.from(new Set(this.cars.map(car => car.bodyType)));
   }
+  extractlocations() {
+    this.locations = Array.from(new Set(this.cars.map(car => car.location)));
+  }
+  extractcolors() {
+    this.colors = Array.from(new Set(this.cars.map(car => car.color)));
+  }
   
   extractfuelTypes() {
     this.fuelTypes = Array.from(new Set(this.cars.map(car => car.fuelType)));
+  }
+  extractdriveTypes() {
+    this.driveTypes = Array.from(new Set(this.cars.map(car => car.driveType)));
   }
   
   togglebrandName(brandName: string) {
@@ -84,12 +106,36 @@ export class CarfilterComponent implements OnInit {
     }
     this.updatePagination();
   }
+  togglelocation(location: string) {
+    if (this.selectedlocations.includes(location)) {
+      this.selectedlocations = this.selectedlocations.filter(item => item !== location);
+    } else {
+      this.selectedlocations.push(location);
+    }
+    this.updatePagination();
+  }
+  togglecolor(color: string) {
+    if (this.selectedcolors.includes(color)) {
+      this.selectedcolors = this.selectedcolors.filter(item => item !== color);
+    } else {
+      this.selectedcolors.push(color);
+    }
+    this.updatePagination();
+  }
   
   togglefuelType(fuelType: string) {
     if (this.selectedfuelTypes.includes(fuelType)) {
       this.selectedfuelTypes = this.selectedfuelTypes.filter(item => item !== fuelType);
     } else {
       this.selectedfuelTypes.push(fuelType);
+    }
+    this.updatePagination();
+  }
+  toggledriveType(driveType: string) {
+    if (this.selecteddriveTypes.includes(driveType)) {
+      this.selecteddriveTypes = this.selecteddriveTypes.filter(item => item !== driveType);
+    } else {
+      this.selecteddriveTypes.push(driveType);
     }
     this.updatePagination();
   }
@@ -113,8 +159,18 @@ export class CarfilterComponent implements OnInit {
     this.updatePagination();
   }
   
+  removelocation(location: string) {
+    this.selectedlocations = this.selectedlocations.filter(name => name !== location);
+    this.updatePagination();
+  }
+  
   removefuelType(fuelType: string) {
     this.selectedfuelTypes = this.selectedfuelTypes.filter(name => name !== fuelType);
+    this.updatePagination();
+  }
+  
+  removedriveType(driveType: string) {
+    this.selecteddriveTypes = this.selecteddriveTypes.filter(name => name !== driveType);
     this.updatePagination();
   }
   
@@ -134,9 +190,15 @@ export class CarfilterComponent implements OnInit {
   toggleBrandFilter() {
     this.brandFilterOpen = !this.brandFilterOpen;
   }
+  togglelocationFilter() {
+    this.locationFilterOpen = !this.locationFilterOpen;
+  }
   
   toggleFuleFilter() {
     this.fuelFilterOpen = !this.fuelFilterOpen;
+  }
+  toggleDriveFilter() {
+    this.driveFilterOpen = !this.driveFilterOpen;
   }
   
   togglePriceFilter() {
@@ -144,7 +206,7 @@ export class CarfilterComponent implements OnInit {
   }
 
   updatePagination() {
-    this.currentPage = 1; // Reset current page to 1
+    this.currentPage = 1; 
     this.paginate();
   }
 
@@ -158,8 +220,12 @@ export class CarfilterComponent implements OnInit {
     return this.cars.filter(car => {
       const brandNameFilter = this.selectedbrandNames.length === 0 || this.selectedbrandNames.includes(car.brandName);
       const bodyTypeFilter = this.selectedbodyTypes.length === 0 || this.selectedbodyTypes.includes(car.bodyType);
+      const locationFilter = this.selectedlocations.length === 0 || this.selectedlocations.includes(car.location);
       const fuelTypeFilter = this.selectedfuelTypes.length === 0 || this.selectedfuelTypes.includes(car.fuelType);
-      
+      const driveTypeFilter = this.selecteddriveTypes.length === 0 || this.selecteddriveTypes.includes(car.driveType);
+      const colorFilter = this.selectedcolors.length === 0 || this.selectedcolors.includes(car.color);
+      const statusFilter = car.status === 'available';
+
       let priceFilter = true;
 
       if (this.selectedPriceRanges.length > 0) {
@@ -184,8 +250,8 @@ export class CarfilterComponent implements OnInit {
           }
         });
       }
-
-      return brandNameFilter && bodyTypeFilter && fuelTypeFilter && priceFilter;
+     
+      return brandNameFilter && bodyTypeFilter && locationFilter && driveTypeFilter && fuelTypeFilter && priceFilter && colorFilter && statusFilter;
     });
   }
 
@@ -206,4 +272,22 @@ export class CarfilterComponent implements OnInit {
   totalPages(): number {
     return Math.ceil(this.filteredCars().length / this.pageSize);
   }
+   filterAvailableCars(cars: any[]): any[] {
+    return cars.filter(car => car.status === 'available');
+  }
+
+  fetchCarsAndFilter(): void {
+    this.carService.findCarDetails().subscribe(
+      (cars: any[]) => {
+        this.cars = cars; 
+        this.paginatedCars = this.filterAvailableCars(cars); 
+        console.log('Filtered cars:', this.paginatedCars); 
+        this.updatePagination(); 
+      },
+      (error) => {
+        console.error('Error fetching cars:', error); 
+      }
+    );
+  }
+
 }

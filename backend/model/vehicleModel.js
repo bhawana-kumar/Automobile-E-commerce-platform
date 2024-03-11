@@ -41,7 +41,7 @@ const vehicleSchema = new mongoose.Schema({
     driveType: { type: String, required: true },
     mileage: { type: String, required: true },
     tags: [{ type: String }],
-    seller_id: { type: Number, required: true },
+    sellerId: { type: String, required: true },
     bodyType: { type: String, required: true },
     fuelType: { type: String, required: true },
     description: { type: String, required: true },

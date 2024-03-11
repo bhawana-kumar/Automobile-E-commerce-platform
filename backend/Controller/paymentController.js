@@ -2,32 +2,38 @@ const Payment = require("../model/paymentModel");
 
 const postPayment = async (req, res) => {
     try {
-        console.log('Request Body:', req.body); 
-        const {  vehicleId,
-        buyerName,
-        registration_number,
-        seller_id,
-        carName,
-        brandName,
-        price,
-        manufYear,
-        color } = req.body;
-
-        const payments = new Payment({vehicleId,
-            buyerName,
-            registration_number,
-            seller_id,
-            carName,
-            brandName,
+        console.log('Request Body:', req.body);
+        const {
+            dateTime,
+            buyerId,
+            buyer,
+            sellerId,
+            seller,
+            vehicleId,
+            vehicle,
             price,
-            manufYear,
-            color});
-console.log(payments);
+            paymentMethod,
+            orderStatus
+          } = req.body;
+
+          const payments = new Payment({
+            dateTime: dateTime, // Assuming you want to set the current date and time
+            buyerId: buyerId,
+            buyer: buyer,
+            sellerId: sellerId,
+            seller: seller,
+            vehicleId: vehicleId,
+            vehicle: vehicle,
+            price: price,
+            paymentMethod: paymentMethod,
+            orderStatus: orderStatus
+          });
+        console.log(payments);
         await payments.save();
 
         res.status(201).json({
             message: 'Payment created successfully',
-            payment: payments 
+            payment: payments
         });
     } catch (error) {
         console.error('Error creating payment:', error);
@@ -61,4 +67,4 @@ console.log(payments);
 //     }
 // };
 
-module.exports = { postPayment}; 
+module.exports = { postPayment }; 

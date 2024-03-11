@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cards',
@@ -8,12 +9,12 @@ import { ProductService } from '../../../service/product.service';
 })
 
 export class CardsComponent implements OnInit {
-  
+  car:any={};
   data=[]; 
   topCars=[];
   topSearch=[];
   topLux=[];
-  constructor(private dataService: ProductService) { }
+  constructor(private dataService: ProductService, private router:Router) { }
 
   ngOnInit(): void {
     this.dataService.getData().subscribe(
@@ -29,5 +30,9 @@ export class CardsComponent implements OnInit {
         console.error('Error fetching data: ', error);
       }
     );
+  }
+
+  goToCardDetail(id: number) {
+    this.router.navigate(['/car-desc', id]);
   }
 }

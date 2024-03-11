@@ -16,6 +16,7 @@ import { RouterLink } from '@angular/router';
 import { CarDescModule } from './components/cars-section/car-desc/car-desc.module';
 import { RecommendedComponent } from './components/cars-section/recommended/recommended.component';
 import {ReportComponent} from './components/cars-section/report/report.component';
+import { PaymentComponent } from './components/cars-section/payment/payment.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {ReportComponent} from './components/cars-section/report/report.component
       CarListComponent,
       RecommendedComponent,
       FooterComponent,
-     ReportComponent
+     ReportComponent,
+     PaymentComponent
     ],
     imports: [
         CommonModule,
@@ -49,7 +51,7 @@ import {ReportComponent} from './components/cars-section/report/report.component
       CarListComponent,
       RecommendedComponent,
       FooterComponent,
-      ReportComponent
+      ReportComponent,PaymentComponent
       ]
     })
     export class HomeModule { }

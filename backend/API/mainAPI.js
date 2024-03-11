@@ -35,6 +35,7 @@ const adminRoute=require("../Routes/adminRoutes")
 const vehicleRoute = require('../Routes/vehiclesRoutes');
 const orderRoute=require("../Routes/orderRoutes")
 const reportRoute=require("../Routes/reportRoutes")
+const paymentRoute=require("../Routes/paymentRoutes")
 
 const searchRoutes = require("../Routes/searchRoutes");
 
@@ -50,6 +51,7 @@ ex.use("/vehicle", vehicleRoute);
 ex.use("/order",orderRoute);
 ex.use("/report",reportRoute);
 ex.use("/search",searchRoutes);
+ex.use("/payment",paymentRoute);
 
 console.log('PORT:', process.env.PORT);
 

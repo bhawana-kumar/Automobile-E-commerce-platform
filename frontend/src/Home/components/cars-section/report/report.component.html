@@ -1,30 +1,29 @@
+<div>
+  <app-header></app-header>
+</div>
+
 <div class="report-img">
 <form class="report-form" (ngSubmit)="submitForm()" #reportForm="ngForm">
     
+  <div class="form-group">
+    <label for="vehicleId">Vehicle Id:</label>
+    <input type="text" id="vehicleId" name="vehicleId" class="form-control" [value]="report.vehicleId" required disabled>
+  </div>
+  <div class="form-group">
+    <label for="seller_id">Seller Id:</label>
+    <input type="text" id="seller_id" name="seller_id" class="form-control" [value]="car.seller_id" required disabled>
+  </div>
+  
+  <div class="form-group">
+    <label for="registration_number">Vehicle Reg.No.:</label>
+    <input type="text" id="registration_number" name="registration_number" class="form-control" [value]="car.registration_number" required disabled>
+  </div>
+  
     <div class="form-group">
-      <label for="buyerId">Buyer ID:</label>
-      <input type="text" id="buyerId" name="buyerId" class="form-control" [(ngModel)]="report.buyerId" required>
-    </div>
-    <div class="form-group">
-      <label for="buyerId">Buyer Name:</label>
+      <label for="buyerName">Buyer Name:</label>
       <input type="text" id="buyerName" name="buyerName" class="form-control" [(ngModel)]="report.buyerName" required>
     </div>
-    <div class="form-group">
-      <label for="buyerId">Seller ID:</label>
-      <input type="text" id="sellerId" name="sellerId" class="form-control" [(ngModel)]="report.sellerId" required>
-    </div>
-    <div class="form-group">
-      <label for="buyerId">Seller Name:</label>
-      <input type="text" id="sellerName" name="sellerName" class="form-control" [(ngModel)]="report.sellerName" required>
-    </div>
-    <div class="form-group">
-        <label for="vehicleId">Vehicle ID:</label>
-        <input type="text" id="vehicleId" name="vehicleId" class="form-control" [(ngModel)]="report.vehicleId" required>
-      </div>
-    <div class="form-group">
-        <label for="vehicleId">Vehicle Reg. No.:</label>
-        <input type="text" id="vehicleRegistrationNumber" name="vehicleRegistrationNumber" class="form-control" [(ngModel)]="report.vehicleRegistrationNumber" required>
-      </div>
+    
     <div class="form-group">
         <label for="comment">Comment:</label>
         <input type="text" id="comment" name="comment" class="form-control" [(ngModel)]="report.comment" required>
@@ -33,4 +32,8 @@
     <!-- Add other form fields here -->
     <button type="submit" class="btn btn-primary" [disabled]="reportForm.invalid">Submit</button>
   </form>
+  </div>
+
+  <div>
+    <app-footer></app-footer>
   </div>

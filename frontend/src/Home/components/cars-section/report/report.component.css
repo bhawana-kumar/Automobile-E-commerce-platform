@@ -1,5 +1,5 @@
 .report-form {
-    max-width: 300px;
+   width: 35%;
     height: 55%;
     margin-top: 5%;
     margin-left: 35%;
@@ -11,11 +11,16 @@
 box-shadow: 5px 5px gray;
   }
   .report-img{
-background-image: url('../../../../assets/car.webp');
+/* background-image: url('../../../../assets/car.webp'); */
+background-color: rgb(254, 248, 237);
   }
+  .report{
+    text-align: center;
+    color: orange;  }
   .form-group {
     padding-top: 5%;
-    padding-left: 25%;
+    padding-left: 15%;
+    padding-right: 15%;
   }
   
   label {

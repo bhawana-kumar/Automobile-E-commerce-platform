@@ -1,19 +1,32 @@
-<!-- <div class="tags">
-  <app-tags></app-tags>
-</div> -->
+<div class="button-container">
+  <div class="filter-tags" [ngClass]="{ 'open': filterOpen }">
+    <button *ngFor="let color of colors" class="filter-button" [class.selected]="selectedcolors.includes(color)" (click)="togglecolor(color)">
+      {{ color }}
+    </button>
+  </div>
+</div>
+
 
 <div class="selected-filters">
     <div class="chip" *ngFor="let bodyType of selectedbodyTypes">
       {{ bodyType }}
       <button (click)="removebodyType(bodyType)" style="border: none;">X</button>
     </div>
+    <div class="chip" *ngFor="let location of selectedlocations">
+      {{ location }}
+      <button (click)="removelocation(location)" style="border: none;">X</button>
+    </div>
     <div class="chip" *ngFor="let brandName of selectedbrandNames"> 
       {{ brandName }}
       <button (click)="removebrandName(brandName)" style="border: none;">X</button>
-    </div>
+    </div> 
     <div class="chip" *ngFor="let fuelType of selectedfuelTypes"> 
       {{ fuelType }}
-      <button (click)="removebrandName(fuelType)" style="border: none;">X</button>
+      <button (click)="removefuelType(fuelType)" style="border: none;">X</button>
+    </div>
+    <div class="chip" *ngFor="let driveType of selecteddriveTypes"> 
+      {{ driveType }}
+      <button (click)="removedriveType(driveType)" style="border: none;">X</button>
     </div>
     <div class="chip" *ngFor="let range of selectedPriceRanges"> 
       {{ range }}
@@ -31,6 +44,17 @@
           <label>
             <input type="checkbox" [value]="bodyType" (change)="togglebodyType(bodyType)" [checked]="selectedbodyTypes.includes(bodyType)">
             {{ bodyType }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="filter-container-1">
+      <h5 (click)="togglelocationFilter()">Filter by location <span class="toggle-icon">{{ filterOpen ? '-' : '+' }}</span></h5>
+      <div class="filter-body" [ngClass]="{ 'open': locationFilterOpen }">
+        <div *ngFor="let location of locations">
+          <label>
+            <input type="checkbox" [value]="location" (change)="togglelocation(location)" [checked]="selectedlocations.includes(location)">
+            {{ location }}
           </label>
         </div>
       </div>
@@ -58,6 +82,17 @@
         </div>
       </div>
     </div>
+    <div class="filter-container-2">
+      <h5 (click)="toggleDriveFilter()">Drive Type <span class="toggle-icon">{{ driveFilterOpen ? '-' : '+' }}</span></h5>
+      <div class="filter-body" [ngClass]="{ 'open': driveFilterOpen }">
+        <div *ngFor="let driveType of driveTypes">
+          <label>
+            <input type="checkbox" [value]="driveType" (change)="toggledriveType(driveType)" [checked]="selecteddriveTypes.includes(driveType)">
+            {{ driveType }}
+          </label>
+        </div>
+      </div>
+    </div>
     
     <div class="filter-container-2 price-range-filter">
       <h5 (click)="togglePriceFilter()">Price Range <span class="toggle-icon">{{ priceFilterOpen ? '-' : '+' }}</span></h5>
@@ -77,9 +112,9 @@
   </div>
 </div>
 
-
 <div class="filtered-results">
-  <h3 style="text-align: center; font-weight: bold;">Filtered Results:</h3>
+  <span style=" font-weight: bold; font-size: 35px; margin-left: 35%;" class="our">Our </span>
+  <span style=" font-weight: bold; color: orange; font-size: 35px;" class="our">Collections </span>
 
 <div class="car-container">
     <div *ngFor="let car of paginatedCars" class="car-card" (click)="goToCardDetail(car._id)">
@@ -99,6 +134,4 @@
 
   </div>
 </div>
-
 </div>
-    

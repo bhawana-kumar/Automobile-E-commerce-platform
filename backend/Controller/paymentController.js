@@ -22,6 +22,7 @@ const postPayment = async (req, res) => {
             buyer: buyer,
             sellerId: sellerId,
             seller: seller,
+            year: year,
             vehicleId: vehicleId,
             vehicle: vehicle,
             price: price,
@@ -43,6 +44,17 @@ const postPayment = async (req, res) => {
         });
     }
 };
+
+// const updateStatus= async (req, res) => {
+//     const { vehicleId } = req.params;
+//     // Update the vehicle status to sold in the database based on the vehicleId
+//     await Vehicle.findByIdAndUpdate(vehicleId, { status: 'sold' }, { new: true }, (err, updatedVehicle) => {
+//       if (err) {
+//         return res.status(500).json({ error: 'Error updating vehicle status' });
+//       }
+//       res.json(updatedVehicle);
+//     });
+//   };
 // const postPayment = async (req, res) => {
 //     try {
 //         console.log('Request Body:', req.body); 
@@ -67,4 +79,4 @@ const postPayment = async (req, res) => {
 //     }
 // };
 
-module.exports = { postPayment }; 
+module.exports = { postPayment ,updateStatus}; 

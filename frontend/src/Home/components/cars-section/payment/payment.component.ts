@@ -83,10 +83,10 @@ export class PaymentComponent {
         this.payment.dateTime  = new Date().toISOString();
         this.payment.buyerId = this.storageService.getUser().id;
         this.payment.buyer.name = this.storageService.getUser().username;
-        this.payment.buyer.contactNumber = "123456789"; //1. take this value from user service
+        this.payment.buyer.contactNumber = this.storageService.getUser().contactNumber;
         this.payment.buyer.address = "abc apartment";
         this.payment.sellerId = data.sellerId;
-        this.payment.seller.name = "temp"; //2. take this values from sellers service
+        this.payment.seller.name = data.sellerName; 
         this.payment.seller.contactNumber = "123456789";
         this.payment.seller.address = "def apartment" 
         this.payment.vehicleId = this.vehicleId;
@@ -94,7 +94,7 @@ export class PaymentComponent {
       this.payment.vehicle.VIN = data.identification_number;
       this.payment.vehicle.brand= data.brandName;
       this.payment.vehicle.model= data.carName;
-      this.payment.vehicle.year= "feild is not in database"; //3.update this field in vehicle database
+      this.payment.vehicle.year= "feild is not in database"; 
       this.payment.vehicle.mileage =data.mileage;
       this.payment.vehicle.color =data.color;
         this.payment.price = data.price;
@@ -103,7 +103,7 @@ export class PaymentComponent {
       })
     ).subscribe(() => {
       console.log(this.payment);
-      this.http.post<any>('http://localhost:4000/payment/createPayment', this.payment)
+      this.http.post<any>('http://localhost:4000/order/createOrder', this.payment)
         .subscribe(response => {
           console.log('Payment submitted successfully:', response);
 
@@ -111,13 +111,18 @@ export class PaymentComponent {
           console.error('Error submitting report:', error);
         });
 
-        //4.update vehicle status to sold using patch cod below 
+        const vehicleId = this.vehicleId;
+        
+        this.carfilter.updateVehicleStatusToSold(vehicleId).subscribe(
+          (updatedVehicle: any) => {
+            console.log('Vehicle status updated to sold:', updatedVehicle);
+          },
+          error => {
+            console.error('Error updating vehicle status to sold:', error);
+          }
+        );
 
 
-
-
-
-        //5.now change collection from payments to orders, payment is done!
     });
 
     this.rzp.open()

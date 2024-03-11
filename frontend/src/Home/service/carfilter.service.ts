@@ -23,7 +23,9 @@ export class CarfilterService {
     return this.http.get<any>("http://localhost:4000/vehicle/getAllVehicleData");
   }
 
-
+  updateVehicleStatusToSold(vehicleId: string): Observable<any> {
+    return this.http.put<any>(`http://localhost:4000/vehicle/updateVehicle/${vehicleId}/sold`, {});
+  }
   fetchDescription(carId: number): Observable<string> {
 const url = `http://localhost:4000/vehicle/getVehicle/${carId}`;
 

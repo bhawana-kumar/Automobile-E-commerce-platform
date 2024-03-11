@@ -65,6 +65,7 @@ export class PaymentComponent {
      this.payment.buyer_id = this.storageService.getUser().id;
     });
   });
+  this.rzp = new Razorpay(this.razorpayOptions);
   }
   submitForm() {
     this.http.post<any>('http://localhost:4000/payment/createPayment', this.payment)

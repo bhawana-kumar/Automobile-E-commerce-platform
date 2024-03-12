@@ -5,6 +5,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CarfilterService } from '../../../service/carfilter.service';
 import { StorageService } from '../../../../Signup/service/storage.service';
 import { tap } from 'rxjs/operators';
+import { SellerService } from '../../../service/seller.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../../../Signup/login/login.component';
 declare var Razorpay: any;
 
 @Component({
@@ -59,7 +62,7 @@ export class PaymentComponent {
 
   rzp: any;
 
-  constructor(private http: HttpClient, private carfilter: CarfilterService, private route: ActivatedRoute, private storageService: StorageService) {
+  constructor(private http: HttpClient, private carfilter: CarfilterService, private route: ActivatedRoute,private dialog: MatDialog, private storageService: StorageService, private sellerService:SellerService) {
 
   }
   ngOnInit(): void {
@@ -73,20 +76,29 @@ export class PaymentComponent {
   }
   submitForm() {
     if (!this.storageService.getUser().id) {
+      // this.openLoginDialog();
+      alert("Please login first.");
       console.log("please login");
       return
     }
+    // openLoginDialog(): void {
+    //   this.dialog.open(LoginComponent, {
+    //     width: '400px',
+       
+    //   });
+    // }
 
 
     this.carfilter.getCarById(this.vehicleId).pipe(
       tap((data: any) => {
         this.payment.dateTime  = new Date().toISOString();
         this.payment.buyerId = this.storageService.getUser().id;
-        this.payment.buyer.name = this.storageService.getUser().username;
-        this.payment.buyer.contactNumber = this.storageService.getUser().contactNumber;
+        this.payment.buyer.name = this.storageService.getUser().username;       
+         this.payment.buyer.contactNumber = this.storageService.getUser().phone;
         this.payment.buyer.address = "abc apartment";
         this.payment.sellerId = data.sellerId;
-        this.payment.seller.name = data.sellerName; 
+        this.payment.seller.name = "Seller";
+        // this.payment.seller.name = data.sellerService.getSellerInformation().username; 
         this.payment.seller.contactNumber = "123456789";
         this.payment.seller.address = "def apartment" 
         this.payment.vehicleId = this.vehicleId;
@@ -113,14 +125,14 @@ export class PaymentComponent {
 
         const vehicleId = this.vehicleId;
         
-        this.carfilter.updateVehicleStatusToSold(vehicleId).subscribe(
-          (updatedVehicle: any) => {
-            console.log('Vehicle status updated to sold:', updatedVehicle);
-          },
-          error => {
-            console.error('Error updating vehicle status to sold:', error);
-          }
-        );
+        // this.carfilter.updateVehicleStatusToSold(vehicleId).subscribe(
+        //   (updatedVehicle: any) => {
+        //     console.log('Vehicle status updated to sold:', updatedVehicle);
+        //   },
+        //   error => {
+        //     console.error('Error updating vehicle status to sold:', error);
+        //   }
+        // );
 
 
     });

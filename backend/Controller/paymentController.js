@@ -79,4 +79,4 @@ const postPayment = async (req, res) => {
 //     }
 // };
 
-module.exports = { postPayment ,updateStatus}; 
+module.exports = { postPayment }; 

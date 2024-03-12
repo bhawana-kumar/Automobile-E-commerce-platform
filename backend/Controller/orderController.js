@@ -22,7 +22,6 @@ const postPayment = async (req, res) => {
             buyer: buyer,
             sellerId: sellerId,
             seller: seller,
-            year: year,
             vehicleId: vehicleId,
             vehicle: vehicle,
             price: price,
@@ -44,4 +43,22 @@ const postPayment = async (req, res) => {
         });
     }
 };
-module.exports = { postPayment }; 
+
+const updateVehicleByVehcleId = async (req, res) => {
+    try {
+        const vehicleId = req.params.vehicleId;
+        const updates = req.body;
+
+        const updatedVehicle = await vehicleModel.findByIdAndUpdate(vehicleId, updates, { new: true });
+
+        if (!updatedVehicle) {
+            return res.status(404).json({ message: 'Vehicle not found' });
+        }
+        res.json({ message: 'Vehicle updated successfully', updatedVehicle });
+    } catch (error) {
+        console.error('Error updating Vehicle:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+module.exports = { postPayment,updateVehicleByVehcleId }; 

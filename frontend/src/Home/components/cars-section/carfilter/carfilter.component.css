@@ -1,7 +1,6 @@
 
 .combine-filter {
-  display: flex;
-  justify-content: center;
+   display: flex;
 }
 
 .filter-container {
@@ -16,7 +15,8 @@
 
 .selected-filters {
   margin-bottom: 20px;
-}
+  margin-left: 35%;
+} 
 
 .chip {
   display: inline-block;
@@ -24,8 +24,8 @@
   color: white;
   padding: 5px 10px;
   border-radius: 15px;
-  margin-left: 35%;
   margin-top: 2%;
+  margin-left: 1%
 }
 
 .chip button {

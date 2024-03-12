@@ -17,6 +17,7 @@ import { RecommendedComponent } from './components/cars-section/recommended/reco
 import {ReportComponent} from './components/cars-section/report/report.component';
 import { PaymentComponent } from './components/cars-section/payment/payment.component';
 import { FilteredCarsComponent } from './components/home/filtered-cars/filtered-cars.component';
+import { PageNotFoundComponent } from './components/pageNotFound/pageNotFound.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { FilteredCarsComponent } from './components/home/filtered-cars/filtered-
       RecommendedComponent,
       FooterComponent,
      ReportComponent,
-     PaymentComponent,FilteredCarsComponent
+     PaymentComponent,FilteredCarsComponent,
+     PageNotFoundComponent
     ],
     imports: [
         CommonModule,
@@ -52,7 +54,8 @@ import { FilteredCarsComponent } from './components/home/filtered-cars/filtered-
       RecommendedComponent,
       FooterComponent,
       ReportComponent,PaymentComponent,
-      FilteredCarsComponent
+      FilteredCarsComponent,
+      PageNotFoundComponent
       ]
     })
     export class HomeModule { }

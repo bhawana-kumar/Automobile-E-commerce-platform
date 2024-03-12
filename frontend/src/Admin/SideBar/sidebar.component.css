@@ -82,12 +82,45 @@
 .active {
 	font-weight: bold;
 	color:white !important;
-	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px rgb(234, 83, 63);
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px white;
 }
 .active mat-icon{
-	color: #E53935;
+	color: white;
 }
 
+.activeCM{
+	color:white !important;
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px #2298F1;
+}
+.activeCM mat-icon{
+	color: #2298F1;
+}
+
+.activeOrder{
+	color:white !important;
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px #66B92E;
+}
+.activeOrder mat-icon{
+	color: #66B92E;
+}
+
+.activeVehicle{
+	color:white !important;
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px #DA932C;
+}
+.activeVehicle mat-icon{
+	color: #DA932C;
+	
+}
+
+.activeReport{
+	color:white !important;
+	box-shadow: 1px 0 0 rgb(255, 255, 255), inset 4px 0 0 -1px #D65B4A;
+}
+.activeReport mat-icon{
+	color: #D65B4A;
+
+}
 .navContainer :last-child{
 	cursor: pointer;
 }

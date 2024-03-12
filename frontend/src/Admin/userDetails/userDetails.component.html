@@ -72,7 +72,7 @@
 
                                     <div class="profile-info-value"
                                         [ngStyle]="{ 'color': accountStatus=='active' ? 'green' : 'red' }">
-                                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                        
                                         <span>{{userdata.status | uppercase}}</span>
 
                                     </div>
@@ -117,16 +117,19 @@
                 </div>
 
                 <div *ngIf="activeTab === 'orders'">
-                    <h2 *ngIf="userOrders.length" style="color:white">{{userOrders.length}} - Orders </h2>
-                    <div *ngIf="userOrders.length == 0" class="noDataFound">
+                    <h2 *ngIf="userOrders.length" class="white">{{userOrders.length}} - Orders </h2>
+                    <div *ngIf="userOrders.length == 0" class="noDataFound white">
                         No Orders Yet
                     </div>
                     <orderReceipt-component [receiptsData]="userOrders" *ngIf="userOrdersLoaded && userOrders.length"></orderReceipt-component>
                 </div>
 
                 <div *ngIf="activeTab === 'vehicles'">
-                    <h2>Sellers Vehicles Listed</h2>
-                    <vehicle-card [vehicleData]="userVehicles"></vehicle-card>
+                    <h2 class="white">Sellers Vehicles Listed</h2>
+                    <div *ngIf="userVehicles.length == 0" class="noDataFound white">
+                        No Vehicles Yet
+                    </div>
+                    <vehicle-card [vehicleData]="userVehicles" *ngIf="userVehicles.length"></vehicle-card>
                 </div>
 
                 <div *ngIf="activeTab === 'reports'">

@@ -1,7 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CarfilterService } from '../../../service/carfilter.service';
 import { StorageService } from '../../../../Signup/service/storage.service';
 import { tap } from 'rxjs/operators';
@@ -59,7 +59,7 @@ export class PaymentComponent {
 
   rzp: any;
 
-  constructor(private http: HttpClient, private carfilter: CarfilterService, private route: ActivatedRoute, private storageService: StorageService) {
+  constructor(private http: HttpClient,private router:Router, private carfilter: CarfilterService, private route: ActivatedRoute, private storageService: StorageService) {
 
   }
   ngOnInit(): void {
@@ -72,8 +72,12 @@ export class PaymentComponent {
     this.rzp = new Razorpay(this.razorpayOptions);
   }
   submitForm() {
-    if (!this.storageService.getUser().id) {
-      console.log("please login");
+    if (this.storageService && this.storageService.getUser() ) {
+      //pass
+    }else{
+     
+      const url = '/login';
+      this.router.navigateByUrl(url);
       return
     }
 

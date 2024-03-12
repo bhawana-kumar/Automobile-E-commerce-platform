@@ -18,6 +18,8 @@ import { LoginComponent } from '../Signup/login/login.component';
 import { RegisterComponent } from '../Signup/register/register.component';
 import { ProfileComponent } from '../Signup/profile/profile.component';
 import { FilteredCarsComponent } from '../Home/components/home/filtered-cars/filtered-cars.component';
+import { AdminAuthGuard } from './authguard.guard';
+import { PageNotFoundComponent } from '../Home/components/pageNotFound/pageNotFound.component';
 
 
 const routes: Routes = [
@@ -32,7 +34,7 @@ const routes: Routes = [
   { path: 'filtered-cars/:brandName', component: FilteredCarsComponent },
 
   // Admin Routes
-  { path: 'admin', component: dashboardComponent, children: [
+  { path: 'admin', component: dashboardComponent,canActivate: [AdminAuthGuard], children: [
       // { path: 'dashboard',redirectTo: '/admin', pathMatch: 'full' },
       { path: '', component: DashComponent },
       { path: 'dashboard', component: DashComponent },
@@ -44,7 +46,10 @@ const routes: Routes = [
       { path: 'vehicleManagement', component: vehicleManagementComponent },
       { path: 'vehicleManagement/:id', component: vehicleDetailsComponent }
     ]
-  }
+  },
+
+  //wildcard
+  {path: '**',component:PageNotFoundComponent}
 
 
 ]

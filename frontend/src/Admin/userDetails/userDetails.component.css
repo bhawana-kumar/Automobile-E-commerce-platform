@@ -7,6 +7,9 @@
   height: auto;
 }
 
+.white{
+    color:white
+}
 .headerCM {
     width: 100%;
     padding: 5px 40px;

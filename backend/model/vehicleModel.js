@@ -1,32 +1,5 @@
 const mongoose = require('mongoose');
 
-
-// Define the product schema
-// const vehicleSchema = new mongoose.Schema({
-//     brand: { type: String },
-//     model: { type: String },
-//     year: { type: String },
-//     ownership: { type: String },
-//     image: { type: String },
-//     color: { type: String },
-//     seats: { type: Number },
-//     price: { type: String },
-//     mileage: { type: String },
-//     fuel_type: { type: String },
-//     body_type: { type: String },
-//     description: { type: String },
-//     sellerId: { type: String },
-//     identification_number: { type: String },
-//     location: { type: String },
-//     registration_number: { type: String },
-//     status:{type: String}
-
-// });
-
-
-// module.exports = mongoose.model("vehicle", vehicleSchema)
-
-
 const vehicleSchema = new mongoose.Schema({
     carName: { type: String, required: true },
     brandName: { type: String, required: true },

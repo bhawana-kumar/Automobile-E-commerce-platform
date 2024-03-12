@@ -18,12 +18,18 @@ import { HomeModule } from '../Home/home.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { signupModule } from '../Signup/signup.module';
-
+import {VehicleModule} from '../vehicle/vehicle.module'
+import { SellerPageComponent } from '../seller-page/seller-page.component';
+import { FetchComponent } from '../fetch/fetch.component';
+import { EditpageComponent } from '../editpage/editpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarDescComponent
+    CarDescComponent ,
+    SellerPageComponent,
+    FetchComponent,
+    EditpageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +45,9 @@ import { signupModule } from '../Signup/signup.module';
     MatCardModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
-  
+    MatButtonModule,
+    VehicleModule, 
+
   ],
   providers: [
     provideAnimationsAsync()

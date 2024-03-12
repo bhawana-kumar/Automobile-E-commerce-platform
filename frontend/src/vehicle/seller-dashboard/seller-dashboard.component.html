@@ -1,0 +1,23 @@
+
+ <mat-toolbar color="primary">
+  <!-- Provide the path to the logo image from the assets folder -->
+    <img src="assets/images/newlogo.png" height="50px" width="80px" alt="AutoTradeHub Logo">
+  <!-- </button> -->
+&nbsp;&nbsp;
+  <div *ngIf="seller">
+    <h2>Hello {{ seller.username }}!</h2>
+  </div>
+
+  
+  <!-- Add a dropdown menu for options -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="gotoAddVehicle()">Add Vehicle</button>
+    <button mat-menu-item (click)="gotoFetchVehicle()">My Vehicles</button>
+   
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

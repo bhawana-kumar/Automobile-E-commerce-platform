@@ -20,6 +20,10 @@ import { ProfileComponent } from '../Signup/profile/profile.component';
 import { FilteredCarsComponent } from '../Home/components/home/filtered-cars/filtered-cars.component';
 import { AdminAuthGuard } from './authguard.guard';
 import { PageNotFoundComponent } from '../Home/components/pageNotFound/pageNotFound.component';
+import { EditVehicleComponent } from '../vehicle/edit-vehicle/edit-vehicle.component';
+import { AddVehicleComponent } from '../vehicle/add-vehicle/add-vehicle.component';
+import { FetchComponent } from '../fetch/fetch.component';
+import { SellerPageComponent } from '../seller-page/seller-page.component';
 
 
 const routes: Routes = [
@@ -47,6 +51,11 @@ const routes: Routes = [
       { path: 'vehicleManagement/:id', component: vehicleDetailsComponent }
     ]
   },
+  //seller Routes
+  { path:'edit-product/:id' , component:EditVehicleComponent},
+  { path: 'add-vehicle/:id', component: AddVehicleComponent},
+  { path: 'fetch-vehicle/:id', component: FetchComponent },
+  {path:'getSellers/:id', component: SellerPageComponent},
 
   //wildcard
   {path: '**',component:PageNotFoundComponent}

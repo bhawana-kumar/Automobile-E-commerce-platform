@@ -55,7 +55,6 @@ ex.use("/search",searchRoutes);
 ex.use("/payment",paymentRoute);
 ex.use("/carouselBrandFilter",carouselBrandFilterRoutes);
 
-console.log('PORT:', process.env.PORT);
 
 const PORT= process.env.PORT || 4000; 
 ex.listen(PORT,  ()=>console.log("listening on port 4000"));

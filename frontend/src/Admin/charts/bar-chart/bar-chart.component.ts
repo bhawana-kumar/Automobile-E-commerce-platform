@@ -32,18 +32,17 @@ export class barChartComponent {
 
   ngOnInit() {
     this.filterChartbyDropdown(this.choosedFilter);
-    console.log(this.choosedFilter);
+  
   }
   onFilterChange(){
-    console.log(this.choosedFilter);
+    
     this.filterChartbyDropdown(this.choosedFilter);
   }
 
 
   updateChart(labels: any, values: any): void {
     if (labels && labels.length != 0) {
-      console.log(labels)
-      console.log(values)
+
       this.barChartData.labels = labels;
       this.barChartData.datasets[0].data = values;
       this.barChartData.datasets[0].label = this.choosedFilter.toUpperCase()

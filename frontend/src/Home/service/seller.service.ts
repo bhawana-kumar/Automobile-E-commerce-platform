@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class SellerService {
 
 
- 
+
   constructor(private http : HttpClient) { }
   
   getSellerInformation(sellerId: string): Observable<any> {

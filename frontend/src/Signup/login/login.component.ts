@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             const  url= '';
             this.router.navigateByUrl(url);
           }else if(this.role === 'seller'){
-            const  url= '/seller';
+            const  url= `/getSellers/${this.storageService.getUser().id}`;
             this.router.navigateByUrl(url);
           }else if(this.role === 'admin'){
             const  url=  '/admin';

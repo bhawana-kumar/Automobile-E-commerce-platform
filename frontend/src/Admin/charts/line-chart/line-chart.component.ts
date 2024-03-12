@@ -67,7 +67,6 @@ export class salesChartComponent {
       }
 
     });
-    console.log(sellerCountsByMonth)
     const months: string[] = Object.keys(userCountsByMonth);
     this.sortedMonths = months.sort();
     this.userCounts = this.sortedMonths.map(month => userCountsByMonth[month]);

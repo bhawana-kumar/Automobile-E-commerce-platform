@@ -13,7 +13,7 @@ export class pieChartComponent implements OnInit, OnChanges {
 
   }
   ngOnInit(): void {
-    // console.log(this.piedata);
+   
     this.updateChart();
   }
 

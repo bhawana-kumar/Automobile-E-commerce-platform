@@ -10,12 +10,12 @@ export class VehicleService {
 
   constructor(private http:HttpClient) { }
 
-  
-  getVehicleById(vehicleId :string) {
-    // console.log(vehicleId);
-    return this.http.get<Vehicle[]>(`http://localhost:4000/vehicle/getVehicle/${vehicleId}`)
+
+
+
+  getVehicleById(vehicleId: string): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(`http://localhost:4000/vehicle/getVehicle/${vehicleId}`);
   }
- 
 
   saveProductDetails(product: any){
     console.log("Product service");    
@@ -27,13 +27,16 @@ export class VehicleService {
       return this.http.get<Vehicle[]>(`http://localhost:4000/vehicle/getVehiclesForSeller/${sellerId}`);
     }
 
-    editProduct(vehicleId: string, updatedData: any): Observable<Vehicle> {
-    return this.http.put<Vehicle>(`http://localhost:4000/vehicle/updateVehicle/${vehicleId}`, updatedData);
-  }
+  //   editProduct(vehicleId: string, updatedData: any): Observable<Vehicle> {
+  //   return this.http.put<Vehicle>(`http://localhost:4000/vehicle/updateVehicle/${vehicleId}`, updatedData);
+  // }
 
   deleteProduct(vehicleId: string): Observable<any> {
     return this.http.delete<any>(`http://localhost:4000/vehicle/deleteProduct/${vehicleId}`);
   }
 
+  updateVehicle(vehicleId: string, updatedVehicle: any): Observable<any> {
+    return this.http.put(`http://localhost:4000/vehicle/updateVehicle/${vehicleId}`, updatedVehicle);
+  } 
 }
 

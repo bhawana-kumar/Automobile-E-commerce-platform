@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProductService } from '../../Home/service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleService } from '../../Home/service/vehicle.service';
 
@@ -16,10 +15,9 @@ export class EditVehicleComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private VehicleService : VehicleService
+    private vehicleService : VehicleService
   ) { }
 
   ngOnInit(): void {
@@ -45,23 +43,25 @@ export class EditVehicleComponent implements OnInit {
       bodyType: ['', Validators.required]
     });
 
-    const productId = this.route.snapshot.paramMap.get('id') ?? '';
-    this.VehicleService.getMyVehicles(productId).subscribe(vehicle => {
+    const vehicleId = this.route.snapshot.paramMap.get('id') ?? '';
+    console.log(vehicleId);
+    
+    this.vehicleService.getVehicleById(vehicleId).subscribe(vehicle => {
       this.vehicleForm.patchValue(vehicle);
     });
   }
 
-  updateProductDetails() {
+  updateVehicleDetails() {
     if (this.vehicleForm.valid) {
       const updatedVehicle = this.vehicleForm.value;
-      const productId = this.route.snapshot.paramMap.get('id') ?? '';
-      this.productService.updateProduct(productId, updatedVehicle).subscribe(
+      const vehicleId = this.route.snapshot.paramMap.get('id') ?? '';
+      this.vehicleService.updateVehicle(vehicleId, updatedVehicle).subscribe(
         () => {
           this.successMessage = 'Vehicle details updated successfully.';
-          setTimeout(() => {
-            this.successMessage = null;
-            this.router.navigate(['/products']);
-          }, 2000); // Clear success message after 4 seconds and navigate to products page
+          // setTimeout(() => {
+          //   this.successMessage = null;
+          //   this.router.navigate(['/products']);
+          // }, 4000); // Clear success message after 4 seconds and navigate to products page
         },
         error => {
           console.error('Error updating vehicle details:', error);

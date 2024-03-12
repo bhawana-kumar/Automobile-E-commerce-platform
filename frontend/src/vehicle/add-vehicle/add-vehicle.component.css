@@ -97,19 +97,16 @@ button[type="submit"]:hover {
     color: brown;
 }
 
-/* Style for the div containing label and input */
 div.passenger {
     margin-bottom: 10px;
 }
 
-/* Style for the label */
 div.passenger label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-/* Style for the input */
 div.passenger input[type="number"] {
     width: 100%;
     padding: 8px;
@@ -119,20 +116,17 @@ div.passenger input[type="number"] {
     margin-left: 15px;
 }
 
-/* Style for the div containing condition radio buttons and labels */
 div.condition {
     margin-bottom: 10px;
     display: flex;
 }
 
-/* Style for the labels */
 div.condition label {
     display: inline;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Style for the radio buttons */
 div.condition input[type="radio"] {
     margin-right: 5px;
 }
@@ -142,14 +136,12 @@ div.price {
     margin-left: 30px;
 }
 
-/* Style for the label */
 div.price label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-/* Style for the input */
 div.price input[type="number"] {
     width: 100%;
     padding: 8px;
@@ -158,7 +150,6 @@ div.price input[type="number"] {
     box-sizing: border-box;
 }
 
-/* Style for the label */
 label.image {
     display: block;
     font-weight: bold;
@@ -168,18 +159,15 @@ label.image {
     text-align: center;
 }
 
-/* Style for the file input */
 input[type="file"] {
     display: none;
 }
 
-/* Hover effect for label */
 label.image:hover {
     text-decoration: underline;
     color: blueviolet;
 }
 
-/* Style for the select element */
 #cars {
     padding: 4px;
     border: 1px solid #ccc;
@@ -188,7 +176,6 @@ label.image:hover {
     width: 100%;
 }
 
-/* Style for the options */
 #cars option {
     font-size: 16px;
     background-color: lightgreen;
@@ -209,13 +196,11 @@ div.contact {
     margin-left: 15px;
 }
 
-/* Style for the label */
 div.contact label {
     display: block;
     font-weight: bold;
 }
 
-/* Style for the input */
 div.contact input[type="number"] {
     width: 100%;
     padding: 4px;

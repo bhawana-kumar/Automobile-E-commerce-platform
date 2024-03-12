@@ -16,12 +16,6 @@ export class ProductService {
     const url = 'http://localhost:4000/vehicle'; 
     return this.http.get(url+"/getAllVehicleData");
   }
-
-  updateProduct(productId: string, updatedProduct: any): Observable<any> {
-    const url = 'http://localhost:4000'; // Replace with your actual endpoint
-    return this.http.put(`${url}/products/${productId}`, updatedProduct);
-  } 
-
 }
 
 

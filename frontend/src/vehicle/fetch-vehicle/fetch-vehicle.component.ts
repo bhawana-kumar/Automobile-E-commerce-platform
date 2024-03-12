@@ -44,6 +44,34 @@ export class FetchVehicleComponent implements OnInit {
     // Implement edit functionality
     this.router.navigate(['/edit-product', vehicle._id]);
     console.log('Edit vehicle:', vehicle);
+    localStorage.setItem('identification_number', vehicle.identification_number);
+    localStorage.setItem('registration_number', vehicle.registration_number);
+    localStorage.setItem('location', vehicle.location);
+    localStorage.setItem('seatingCapacity',  vehicle.seatingCapacity.toString());
+    localStorage.setItem('price', vehicle.price.toString());
+    if (vehicle.color !== undefined) {
+      localStorage.setItem('color', vehicle.color);
+    }
+    if (vehicle.engine !== undefined) {
+      localStorage.setItem('engine', vehicle.engine);
+    }
+    if (vehicle.torque !== undefined) {
+      localStorage.setItem('torque', vehicle.torque);
+    }
+    if (vehicle.power !== undefined) {
+      localStorage.setItem('power', vehicle.power);
+    }
+    if (vehicle.mileage !== undefined) {
+      localStorage.setItem('mileage', vehicle.mileage);
+    }
+    if (vehicle.fuelType !== undefined) {
+      localStorage.setItem('fuelType', vehicle.fuelType);
+    }
+    localStorage.setItem('bodyType', vehicle.bodyType);
+    if (vehicle.driveType !== undefined) {
+      localStorage.setItem('driveType', vehicle.driveType);
+    }
+  
   }
 
 

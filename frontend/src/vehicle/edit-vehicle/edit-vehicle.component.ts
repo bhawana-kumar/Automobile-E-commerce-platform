@@ -22,30 +22,28 @@ export class EditVehicleComponent implements OnInit {
 
   ngOnInit(): void {
     this.vehicleForm = this.formBuilder.group({
-      identification_number: ['', Validators.required],
-      registration_number: ['', Validators.required],
-      location: ['', Validators.required],
+      identification_number: [localStorage.getItem('identification_number') || '', Validators.required],
+      registration_number: [localStorage.getItem('registration_number') || '', Validators.required],
+      location: [localStorage.getItem('location') || '', Validators.required],
       brandName: ['', Validators.required],
       carName: ['', Validators.required],
       manufYear: ['', Validators.required],
       ownerShip: ['', Validators.required],
-      driveType: ['', Validators.required],
+      driveType: [localStorage.getItem('driveType') || '', Validators.required],
       carImg: [''],
-      color: ['', Validators.required],
-      seats: ['', Validators.required],
-      price: ['', Validators.required],
-      engine: [''],
-      power: [''],
-      torque: [''],
-      fuelType: ['', Validators.required],
-      mileage: [''],
+      color: [localStorage.getItem('color') || '', Validators.required],
+      seats: [localStorage.getItem('seatingCapacity') || '', Validators.required],
+      price: [localStorage.getItem('price') || '', Validators.required],
+      engine: [localStorage.getItem('engine') || ''],
+      power: [localStorage.getItem('power') || ''],
+      torque: [localStorage.getItem('torque') || ''],
+      fuelType: [localStorage.getItem('fuelType') || '', Validators.required],
+      mileage: [localStorage.getItem('mileage') || ''],
       description: [''],
-      bodyType: ['', Validators.required]
+      bodyType: [localStorage.getItem('bodyType') || '', Validators.required]
     });
 
-    const vehicleId = this.route.snapshot.paramMap.get('id') ?? '';
-    console.log(vehicleId);
-    
+    const vehicleId = this.route.snapshot.paramMap.get('id') ?? '';  
     this.vehicleService.getVehicleById(vehicleId).subscribe(vehicle => {
       this.vehicleForm.patchValue(vehicle);
     });
@@ -58,10 +56,10 @@ export class EditVehicleComponent implements OnInit {
       this.vehicleService.updateVehicle(vehicleId, updatedVehicle).subscribe(
         () => {
           this.successMessage = 'Vehicle details updated successfully.';
-          // setTimeout(() => {
-          //   this.successMessage = null;
-          //   this.router.navigate(['/products']);
-          // }, 4000); // Clear success message after 4 seconds and navigate to products page
+          setTimeout(() => {
+            this.successMessage = null;
+            this.router.navigate(['/fetch-vehicle']);
+          }, 4000);
         },
         error => {
           console.error('Error updating vehicle details:', error);

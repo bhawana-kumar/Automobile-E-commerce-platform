@@ -71,8 +71,17 @@ export class EditVehicleComponent implements OnInit {
       this.vehicleForm.markAllAsTouched();
     }
   }
-
-  onImageSelected(event: any) {
-    // Handle image selection here
+ 
+    onImageSelected(event: any) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageUrl = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        this.imageUrl = undefined;
+      }
+    }
   }
-}

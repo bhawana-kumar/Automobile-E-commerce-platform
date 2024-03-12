@@ -1,5 +1,5 @@
 const Payment = require("../model/orderModel");
-
+const vehicleModel = require('../model/vehicleModel');
 const postPayment = async (req, res) => {
     try {
         console.log('Request Body:', req.body);
@@ -44,7 +44,7 @@ const postPayment = async (req, res) => {
     }
 };
 
-const updateVehicleByVehcleId = async (req, res) => {
+const updateVehicleByVehicleId = async (req, res) => {
     try {
         const vehicleId = req.params.vehicleId;
         const updates = req.body;
@@ -61,4 +61,4 @@ const updateVehicleByVehcleId = async (req, res) => {
     }
 };
 
-module.exports = { postPayment,updateVehicleByVehcleId }; 
+module.exports = { postPayment,updateVehicleByVehicleId }; 

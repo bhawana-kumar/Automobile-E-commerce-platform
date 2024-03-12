@@ -30,7 +30,7 @@ export class CarfilterService {
   }
 
   updateVehicleStatusToSold(vehicleId: string,updated:any): Observable<any> {
-    return this.http.patch<any>(`http://localhost:4000/order/updateVehicleByVehcleId/${vehicleId}`, updated);
+    return this.http.patch<any>(`http://localhost:4000/order/updateVehicleByVehicleId/${vehicleId}`, updated);
   }
   fetchDescription(carId: number): Observable<string> {
 const url = `http://localhost:4000/vehicle/getVehicle/${carId}`;

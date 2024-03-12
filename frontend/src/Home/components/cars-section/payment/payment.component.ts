@@ -8,6 +8,8 @@ import { tap } from 'rxjs/operators';
 import { SellerService } from '../../../service/seller.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../../../Signup/login/login.component';
+import { productManagementService } from '../../../../Admin/adminServices/productMangement.service';
+import { customerManagementService } from '../../../../Admin/adminServices/customerManagement.service';
 declare var Razorpay: any;
 
 @Component({
@@ -62,10 +64,12 @@ export class PaymentComponent {
 
   rzp: any;
 
-  constructor(private http: HttpClient, private carfilter: CarfilterService, private route: ActivatedRoute,private dialog: MatDialog, private storageService: StorageService, private sellerService:SellerService) {
+  constructor(private http: HttpClient, private carfilter: CarfilterService, private route: ActivatedRoute,private dialog: MatDialog, private storageService: StorageService, private customerManagementService:customerManagementService) {
 
   }
   ngOnInit(): void {
+
+    
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -97,16 +101,15 @@ export class PaymentComponent {
          this.payment.buyer.contactNumber = this.storageService.getUser().phone;
         this.payment.buyer.address = "abc apartment";
         this.payment.sellerId = data.sellerId;
-        this.payment.seller.name = "Seller";
-        // this.payment.seller.name = data.sellerService.getSellerInformation().username; 
-        this.payment.seller.contactNumber = "123456789";
-        this.payment.seller.address = "def apartment" 
+        this.payment.seller.name = "";
+        this.payment.seller.contactNumber = "";
+        this.payment.seller.address = "" 
         this.payment.vehicleId = this.vehicleId;
         this.payment.vehicle.registrationNumber = data.registration_number;
       this.payment.vehicle.VIN = data.identification_number;
       this.payment.vehicle.brand= data.brandName;
       this.payment.vehicle.model= data.carName;
-      this.payment.vehicle.year= "feild is not in database"; 
+      this.payment.vehicle.year= data.manufYear; 
       this.payment.vehicle.mileage =data.mileage;
       this.payment.vehicle.color =data.color;
         this.payment.price = data.price;
@@ -114,6 +117,15 @@ export class PaymentComponent {
         this.payment.orderStatus = 'pending'; //default
       })
     ).subscribe(() => {
+      //call seleller basic info
+    this.customerManagementService.getUserDataById(this.payment.sellerId).pipe(
+      tap((data: any) => {
+        this.payment.seller.name = data.username;
+        this.payment.seller.address = data.address || "";
+        this.payment.seller.contactNumber = data.phone;
+
+    })
+    ).subscribe(()=>{
       console.log(this.payment);
       this.http.post<any>('http://localhost:4000/order/createOrder', this.payment)
         .subscribe(response => {
@@ -123,16 +135,20 @@ export class PaymentComponent {
           console.error('Error submitting report:', error);
         });
 
-        const vehicleId = this.vehicleId;
+        this.carfilter.updateVehicleStatusToSold(this.vehicleId,{status:'sold'}).subscribe(
+          (updatedVehicle: any) => {
+            console.log('Vehicle status updated to sold:', updatedVehicle);
+          },
+          error => {
+            console.error('Error updating vehicle status to sold:', error);
+          }
+        );
+    })
+    
+
+       
         
-        // this.carfilter.updateVehicleStatusToSold(vehicleId).subscribe(
-        //   (updatedVehicle: any) => {
-        //     console.log('Vehicle status updated to sold:', updatedVehicle);
-        //   },
-        //   error => {
-        //     console.error('Error updating vehicle status to sold:', error);
-        //   }
-        // );
+        
 
 
     });

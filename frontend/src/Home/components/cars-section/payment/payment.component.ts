@@ -5,6 +5,11 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CarfilterService } from '../../../service/carfilter.service';
 import { StorageService } from '../../../../Signup/service/storage.service';
 import { tap } from 'rxjs/operators';
+import { SellerService } from '../../../service/seller.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../../../Signup/login/login.component';
+import { productManagementService } from '../../../../Admin/adminServices/productMangement.service';
+import { customerManagementService } from '../../../../Admin/adminServices/customerManagement.service';
 declare var Razorpay: any;
 
 @Component({
@@ -59,10 +64,12 @@ export class PaymentComponent {
 
   rzp: any;
 
-  constructor(private http: HttpClient,private router:Router, private carfilter: CarfilterService, private route: ActivatedRoute, private storageService: StorageService) {
+  constructor(private http: HttpClient,private router:Router, private carfilter: CarfilterService, private route: ActivatedRoute,private dialog: MatDialog, private storageService: StorageService, private customerManagementService:customerManagementService) {
 
   }
   ngOnInit(): void {
+
+    
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -80,25 +87,31 @@ export class PaymentComponent {
       this.router.navigateByUrl(url);
       return
     }
+    // openLoginDialog(): void {
+    //   this.dialog.open(LoginComponent, {
+    //     width: '400px',
+       
+    //   });
+    // }
 
 
     this.carfilter.getCarById(this.vehicleId).pipe(
       tap((data: any) => {
         this.payment.dateTime  = new Date().toISOString();
         this.payment.buyerId = this.storageService.getUser().id;
-        this.payment.buyer.name = this.storageService.getUser().username;
-        this.payment.buyer.contactNumber = "123456789"; //1. take this value from user service
+        this.payment.buyer.name = this.storageService.getUser().username;       
+         this.payment.buyer.contactNumber = this.storageService.getUser().phone;
         this.payment.buyer.address = "abc apartment";
         this.payment.sellerId = data.sellerId;
-        this.payment.seller.name = "temp"; //2. take this values from sellers service
-        this.payment.seller.contactNumber = "123456789";
-        this.payment.seller.address = "def apartment" 
+        this.payment.seller.name = "";
+        this.payment.seller.contactNumber = "";
+        this.payment.seller.address = "" 
         this.payment.vehicleId = this.vehicleId;
         this.payment.vehicle.registrationNumber = data.registration_number;
       this.payment.vehicle.VIN = data.identification_number;
       this.payment.vehicle.brand= data.brandName;
       this.payment.vehicle.model= data.carName;
-      this.payment.vehicle.year= "feild is not in database"; //3.update this field in vehicle database
+      this.payment.vehicle.year= data.manufYear; 
       this.payment.vehicle.mileage =data.mileage;
       this.payment.vehicle.color =data.color;
         this.payment.price = data.price;
@@ -106,8 +119,17 @@ export class PaymentComponent {
         this.payment.orderStatus = 'pending'; //default
       })
     ).subscribe(() => {
+      //call seleller basic info
+    this.customerManagementService.getUserDataById(this.payment.sellerId).pipe(
+      tap((data: any) => {
+        this.payment.seller.name = data.username;
+        this.payment.seller.address = data.address || "";
+        this.payment.seller.contactNumber = data.phone;
+
+    })
+    ).subscribe(()=>{
       console.log(this.payment);
-      this.http.post<any>('http://localhost:4000/payment/createPayment', this.payment)
+      this.http.post<any>('http://localhost:4000/order/createOrder', this.payment)
         .subscribe(response => {
           console.log('Payment submitted successfully:', response);
 
@@ -115,13 +137,22 @@ export class PaymentComponent {
           console.error('Error submitting report:', error);
         });
 
-        //4.update vehicle status to sold using patch cod below 
+        this.carfilter.updateVehicleStatusToSold(this.vehicleId,{status:'sold'}).subscribe(
+          (updatedVehicle: any) => {
+            console.log('Vehicle status updated to sold:', updatedVehicle);
+          },
+          error => {
+            console.error('Error updating vehicle status to sold:', error);
+          }
+        );
+    })
+    
+
+       
+        
+        
 
 
-
-
-
-        //5.now change collection from payments to orders, payment is done!
     });
 
     this.rzp.open()

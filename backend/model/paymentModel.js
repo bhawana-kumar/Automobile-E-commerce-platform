@@ -17,6 +17,7 @@ const paymentSchema= new Schema({
     contactNumber: { type: String, required: true },
     address: { type: String, required: true }
   },
+  year: { type: String, required: true },
   vehicleId: { type: String, required: true },
   vehicle: {
     registrationNumber: { type: String, required: true },

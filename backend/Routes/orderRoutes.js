@@ -1,15 +1,13 @@
 const express = require("express");
-// const { verifyAdmin, verifyUser } = require("../utils/verifyToken.js");
 const orderRoute = express.Router();
+const { postPayment, updateVehicleByVehicleId} = require("../Controller/orderController");
 
-orderRoute.get("/getAllOrderData", (req, res) => {
-    // Your code logic here
-    // For example, you can send a response back to the client
-    res.send("This is the response for /orders/getAllOrderData");
-  });
-// orderRoute.get("/orders/getOrder/:orderId", verifyUser);
-orderRoute.post("/createOrder");
-orderRoute.patch("/updateOrder/:orderId");
-orderRoute.delete("/deleteOrder/:orderId");
-
+// orderRoute.get("/getAllOrderData")
+orderRoute.post("/createOrder",postPayment);
+// orderRoute.patch("/updateOrder/:orderId");
+// orderRoute.delete("/deleteOrder/:orderId");
+orderRoute.patch("/updateVehicleByVehicleId/:vehicleId",updateVehicleByVehicleId);
 module.exports = orderRoute;
+
+
+  

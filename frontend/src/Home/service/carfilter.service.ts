@@ -19,11 +19,19 @@ export class CarfilterService {
     const url = `http://localhost:4000/vehicle/getVehicle/${carId}`;
     return this.http.get<any>(url);
    }
+   getUserById(sellerId: String): Observable<any> {
+    
+    const url = `http://localhost:4000/user/getUserById/${sellerId}`;
+    return this.http.get<any>(url);
+   }
+   
   getCar(): Observable<any> {
     return this.http.get<any>("http://localhost:4000/vehicle/getAllVehicleData");
   }
 
-
+  updateVehicleStatusToSold(vehicleId: string,updated:any): Observable<any> {
+    return this.http.patch<any>(`http://localhost:4000/order/updateVehicleByVehicleId/${vehicleId}`, updated);
+  }
   fetchDescription(carId: number): Observable<string> {
 const url = `http://localhost:4000/vehicle/getVehicle/${carId}`;
 

@@ -14,7 +14,7 @@ const orderSchema = new mongoose.Schema({
   seller: {
     name: { type: String, required: true },
     contactNumber: { type: String, required: true },
-    address: { type: String, required: true }
+    address: { type: String }
   },
   vehicleId: { type: String, required: true },
   vehicle: {
@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
     VIN: { type: String, required: true },
     brand: { type: String, required: true },
     model: { type: String, required: true },
-    year: { type: String, required: true },
+    year: { type: String },
     mileage: { type: String, required: true },
     color: { type: String, required: true }
   },

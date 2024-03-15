@@ -1,6 +1,8 @@
 const express = require("express");
 // const { verifySeller }= require("../utils/verifyToken.js");
-const { getAllVehicleData, getVehicleById } = require("../controller/vehicleController.js");
+// const { getAllVehicleData, getVehicleById } = require("../controller/vehicleController.js")
+
+const { getAllVehicleData, getVehicleById } = require("../Controller/vehicleController")
 const sellerRoute = express.Router();
 
 
@@ -13,3 +15,4 @@ sellerRoute.get("/getVehicle/:vehicleId",getVehicleById);
 // sellerRoute.delete("/vehicles/deleteVehicle/:vehicleId",verifySeller); 
 
 module.exports = sellerRoute;                               
+

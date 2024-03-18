@@ -19,39 +19,6 @@ const getVehicleById= async (req, resp) => {
     resp.send(result);
 };
 
-
-// const postVehicle=async (req, res) => {
-//     try {
-//         // Extract vehicle data from the request body
-//         const { carName, driveType, engine, power } = req.body;
-
-//         // Create a new vehicle object
-//         const vehicles = new vehicle({
-//             carName, driveType, engine, power
-//         });
-
-//         // Save the vehicle to the database
-//         await vehicles.save();
-
-//         // Respond with success message and the created vehicle object
-//         res.status(201).json({
-//             message: 'Vehicle created successfully',
-//             vehicles
-//         });
-//     } catch (error) {
-//         // If there's an error, respond with an error message
-//         res.status(500).json({
-//             message: 'Failed to create vehicle',
-//             error: error.message
-//         });
-//     }
-// }
-
-// ///put req
-
-
-
-
 const postVehicle = async (request, response) => {
     try {
         // Assuming the seller's ID is stored in the request body as sellerId
@@ -72,21 +39,21 @@ const postVehicle = async (request, response) => {
 }
 
 
-const updateVehicle= async (request, response) => {
-    const productId = request.params.id;
-    const updatedData = request.body;
-    try {
-        // Find the product by ID and update it with the new data
-        const result = await productModel.findByIdAndUpdate(productId, updatedData, { new: true });
-        if (!result) {
-            return response.status(404).json({ error: 'Product not found' });
-        }
-        return response.json(result);
-    } catch (error) {
-        console.error('Error editing product:', error);
-        return response.status(500).json({ error: 'Internal server error' });
-    }
-}
+// const updateVehicle= async (request, response) => {
+//     const productId = request.params.id;
+//     const updatedData = request.body;
+//     try {
+//         // Find the product by ID and update it with the new data
+//         const result = await productModel.findByIdAndUpdate(productId, updatedData, { new: true });
+//         if (!result) {
+//             return response.status(404).json({ error: 'Product not found' });
+//         }
+//         return response.json(result);
+//     } catch (error) {
+//         console.error('Error editing product:', error);
+//         return response.status(500).json({ error: 'Internal server error' });
+//     }
+// }
 
 const deleteVehicle=  async(request,response) =>{
     const productId = request.params.id;
@@ -102,6 +69,29 @@ const deleteVehicle=  async(request,response) =>{
       return response.status(500).json({ error :'Internal server error'})
     }
   }
+
+
+  const updateVehicle = async (request, response) => {
+    try {
+        const productId = request.params.id;
+
+        // Find the product by ID and update it with the new data
+        const updatedProduct = await productModel.findByIdAndUpdate(productId, request.body, { new: true });
+
+        // If the product is not found, return a 404 error response
+        if (!updatedProduct) {
+            return response.status(404).json({ error: 'Product not found' });
+        }
+
+        // If the product is successfully updated, send it back as a response
+        response.json(updatedProduct);
+    } catch (error) {
+        // If an error occurs during the update process, handle it gracefully
+        console.error('Error updating product:', error);
+        response.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 
   const getVehicleDataBySellerId=async (req, response) => {
     const sellerId = req.params.sellerId;

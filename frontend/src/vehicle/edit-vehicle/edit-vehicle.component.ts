@@ -3,12 +3,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehicleService } from '../../Home/service/vehicle.service';
 
-
 @Component({
   selector: 'app-edit-vehicle',
   templateUrl: './edit-vehicle.component.html',
   styleUrls: ['./edit-vehicle.component.css']
 })
+
 export class EditVehicleComponent implements OnInit {
   vehicleForm!: FormGroup;
   imageUrl: string | undefined;
@@ -20,6 +20,7 @@ export class EditVehicleComponent implements OnInit {
     private router: Router,
     private vehicleService : VehicleService
   ) { }
+
 
   ngOnInit(): void {
     this.vehicleForm = this.formBuilder.group({
@@ -49,7 +50,7 @@ export class EditVehicleComponent implements OnInit {
       this.vehicleForm.patchValue(vehicle);
     });
   }
-
+  
   updateVehicleDetails() {
     if (this.vehicleForm.valid) {
       const updatedVehicle = this.vehicleForm.value;

@@ -66,14 +66,14 @@
         <label [for]="driveType">{{ driveType }}</label>
       </div>
     </div>
-  
-    <div>
+
+     <div>
       <label for="image" class="image">Upload Image</label>
       <input type="file" id="image" (change)="onImageSelected($event)" accept="image/*" formControlName="carImg">
       <!-- Display preview of the selected image -->
-      <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" style="max-width: 200px; max-height: 200px;">
+      <img *ngIf="imageUrl || vehicleForm.get('carImg')?.value" [src]="imageUrl || vehicleForm.get('carImg')?.value" alt="Selected Image" style="max-width: 200px; max-height: 200px;">
     </div>
-  
+      
     <div class="line">
       <div>
         <label for="color">Color:</label>

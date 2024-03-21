@@ -27,13 +27,14 @@ export class FetchVehicleComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const sellerId = params.get('id');
       console.log(sellerId)
+
       if (sellerId) {
         this.vehicleService.getMyVehicles(sellerId).subscribe((data: any[]) => {
           this.vehicles = data;
         });
       } else {
         console.error('Seller ID not found in route parameters');
-      }
+      }                                                                                                                                                                                                                                                                                             
     });
   }
 
@@ -68,7 +69,11 @@ export class FetchVehicleComponent implements OnInit {
     if (vehicle.driveType !== undefined) {
       localStorage.setItem('driveType', vehicle.driveType);
     }
-  
+    //Adding other values
+if(vehicle.carImg !== undefined){
+    localStorage.setItem('carImg' , vehicle.carImg);
+}
+    localStorage.setItem('description', vehicle.description);
   }
 
 

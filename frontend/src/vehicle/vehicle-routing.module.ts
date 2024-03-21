@@ -9,7 +9,7 @@ const routes: Routes = [
 { path:'edit-product/:id' , component:EditVehicleComponent},
 { path: 'add-vehicle', component: AddVehicleComponent },
 { path: 'fetch-vehicle', component: FetchComponent },
-{path:'getSellers/:id', component: SellerPageComponent}
+{path:'getSellers/:id', component: SellerPageComponent},
 ];
 
 @NgModule({

@@ -1,10 +1,18 @@
 <app-seller-dashboard></app-seller-dashboard>
 
 <form [formGroup]="vehicles" (ngSubmit)="addProductDetails()">
+ 
+ 
   <div>
     <label for="identification_number">Identification Number:</label>
     <input type="text" id="identification_number" placeholder="Identification Number" formControlName="identification_number" required>
+    <div *ngIf="vehicles.get('identification_number')?.invalid && (vehicles.get('identification_number')?.dirty || vehicles.get('identification_number')?.touched)">
+      <div *ngIf="vehicles.get('identification_number')?.errors?.['required']">Identification number is required.</div>
+      <!-- <div *ngIf="vehicles.get('identification_number')?.errors?.['pattern']">Identification number must be 17 digits.</div> -->
+    </div>
   </div>
+  <div>
+ 
   <div>
     <label for="registration_number">Registration Number:</label>
     <input type="text" id="registration_number" placeholder="Registration Number" formControlName="registration_number" required>
@@ -39,10 +47,21 @@
     <label for="carName">Specify Vehicle Model</label>
     <input type="text" id="carName" placeholder="Toyota Corolla" formControlName="carName" required>
   </div>
+
+<!--   
   <div>
     <label for="manufYear">Manufacturing Year:</label>
     <input type="number" id="manufYear" formControlName="manufYear" required>
+  </div> -->
+  
+  <div>
+    <label for="manufYear">Manufacturing Year:</label>
+    <input type="number" id="manufYear" formControlName="manufYear" required>
+    <div *ngIf="vehicles.get('manufYear')?.invalid && vehicles.get('manufYear')?.touched">
+      <div *ngIf="vehicles.get('manufYear')?.errors?.['required']">Manufacturing year is required.</div>
+    </div>
   </div>
+
 
   <div class="condition">
     <label>Ownership:</label>
@@ -57,6 +76,9 @@
     <div>
       <input type="radio" id="third" name="ownerShip" value="Third" formControlName="ownerShip">
       <label for="third">Third</label>
+    </div>
+    <div *ngIf="vehicles.get('ownerShip')?.invalid && vehicles.get('ownerShip')?.touched">
+      <div *ngIf="vehicles.get('ownerShip')?.errors?.['required']">Ownership status is required.</div>
     </div>
   </div>
 
@@ -73,6 +95,9 @@
     <input type="file" id="image" (change)="onImageSelected($event)" accept="image/*" formControlName="carImg">
     <!-- Display preview of the selected image -->
     <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" style="max-width: 200px; max-height: 200px;">
+    <div *ngIf="vehicles.get('carImg')?.invalid && vehicles.get('carImg')?.touched">
+      <div *ngIf="vehicles.get('carImg')?.errors?.['required']">Car image is required.</div>
+    </div>
   </div>
 
   <div class="line">
@@ -88,6 +113,11 @@
       <label for="price">Price:</label>
       <input type="number" id="price" formControlName="price" required>
     </div>
+    <div *ngIf="vehicles.get('price')?.invalid && vehicles.get('price')?.touched">
+      <div *ngIf="vehicles.get('price')?.errors?.['required']">Price is required.</div>
+    </div>
+  </div>
+
   </div>
   
   <div class="line">
@@ -151,4 +181,4 @@
   <div class="submit">
     <button type="submit" value="Add">Add Vehicle</button>
   </div>
-</form>
+<!-- </form> -->

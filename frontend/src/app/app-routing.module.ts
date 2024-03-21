@@ -57,6 +57,15 @@ const routes: Routes = [
   { path: 'fetch-vehicle/:id', component: FetchComponent },
   {path:'getSellers/:id', component: SellerPageComponent},
 
+
+
+{ path:'edit-product/:id' , component:EditVehicleComponent},
+{ path: 'add-vehicle', component: AddVehicleComponent },
+{ path: 'fetch-vehicle', component: FetchComponent },
+{path:'getSellers/:id', component: SellerPageComponent},
+
+
+
   //wildcard
   {path: '**',component:PageNotFoundComponent}
 

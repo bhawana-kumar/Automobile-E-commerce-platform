@@ -14,6 +14,8 @@ export class EditVehicleComponent implements OnInit {
   imageUrl: string | undefined;
   successMessage: string | null = null;
 
+  sellerId : string | undefined | '' | null; 
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -23,6 +25,10 @@ export class EditVehicleComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.sellerId = localStorage.getItem('sellerId');
+     console.log(this.sellerId);
+   
     this.vehicleForm = this.formBuilder.group({
       identification_number: [localStorage.getItem('identification_number') || '', Validators.required],
       registration_number: [localStorage.getItem('registration_number') || '', Validators.required],
@@ -32,7 +38,7 @@ export class EditVehicleComponent implements OnInit {
       manufYear: ['', Validators.required],
       ownerShip: ['', Validators.required],
       driveType: [localStorage.getItem('driveType') || '', Validators.required],
-      carImg: [''],
+      carImg: [localStorage.getItem('carImg') || ''],
       color: [localStorage.getItem('color') || '', Validators.required],
       seats: [localStorage.getItem('seatingCapacity') || '', Validators.required],
       price: [localStorage.getItem('price') || '', Validators.required],
@@ -41,14 +47,18 @@ export class EditVehicleComponent implements OnInit {
       torque: [localStorage.getItem('torque') || ''],
       fuelType: [localStorage.getItem('fuelType') || '', Validators.required],
       mileage: [localStorage.getItem('mileage') || ''],
-      description: [''],
+      description: [localStorage.getItem('description') || ''],
       bodyType: [localStorage.getItem('bodyType') || '', Validators.required]
     });
 
+    this.sellerId = localStorage.getItem('sellerId');
+    //  console.log(this.sellerId);
+     
     const vehicleId = this.route.snapshot.paramMap.get('id') ?? '';  
     this.vehicleService.getVehicleById(vehicleId).subscribe(vehicle => {
       this.vehicleForm.patchValue(vehicle);
     });
+
   }
   
   updateVehicleDetails() {
@@ -60,8 +70,10 @@ export class EditVehicleComponent implements OnInit {
           this.successMessage = 'Vehicle details updated successfully.';
           setTimeout(() => {
             this.successMessage = null;
-            this.router.navigate(['/fetch-vehicle']);
-          }, 4000);
+            alert("Vehicle updated successfully");
+            this.router.navigate([`/getSellers/${this.sellerId}`])  
+            
+          }, 500);
         },
         error => {
           console.error('Error updating vehicle details:', error);
@@ -71,17 +83,19 @@ export class EditVehicleComponent implements OnInit {
       this.vehicleForm.markAllAsTouched();
     }
   }
- 
-    onImageSelected(event: any) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imageUrl = reader.result as string;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        this.imageUrl = undefined;
-      }
+
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result?.toString() || '';
+        this.vehicleForm.patchValue({
+          carImg: this.imageUrl
+        });
+      };
+      reader.readAsDataURL(file);
     }
+  }
+
   }
